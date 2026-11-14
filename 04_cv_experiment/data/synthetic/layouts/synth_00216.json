@@ -1,0 +1,81 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00216",
+  "language": "en",
+  "period": "Iron Age II",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 6,
+  "height_m": 6,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.0,
+    "w": 2.594,
+    "h": 1.189
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.297,
+    "y": 1.232,
+    "w": 3.703,
+    "h": 3.189
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "silo",
+   "phrase": "round storage silo pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.347,
+    "y": 2.777,
+    "w": 1.441,
+    "h": 1.441
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

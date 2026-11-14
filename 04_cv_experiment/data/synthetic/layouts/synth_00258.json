@@ -1,0 +1,85 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00258",
+  "language": "en",
+  "period": "Chalcolithic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 5,
+  "height_m": 5,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.175,
+    "w": 5.0,
+    "h": 0.713
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 2.539,
+    "w": 5.0,
+    "h": 0.713
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.888,
+    "w": 5.0,
+    "h": 1.652
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "E"
+   ],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

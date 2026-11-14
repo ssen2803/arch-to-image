@@ -1,0 +1,159 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00121",
+  "language": "en",
+  "period": "Roman",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 5,
+  "height_m": 5,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.034,
+    "y": 3.066,
+    "w": 3.127,
+    "h": 0.849
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.035,
+    "y": 3.066,
+    "w": 0.965,
+    "h": 0.849
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W3",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.034,
+    "y": 0.0,
+    "w": 0.849,
+    "h": 0.904
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W4",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.034,
+    "y": 1.995,
+    "w": 0.849,
+    "h": 1.071
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.883,
+    "y": 0.0,
+    "w": 4.117,
+    "h": 3.066
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.464,
+    "y": 1.469,
+    "w": 1.114,
+    "h": 1.114
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.303,
+    "y": 0.322,
+    "w": 1.306,
+    "h": 1.306
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

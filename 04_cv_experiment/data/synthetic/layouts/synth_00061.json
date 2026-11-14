@@ -1,0 +1,296 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00061",
+  "language": "en",
+  "period": "Hellenistic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 8,
+  "height_m": 8,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.628,
+    "y": 4.746,
+    "w": 6.372,
+    "h": 0.587
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.628,
+    "y": 0.0,
+    "w": 0.587,
+    "h": 2.71
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W3",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.628,
+    "y": 3.695,
+    "w": 0.587,
+    "h": 1.052
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W4",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.349,
+    "y": 0.0,
+    "w": 0.499,
+    "h": 0.816
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W5",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.349,
+    "y": 1.686,
+    "w": 0.499,
+    "h": 3.061
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.215,
+    "y": 0.0,
+    "w": 3.134,
+    "h": 4.746
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "hearth",
+   "phrase": "stone-lined hearth",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.365,
+    "y": 1.425,
+    "w": 0.746,
+    "h": 0.746
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "tabun",
+   "phrase": "clay tabun oven",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.536,
+    "y": 1.553,
+    "w": 0.665,
+    "h": 0.665
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.907,
+    "y": 3.077,
+    "w": 1.024,
+    "h": 1.024
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.137,
+    "y": 2.214,
+    "w": 0.849,
+    "h": 0.849
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "beaten-earth floor",
+   "phrase": "beaten earth floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.848,
+    "y": 0.0,
+    "w": 2.152,
+    "h": 4.746
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I3",
+   "class": "installation",
+   "subtype": "tabun",
+   "phrase": "clay tabun oven",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 6.538,
+    "y": 1.36,
+    "w": 0.684,
+    "h": 0.684
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P3",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.778,
+    "y": 1.226,
+    "w": 0.77,
+    "h": 0.77
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P4",
+   "class": "pit",
+   "subtype": "silo",
+   "phrase": "round storage silo pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.236,
+    "y": 5.626,
+    "w": 1.505,
+    "h": 1.505
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

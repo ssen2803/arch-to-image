@@ -1,0 +1,175 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00093",
+  "language": "en",
+  "period": "Roman",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 8,
+  "height_m": 8,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "beaten-earth floor",
+   "phrase": "beaten earth floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.391,
+    "y": 0.312,
+    "w": 3.272,
+    "h": 2.409
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.202,
+    "y": 4.315,
+    "w": 4.836,
+    "h": 3.685
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 6.116,
+    "w": 5.958,
+    "h": 0.55
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.745,
+    "y": 0.658,
+    "w": 1.283,
+    "h": 0.434
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.246,
+    "y": 2.944,
+    "w": 1.566,
+    "h": 0.403
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 6.118,
+    "y": 5.108,
+    "w": 1.13,
+    "h": 1.13
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "silo",
+   "phrase": "round storage silo pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.365,
+    "y": 4.426,
+    "w": 1.259,
+    "h": 1.259
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P3",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.398,
+    "y": 2.038,
+    "w": 1.333,
+    "h": 1.333
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

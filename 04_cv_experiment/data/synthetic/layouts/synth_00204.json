@@ -1,0 +1,98 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00204",
+  "language": "en",
+  "period": "Chalcolithic",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 8,
+  "height_m": 8,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.246,
+    "y": 0.0,
+    "w": 2.754,
+    "h": 3.176
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.993,
+    "y": 2.001,
+    "w": 3.179,
+    "h": 3.487
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 6.128,
+    "y": 1.46,
+    "w": 0.873,
+    "h": 0.873
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "silo",
+   "phrase": "round storage silo pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.41,
+    "y": 6.574,
+    "w": 1.14,
+    "h": 1.14
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

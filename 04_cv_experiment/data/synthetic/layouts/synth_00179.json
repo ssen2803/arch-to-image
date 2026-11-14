@@ -1,0 +1,142 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00179",
+  "language": "en",
+  "period": "Chalcolithic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 6,
+  "height_m": 6,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.218,
+    "y": 0.0,
+    "w": 0.526,
+    "h": 1.331
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.218,
+    "y": 2.47,
+    "w": 0.526,
+    "h": 3.299
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W3",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.976,
+    "y": 0.0,
+    "w": 0.447,
+    "h": 2.638
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W4",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.976,
+    "y": 3.504,
+    "w": 0.447,
+    "h": 2.265
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.744,
+    "y": 0.0,
+    "w": 3.232,
+    "h": 5.769
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "beaten-earth floor",
+   "phrase": "beaten earth floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.423,
+    "y": 0.0,
+    "w": 0.577,
+    "h": 5.769
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "E"
+   ],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

@@ -1,0 +1,95 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00051",
+  "language": "en",
+  "period": "Hellenistic",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 6,
+  "height_m": 6,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "coarse mosaic floor",
+   "phrase": "coarse white mosaic floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.306,
+    "y": 1.316,
+    "w": 2.356,
+    "h": 3.807
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.336,
+    "y": 1.607,
+    "w": 3.206,
+    "h": 3.02
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "tabun",
+   "phrase": "clay tabun oven",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.589,
+    "y": 0.237,
+    "w": 0.739,
+    "h": 0.739
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.155,
+    "y": 3.213,
+    "w": 1.247,
+    "h": 1.247
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

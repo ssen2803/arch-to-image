@@ -1,0 +1,76 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00023",
+  "language": "en",
+  "period": "Hellenistic",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 7,
+  "height_m": 7,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.976,
+    "y": 2.29,
+    "w": 4.507,
+    "h": 0.623
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "silo",
+   "phrase": "round storage silo pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.1,
+    "y": 0.599,
+    "w": 1.344,
+    "h": 1.344
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.114,
+    "y": 3.642,
+    "w": 1.198,
+    "h": 1.198
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

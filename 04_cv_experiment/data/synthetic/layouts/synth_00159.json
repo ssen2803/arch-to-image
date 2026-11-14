@@ -1,0 +1,206 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00159",
+  "language": "en",
+  "period": "Roman",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 8,
+  "height_m": 8,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.068,
+    "y": 0.0,
+    "w": 0.679,
+    "h": 8.0
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.452,
+    "y": 0.0,
+    "w": 0.679,
+    "h": 8.0
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W3",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.066,
+    "y": 0.0,
+    "w": 0.578,
+    "h": 1.905
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W4",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.066,
+    "y": 2.835,
+    "w": 0.578,
+    "h": 5.165
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "white plaster floor",
+   "phrase": "white plaster floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.748,
+    "y": 0.0,
+    "w": 2.318,
+    "h": 8.0
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "hearth",
+   "phrase": "stone-lined hearth",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.935,
+    "y": 1.482,
+    "w": 0.63,
+    "h": 0.63
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.013,
+    "y": 3.409,
+    "w": 1.253,
+    "h": 1.253
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P2",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.021,
+    "y": 4.943,
+    "w": 0.677,
+    "h": 0.677
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F2",
+   "class": "floor",
+   "subtype": "coarse mosaic floor",
+   "phrase": "coarse white mosaic floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 3.644,
+    "y": 0.0,
+    "w": 1.809,
+    "h": 8.0
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "N"
+   ],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

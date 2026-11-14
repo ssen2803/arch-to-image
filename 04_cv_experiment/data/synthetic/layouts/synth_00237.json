@@ -1,0 +1,142 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00237",
+  "language": "en",
+  "period": "Iron Age II",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 10,
+  "height_m": 10,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.0,
+    "w": 10.0,
+    "h": 0.441
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "S",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 8.724,
+    "w": 10.0,
+    "h": 0.567
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "beaten-earth floor",
+   "phrase": "beaten earth floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.441,
+    "w": 9.764,
+    "h": 8.283
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "hearth",
+   "phrase": "stone-lined hearth",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 8.374,
+    "y": 4.154,
+    "w": 0.731,
+    "h": 0.731
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "hearth",
+   "phrase": "stone-lined hearth",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 7.386,
+    "y": 5.66,
+    "w": 0.946,
+    "h": 0.946
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.392,
+    "y": 6.469,
+    "w": 1.08,
+    "h": 1.08
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

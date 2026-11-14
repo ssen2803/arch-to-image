@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "id": "ex04_hellenistic_two_rooms",
+    "language": "he",
+    "period": "Hellenistic",
+    "context": "two-room building"
+  },
+  "area": {
+    "label": "Area C",
+    "width_m": 9,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "outer stone wall",
+      "phrase": "thick outer stone wall",
+      "locus": "W40",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.3,
+        "w": 9.0,
+        "h": 0.7
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [
+        "E",
+        "W"
+      ],
+      "source_span": "הקיר החיצוני הדרומי של המבנה (W40), שרוחבו 0.7 מ', נמשך לכל אורך השטח ומעבר לגבולותיו ממזרח וממערב"
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "subtype": "partition wall (south segment)",
+      "phrase": "stone partition wall",
+      "locus": "W41",
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.5,
+        "y": 1.0,
+        "w": 0.6,
+        "h": 2.6
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "קטע הקיר שמדרום לפתח אורכו 2.6 מ'"
+    },
+    {
+      "id": "W3",
+      "class": "wall",
+      "subtype": "partition wall (north segment)",
+      "phrase": "stone partition wall",
+      "locus": "W41",
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.5,
+        "y": 4.6,
+        "w": 0.6,
+        "h": 1.4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [
+        "N"
+      ],
+      "source_span": "קטע הקיר שמצפון לפתח אורכו החשוף 1.4 מ' והוא נמשך אל מעבר לגבול החפירה הצפוני"
+    },
+    {
+      "id": "W4",
+      "class": "wall",
+      "subtype": "robbed wall (proposed line)",
+      "phrase": "robbed stone wall",
+      "locus": null,
+      "evidence": "hypothetical",
+      "bbox": {
+        "x": 0.0,
+        "y": 1.0,
+        "w": 0.6,
+        "h": 5.0
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "relative",
+      "truncated": [
+        "N"
+      ],
+      "source_span": "מוצע כי לאורך קו זה עבר הקיר המערבי של החדר, שאבניו נשדדו"
+    },
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "white plaster floor",
+      "phrase": "white plaster floor",
+      "locus": "L401",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.6,
+        "y": 1.0,
+        "w": 3.9,
+        "h": 5.0
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "relative",
+      "truncated": [
+        "N"
+      ],
+      "source_span": "בחדר המערבי (L401) נחשפה רצפת טיח לבנה"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "low stone bench",
+      "phrase": "low stone bench",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.0,
+        "y": 1.2,
+        "w": 0.5,
+        "h": 2.0
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "ולאורך קיר המחיצה נבנה עליה ספסל אבן נמוך שאורכו 2 מ' ורוחבו 0.5 מ'"
+    },
+    {
+      "id": "F2",
+      "class": "floor",
+      "subtype": "beaten-earth floor",
+      "phrase": "beaten earth floor",
+      "locus": "L402",
+      "evidence": "attested",
+      "bbox": {
+        "x": 5.1,
+        "y": 1.0,
+        "w": 3.9,
+        "h": 5.0
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "relative",
+      "truncated": [
+        "N",
+        "E"
+      ],
+      "source_span": "בחדר המזרחי (L402) נחשפה רצפת עפר"
+    },
+    {
+      "id": "I2",
+      "class": "installation",
+      "subtype": "small oven",
+      "phrase": "small clay oven",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 8.2,
+        "y": 5.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "source_span": "ובפינה הצפונית-מזרחית של השטח נמצא עליה תנור קטן (קוטר 0.6 מ')"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "W2",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "נבנה צמוד לקיר הדרומי"
+    },
+    {
+      "subject": "W3",
+      "predicate": "north_of",
+      "object": "W2",
+      "source_span": "קטע הקיר שמצפון לפתח"
+    },
+    {
+      "subject": "F1",
+      "predicate": "west_of",
+      "object": "F2",
+      "source_span": "מחלק בין חדר מערבי לחדר מזרחי"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "מחלק בין חדר מערבי לחדר מזרחי"
+    },
+    {
+      "subject": "F2",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "מחלק בין חדר מערבי לחדר מזרחי"
+    },
+    {
+      "subject": "I1",
+      "predicate": "on",
+      "object": "F1",
+      "source_span": "נבנה עליה ספסל אבן נמוך"
+    },
+    {
+      "subject": "I1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "ולאורך קיר המחיצה"
+    },
+    {
+      "subject": "W4",
+      "predicate": "west_of",
+      "object": "F1",
+      "source_span": "רצפת הטיח נקטעת בקו ישר כ-0.6 מ' מגבול החפירה המערבי"
+    },
+    {
+      "subject": "W4",
+      "predicate": "adjacent_to",
+      "object": "F1",
+      "source_span": "רצפת הטיח נקטעת בקו ישר כ-0.6 מ' מגבול החפירה המערבי"
+    },
+    {
+      "subject": "I2",
+      "predicate": "on",
+      "object": "F2",
+      "source_span": "נמצא עליה תנור קטן"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "בקיר המחיצה נשמר פתח ברוחב 1 מ'",
+      "reason": "doorway is represented as the 1 m gap between wall segments W2 and W3, not as an element"
+    }
+  ]
+}

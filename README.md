@@ -1,0 +1,47 @@
+# מדו"ח חפירה לאיור האתר
+
+פרויקט בקורס **מודלים עמוקים ללמידה יוצרת** (Deep Generative Models), מכון טכנולוגי חולון (HIT).
+מגיש: שון גלר ינוביץ'. מרצה: ד"ר אלכסנדר (סשה) אפרצין.
+
+הפרויקט בודק אם אפשר להפוך תיאור כתוב של חפירה ארכיאולוגית לאיור מבט-על מקורב של האתר, ולמדוד כמה מהמבנה שמתואר בטקסט נשמר בתמונה.
+
+```
+טקסט חפירה ─► פריסה מרחבית (מודל שפה, JSON) ─► SD 1.5 + ControlNet-seg ─► תמונה 512×512
+                                                                              │
+                         מדידת הזיות (HOR) · סגמנטציה: U-Net מול zero-shot ◄──┘
+```
+
+## מבנה המאגר
+
+| תיקייה | שלב | תוכן |
+|---|---|---|
+| [01_literature_review/](01_literature_review/) | סקירת ספרות | הפער המחקרי, שאלת המחקר, הכרעת הסגנון, מטריצת כיסוי של 35 עבודות |
+| [02_layout_pipeline/](02_layout_pipeline/) | טקסט ← פריסה | אונטולוגיה של 5 מחלקות, סכמת JSON, מחלץ מבוסס Claude, מאמת, רינדור, 7 דוגמאות |
+| [03_controlled_generation/](03_controlled_generation/) | חלק א' | ייצור ב-6GB VRAM (FP16, xformers, CPU offloading), מדד הזיות, 80 תמונות ותוצאות |
+| [04_cv_experiment/](04_cv_experiment/) | חלק ב' | U-Net (ResNet-18) מול Grounded-SAM, מדדי mIoU, פרוטוקול קבוצת מבחן אמיתית |
+
+לכל תיקייה יש README משלה עם פקודות ותוצאות.
+
+## התקנה
+
+נבדק על Windows 11 עם RTX 3050 Laptop 6GB ו-Python 3.12.
+
+```bash
+py -3.12 -m venv .venv
+.venv\Scripts\python -m pip install xformers==0.0.35 --index-url https://download.pytorch.org/whl/cu128
+.venv\Scripts\python -m pip install -r 03_controlled_generation\requirements.txt
+```
+
+## נתונים
+
+- **התמונות הסינתטיות** (600 תמונות, כ-350MB) אינן בגיט. הן מצורפות כקובץ zip ל-Release של המאגר, ואפשר גם לייצר אותן מחדש באופן דטרמיניסטי עם `04_cv_experiment/src/build_synthetic.py`. הפריסות, מסכות התיוג ו-`manifest.csv` נמצאים במאגר.
+- **אין במאגר חומר של רשות העתיקות.** תיאורי הדוגמאות בשלב 2 סינתטיים, ונכתבו בסגנון "חדשות ארכיאולוגיות" לצורך הדגמה בלבד.
+- **צילומים אמיתיים** לקבוצת המבחן לא נשמרים בגיט, כי תנאי הרישיון משתנים לפי מקור. ראו [test_set_protocol.md](04_cv_experiment/test_set_protocol.md).
+
+## בדיקות
+
+109 בדיקות אוטומטיות (46 בשלב 2, 46 בשלב 3, 17 בשלב 4). אף אחת מהן לא דורשת GPU.
+
+```bash
+cd 02_layout_pipeline && ..\.venv\Scripts\python -m pytest tests -q
+```

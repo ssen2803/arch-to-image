@@ -1,0 +1,79 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00254",
+  "language": "en",
+  "period": "Hellenistic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 7,
+  "height_m": 7,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 6.112,
+    "y": 0.0,
+    "w": 0.664,
+    "h": 7.0
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "S",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.835,
+    "y": 1.924,
+    "w": 1.476,
+    "h": 0.449
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.721,
+    "y": 4.936,
+    "w": 0.73,
+    "h": 0.73
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

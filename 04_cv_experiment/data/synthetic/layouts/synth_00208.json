@@ -1,0 +1,80 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00208",
+  "language": "en",
+  "period": "Hellenistic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 7,
+  "height_m": 7,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.146,
+    "y": 0.112,
+    "w": 6.854,
+    "h": 0.578
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.146,
+    "y": 0.691,
+    "w": 0.578,
+    "h": 6.05
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "coarse mosaic floor",
+   "phrase": "coarse white mosaic floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.725,
+    "y": 0.691,
+    "w": 6.275,
+    "h": 6.05
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E"
+   ],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

@@ -1,0 +1,243 @@
+{
+  "fine": {
+    "HOR": 0.75,
+    "HOR_area": 0.6682,
+    "n_hallucinated": 6,
+    "n_correct": 2,
+    "foreign_components": 0,
+    "HAR": 1.0,
+    "object_recall": 0.5,
+    "n_elements": 4,
+    "missed": [
+      {
+        "id": "F1",
+        "class": "floor",
+        "coverage": 0.0,
+        "bbox": [
+          82,
+          82,
+          389,
+          440
+        ]
+      },
+      {
+        "id": "I1",
+        "class": "installation",
+        "coverage": 0.0,
+        "bbox": [
+          205,
+          92,
+          287,
+          174
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 0
+      },
+      "wall": {
+        "hallucinated": 6
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 0
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 115369,
+        "bbox": [
+          0,
+          0,
+          512,
+          512
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 159,
+        "bbox": [
+          302,
+          90,
+          361,
+          95
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 219,
+        "bbox": [
+          321,
+          146,
+          336,
+          184
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 862,
+        "bbox": [
+          292,
+          190,
+          342,
+          236
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 120,
+        "bbox": [
+          272,
+          200,
+          290,
+          215
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 83,
+        "bbox": [
+          189,
+          277,
+          199,
+          289
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.0,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "fine"
+    }
+  },
+  "coarse": {
+    "HOR": 0.75,
+    "HOR_area": 0.6623,
+    "n_hallucinated": 6,
+    "n_correct": 2,
+    "foreign_components": 0,
+    "HAR": 0.5902,
+    "object_recall": 0.6667,
+    "n_elements": 3,
+    "missed": [
+      {
+        "id": "I1",
+        "class": "wall",
+        "coverage": 0.107,
+        "bbox": [
+          205,
+          92,
+          287,
+          174
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 0
+      },
+      "wall": {
+        "hallucinated": 6
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 0
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 114289,
+        "bbox": [
+          0,
+          0,
+          512,
+          512
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 159,
+        "bbox": [
+          302,
+          90,
+          361,
+          95
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 219,
+        "bbox": [
+          321,
+          146,
+          336,
+          184
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 862,
+        "bbox": [
+          292,
+          190,
+          342,
+          236
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 120,
+        "bbox": [
+          272,
+          200,
+          290,
+          215
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 83,
+        "bbox": [
+          189,
+          277,
+          199,
+          289
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.0,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "coarse"
+    }
+  }
+}

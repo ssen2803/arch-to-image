@@ -1,0 +1,123 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00221",
+  "language": "en",
+  "period": "Early Islamic",
+  "context": "domestic building"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 6,
+  "height_m": 6,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 0.682,
+    "w": 6.0,
+    "h": 0.697
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "E"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W2",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.0,
+    "y": 1.379,
+    "w": 0.649,
+    "h": 4.621
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "W",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.649,
+    "y": 1.379,
+    "w": 5.351,
+    "h": 4.621
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "E",
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "tabun",
+   "phrase": "clay tabun oven",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.958,
+    "y": 4.44,
+    "w": 0.69,
+    "h": 0.69
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.82,
+    "y": 2.124,
+    "w": 2.417,
+    "h": 0.421
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

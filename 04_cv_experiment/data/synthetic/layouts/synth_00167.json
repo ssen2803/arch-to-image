@@ -1,0 +1,95 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00167",
+  "language": "en",
+  "period": "Early Islamic",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 6,
+  "height_m": 6,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "beaten-earth floor",
+   "phrase": "beaten earth floor",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.894,
+    "y": 1.798,
+    "w": 2.934,
+    "h": 4.127
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.464,
+    "y": 0.862,
+    "w": 2.248,
+    "h": 0.449
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "stone bench",
+   "phrase": "low stone bench",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 0.738,
+    "y": 4.56,
+    "w": 1.734,
+    "h": 0.59
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "pit",
+   "phrase": "round pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.699,
+    "y": 5.157,
+    "w": 0.604,
+    "h": 0.604
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

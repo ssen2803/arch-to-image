@@ -1,0 +1,7 @@
+[
+  { "name": "floor", "color": "#d6b270", "attributes": [] },
+  { "name": "wall", "color": "#5c4033", "attributes": [] },
+  { "name": "installation", "color": "#c44e38", "attributes": [] },
+  { "name": "pit", "color": "#3a5a78", "attributes": [] },
+  { "name": "ignore", "color": "#ff00ff", "attributes": [] }
+]

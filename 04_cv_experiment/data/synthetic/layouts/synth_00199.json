@@ -1,0 +1,116 @@
+{
+ "schema_version": "1.1",
+ "source": {
+  "id": "synth_00199",
+  "language": "en",
+  "period": "Iron Age II",
+  "context": "open-air activity area"
+ },
+ "area": {
+  "label": "synthetic",
+  "width_m": 7,
+  "height_m": 7,
+  "dims_source": "stated"
+ },
+ "elements": [
+  {
+   "id": "F1",
+   "class": "floor",
+   "subtype": "flagstone pavement",
+   "phrase": "flagstone pavement",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 1.419,
+    "y": 2.108,
+    "w": 3.935,
+    "h": 2.896
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "W1",
+   "class": "wall",
+   "subtype": "stone wall",
+   "phrase": "stone wall",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 2.386,
+    "y": 0.133,
+    "w": 0.729,
+    "h": 6.867
+   },
+   "shape": "rect",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [
+    "N"
+   ],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I1",
+   "class": "installation",
+   "subtype": "round basin",
+   "phrase": "round stone basin",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 5.684,
+    "y": 1.033,
+    "w": 0.853,
+    "h": 0.853
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "I2",
+   "class": "installation",
+   "subtype": "tabun",
+   "phrase": "clay tabun oven",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.999,
+    "y": 1.939,
+    "w": 0.695,
+    "h": 0.695
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  },
+  {
+   "id": "P1",
+   "class": "pit",
+   "subtype": "refuse pit",
+   "phrase": "refuse pit",
+   "locus": null,
+   "evidence": "attested",
+   "bbox": {
+    "x": 4.888,
+    "y": 5.21,
+    "w": 1.267,
+    "h": 1.267
+   },
+   "shape": "ellipse",
+   "dims_source": "stated",
+   "position": "stated",
+   "truncated": [],
+   "source_span": "synthetic"
+  }
+ ],
+ "relations": [],
+ "unmapped_mentions": []
+}

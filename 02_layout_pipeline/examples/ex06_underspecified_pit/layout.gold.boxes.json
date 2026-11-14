@@ -1,0 +1,69 @@
+{
+  "caption": "archaeological plan-view reconstruction of a wall and pit, Persian, with round pit",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "stone wall",
+      "evidence": "attested",
+      "box": [
+        0.0,
+        0.84,
+        1.0,
+        0.96
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [
+    {
+      "id": "P1",
+      "class": "pit",
+      "phrase": "round pit",
+      "region": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "visibility": {
+    "P1": {
+      "visible_fraction": null,
+      "status": "unspecified"
+    },
+    "W1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

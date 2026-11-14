@@ -1,0 +1,22 @@
+# סביבה ומטמונים
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# משקולות מאומנות: גדולות, ונוצרות מחדש באימון
+*.pt
+*.safetensors
+
+# 600 התמונות הסינתטיות (כ-350MB) מועלות כ-Release asset ולא לגיט.
+# נוצרות מחדש באופן דטרמיניסטי: python 04_cv_experiment/src/build_synthetic.py --n-layouts 300 --seeds 0 1
+04_cv_experiment/data/synthetic/images/
+
+# צילומים אמיתיים: תנאי רישיון משתנים לפי מקור. לא מעלים בלי בדיקת רישיון (ראו test_set_protocol.md)
+04_cv_experiment/data/real/
+04_cv_experiment/results/
+
+# מערכת הפעלה ועורך
+.DS_Store
+Thumbs.db
+.vscode/

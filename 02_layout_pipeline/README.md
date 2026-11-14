@@ -1,0 +1,94 @@
+# שלב 2: טקסט ← Layout מרחבי
+
+השלב הזה הופך תיאור טקסטואלי של חפירה ארכיאולוגית לקובץ JSON שמייצג Layout במבט-על. הקובץ מכיל, לכל אלמנט, תיבה (bounding box), מחלקה ורמת ראיה, ובנוסף יחסים מרחביים בין האלמנטים. ממנו נגזרים שלושה תוצרים ששלב 3 (דיפוזיה) ושלב 4 (הערכת CV) צורכים.
+
+```
+טקסט חפירה ──► [Claude + פרומפט מובנה + structured outputs] ──► layout.json
+                        ▲                                  │
+                        └──── משוב שגיאות (עד 3 סבבים) ◄── מאמת: סכמה + גיאומטריה + עקיבות
+layout.json ──► schematic.png (איור מקודד-ראיות)
+            ──► seg.png      (מסכת 5 מחלקות → ControlNet-seg / GT ל-mIoU)
+            ──► boxes.json   (תיבות מנורמלות + phrases → GLIGEN / GT ל-AP)
+```
+
+## מבנה התיקייה
+
+| נתיב | תוכן |
+|---|---|
+| [ontology.md](ontology.md) | 5 המחלקות, כללי גבול, רמות ראיה, מערכת צירים, 8 היחסים |
+| [schema/arch_layout.schema.json](schema/arch_layout.schema.json) | הסכמה המוגדרת (JSON Schema 2020-12) |
+| [prompts/text_to_layout_system.md](prompts/text_to_layout_system.md) | הפרומפט המובנה למודל, כולל כללי מיפוי מעברית ודוגמה |
+| [src/layout_core.py](src/layout_core.py) | ליבה: אימות, גיאומטריה, המרה לקואורדינטות תמונה |
+| [src/extract_layout.py](src/extract_layout.py) | טקסט ← Layout בעזרת Claude, עם לולאת תיקון |
+| [src/validate_layout.py](src/validate_layout.py) | אימות קובצי Layout משורת הפקודה |
+| [src/render_layout.py](src/render_layout.py) | רינדור לאיור, למסכה ולתיבות, עם סדר סטרטיגרפי, גיזום של אלמנטים מוסתרים ואזורי אי-ודאות |
+| [src/compare_layouts.py](src/compare_layouts.py) | מדידת הזיות של המחלץ מול gold: אלמנטים מומצאים, מיקום מומצא, IoU, גיזום של מוסתרים, יחסים |
+| [examples/](examples/) | 7 תיאורים ו-7 Layouts מאומתים (gold) עם הרינדורים שלהם |
+| [tests/](tests/) | 46 בדיקות, כולל בדיקות שליליות שמוודאות שהמאמת תופס שגיאות |
+
+## גרסת סכמה 1.1: מידע חסר והסתרה
+
+**`position` לכל אלמנט:**
+
+| ערך | מתי |
+|---|---|
+| `stated` | הדו"ח ממקם את האלמנט ביחס לשטח |
+| `relative` | המיקום נגזר מיחס לאלמנט אחר |
+| `unspecified` | הטקסט לא אומר איפה האלמנט |
+
+אלמנט `unspecified` לא מצויר בנקודה מומצאת. הוא מוצג כאזור אי-ודאות, שהוא החיתוך של כל היחסים שכן נאמרו, ונזכר בפרומפט. ראו ex06.
+
+**`under`:** אלמנט שנמצא מתחת לאחר ונאטם על ידו.
+- המנוע מחשב סדר סטרטיגרפי מתוך `cuts`, `on` ו-`under`, ודוחה מעגלים.
+- אלמנט שמכוסה לגמרי נגזם מהמסכה, מהתיבות ומהפרומפט. באיור הוא מופיע בקו מנוקד עם הכיתוב "(below)". ראו ex07.
+
+**מדידת המחלץ:**
+
+```bash
+python src/compare_layouts.py --all    # כל examples/*/layout.pred.json מול layout.gold.json
+```
+
+## פקודות
+
+```bash
+pip install -r requirements.txt
+
+python src/validate_layout.py examples/*/layout.gold.json      # אימות
+python src/render_layout.py   examples/*/layout.gold.json      # רינדור
+python -m pytest tests -q                                       # בדיקות
+
+python src/extract_layout.py examples/ex01_iron_age_room/report.he.txt --dry-run   # הצגת הבקשה בלבד
+python src/extract_layout.py examples/*/report.he.txt          # המרה אמיתית (דורש ANTHROPIC_API_KEY)
+```
+
+## חמש הדוגמאות
+
+התיאורים **סינתטיים**. הם נכתבו בסגנון דו"חות "חדשות ארכיאולוגיות" לצורך הדגמה, ואינם דו"חות אמיתיים. כל Layout עובר את המאמת ללא שגיאות וללא אזהרות.
+
+ex06 ו-ex07 נוספו כדי לכסות שני מקרי קצה: מידע חסר והסתרה סטרטיגרפית.
+
+| דוגמה | תקופה | שטח | אלמנטים | יחסים | מה היא מדגימה |
+|---|---|---|---|---|---|
+| ex01_iron_age_room | ברזל ב' | 5×5 | 2 קירות, רצפה, טאבון | 6 | המקרה הבסיסי: פינת קירות מחוברת, `on`, `adjacent_to` |
+| ex02_chalcolithic_pits | כלקולית | 10×6 | רצפה, 4 בורות, מתקן | 8 | `cuts`, `inside`, בור שנמשך מעבר לגבול; ממצאים ← unmapped |
+| ex03_byzantine_winepress | ביזנטית | 8×6 | רצפה, קיר, מתקן, 2 בורות | 6 | כלל הגבול: בור איגום מטויח הוא מתקן; תעלה ומפלס ← unmapped |
+| ex04_hellenistic_two_rooms | הלניסטית | 9×6 | 4 קירות, 2 רצפות, 2 מתקנים | 10 | פתח כרווח בין קטעי קיר; קיר שדוד **היפותטי** |
+| ex05_roman_courtyard | רומית | 6×6 | 3 קירות, רצפה, בור, מתקן | 11 | קטע קיר חשוף לצד המשך **משוער** (`inferred`); מפולת ← unmapped |
+| ex06_underspecified_pit | פרסית | 5×5 | קיר, בור | 0 | **מידע חסר:** הטקסט לא אומר איפה הבור. הוא מסומן `unspecified` ומוצג כאזור אי-ודאות |
+| ex07_sealed_silo | לא ידועה | 6×6 | רצפה, טאבון, 2 בורות | 4 | **הסתרה:** ממגורה `under` רצפה נגזמת מהמבט; אפר קבור ← unmapped; בור שחותך את הרצפה נראה |
+
+בכל תיקיית דוגמה יש:
+- `report.he.txt`: הטקסט.
+- `layout.gold.json`: ה-Layout.
+- `layout.gold.schematic.png`, `layout.gold.seg.png`, `layout.gold.boxes.json`: שלושת הרינדורים.
+
+## הערות
+
+- **Gold ולא רק דוגמאות:** חמשת ה-Layouts הוכנו ידנית ואומתו. הם יכולים לשמש gold standard למדידת דיוק המחלץ האוטומטי, כלומר השוואה של `layout.pred.json` מול `layout.gold.json` לפי התאמת מחלקות ו-IoU של תיבות.
+- **המחלץ האוטומטי טרם הורץ מול ה-API.** בסביבה הנוכחית אין מפתח API ואין SDK מותקן. מה שנבדק: בניית הבקשה (`--dry-run`), תקפות סכמת ה-API, והמאמת שהמחלץ מפעיל על התשובה.
+- **מודל ו-fallback:** הסקריפט משתמש ב-`claude-opus-5-5`. מופעל בו fallback בצד השרת (`fallbacks: "default"`): אם מסווג בטיחות דוחה בקשה, היא רצה מחדש על מודל חלופי. אפשר להסיר את שני השדות האלה ב-`build_request`.
+- **אילוצים שמוסרים מסכמת ה-API:** מסכמת ה-API מוסרים אילוצים שהשירות עשוי לא לתמוך בהם, כמו `minimum` ו-`pattern`. הם נאכפים מקומית, כך שהקפדנות נשמרת.
+- **מגבלות v1:**
+  - תיבות מיושרות לצירים בלבד, ולכן קירות אלכסוניים מקורבים.
+  - אין ייצוג של מפלסים או של שכבות סטרטיגרפיות.
+  - תעלות ומפולות אינן מחלקות באונטולוגיה.

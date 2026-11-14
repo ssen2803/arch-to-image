@@ -1,0 +1,26 @@
+{
+  "_doc": [
+    "Bridge between the 5-class project ontology (02_layout_pipeline/ontology.md) and ADE20K, the label space ControlNet-seg (lllyasviel/control_v11p_sd15_seg) was trained on.",
+    "condition: which ADE20K class colour each project class is painted with before it is fed to ControlNet. ControlNet only 'understands' ADE20K colours, so our own palette cannot be passed directly.",
+    "evaluation_groups: which ADE20K classes, when predicted by the evaluator segmenter on a generated image, count as each project class. Groups must be disjoint. Any ADE20K class not listed in a group counts as FOREIGN, i.e. an object category the layout cannot contain: a hallucination by definition.",
+    "condition_candidates: alternatives for the classes with no exact ADE20K equivalent (installation, pit). The choice is an empirical A/B decision made with the Hallucinated Object Rate itself; see README."
+  ],
+  "condition": {
+    "background": "earth",
+    "floor": "floor",
+    "wall": "wall",
+    "installation": "fireplace",
+    "pit": "swimming pool"
+  },
+  "condition_candidates": {
+    "installation": ["fireplace", "oven", "stove", "base", "box"],
+    "pit": ["swimming pool", "sand", "dirt track"]
+  },
+  "evaluation_groups": {
+    "background": ["earth", "field", "land", "dirt track", "grass", "mountain", "hill", "sand"],
+    "floor": ["floor", "rug", "road", "sidewalk", "path"],
+    "wall": ["wall", "building", "house", "hovel", "fence", "column", "rock"],
+    "installation": ["fireplace", "stove", "oven", "base", "box", "sink", "bench", "bathtub", "tank", "barrel", "pot", "basket", "fountain"],
+    "pit": ["swimming pool", "water"]
+  }
+}

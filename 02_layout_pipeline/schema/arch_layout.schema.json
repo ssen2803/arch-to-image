@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "arch_layout.schema.json",
+  "title": "ArchLayout v1.1",
+  "description": "Plan-view spatial layout extracted from an archaeological excavation report. Coordinates are metres in the excavation-area frame: origin at the south-west corner, x grows east, y grows north. 'background' is implicit (everything not covered by an element) and is never listed as an element.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "area", "elements", "relations", "unmapped_mentions"],
+  "properties": {
+    "schema_version": { "const": "1.1" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "language", "period", "context"],
+      "properties": {
+        "id": { "type": "string", "description": "Identifier of the source description, e.g. 'ex01_iron_age_room'." },
+        "language": { "enum": ["he", "en"], "description": "Language of the source text." },
+        "period": { "type": "string", "description": "Archaeological period in English, e.g. 'Iron Age II'. Use 'unknown' if not stated." },
+        "context": { "type": "string", "description": "Short English description of the excavated context, e.g. 'corner of a domestic building'." }
+      }
+    },
+    "area": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "width_m", "height_m", "dims_source"],
+      "properties": {
+        "label": { "type": "string", "description": "Name of the excavated unit as given in the report (square / area), or 'unnamed'." },
+        "width_m": { "type": "number", "exclusiveMinimum": 0, "description": "East-west extent of the excavated area, metres." },
+        "height_m": { "type": "number", "exclusiveMinimum": 0, "description": "North-south extent of the excavated area, metres." },
+        "dims_source": { "$ref": "#/$defs/dims_source" }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/element" }
+    },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relation" }
+    },
+    "unmapped_mentions": {
+      "type": "array",
+      "description": "Things the report mentions that the 5-class ontology cannot represent (finds, channels, collapse, doorways-as-gaps...). Kept as paradata, never silently dropped.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "reason"],
+        "properties": {
+          "text": { "type": "string", "description": "Verbatim span from the report." },
+          "reason": { "type": "string", "description": "Why it is not an element (in English)." }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "dims_source": {
+      "enum": ["stated", "estimated"],
+      "description": "'stated' = the numbers come from the report text; 'estimated' = the extractor estimated them from qualitative wording."
+    },
+    "bbox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "description": "Axis-aligned plan-view box in metres: (x, y) is the south-west corner, w is the east-west size, h is the north-south size.",
+      "properties": {
+        "x": { "type": "number", "minimum": 0 },
+        "y": { "type": "number", "minimum": 0 },
+        "w": { "type": "number", "exclusiveMinimum": 0 },
+        "h": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "element": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "class", "subtype", "phrase", "locus", "evidence", "bbox", "shape", "dims_source", "position", "truncated", "source_span"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[WFIP][0-9]+$",
+          "description": "Internal id. Prefix encodes the class: W=wall, F=floor, I=installation, P=pit. Numbered from 1 per class."
+        },
+        "class": { "enum": ["wall", "floor", "installation", "pit"] },
+        "subtype": { "type": "string", "description": "Specific type in English, e.g. 'tabun', 'plaster floor', 'refuse pit'." },
+        "phrase": { "type": "string", "description": "Short English noun phrase used as the grounding phrase for layout-conditioned diffusion, e.g. 'fieldstone wall'." },
+        "locus": {
+          "type": ["string", "null"],
+          "description": "Locus / wall number exactly as written in the report (e.g. 'L105', 'W12'), or null."
+        },
+        "evidence": {
+          "enum": ["attested", "inferred", "hypothetical"],
+          "description": "Archaeological status per the report: attested = exposed/observed; inferred = the report infers its extent or continuation; hypothetical = the report proposes its existence without direct remains."
+        },
+        "bbox": { "$ref": "#/$defs/bbox" },
+        "shape": { "enum": ["rect", "ellipse"], "description": "Footprint drawn inside the bbox. Round features (pits, tabuns, silos) are 'ellipse'." },
+        "dims_source": { "$ref": "#/$defs/dims_source" },
+        "position": {
+          "enum": ["stated", "relative", "unspecified"],
+          "description": "Where the location comes from. stated = the report places it in the excavation-area frame (side, corner, centre, coordinates). relative = derived from relations to other elements. unspecified = the report gives no location; the bbox is only a placeholder of the right size, the element is NOT drawn at that spot, and it is rendered as a region of uncertainty consistent with whatever relations exist."
+        },
+        "truncated": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["N", "S", "E", "W"] },
+          "description": "Sides at which the element continues beyond the excavation limit. The bbox is clipped to the area and must touch those sides."
+        },
+        "source_span": { "type": "string", "description": "Verbatim span from the report that supports this element (traceability / paradata)." }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "predicate", "object", "source_span"],
+      "properties": {
+        "subject": { "type": "string", "pattern": "^[WFIP][0-9]+$" },
+        "predicate": {
+          "enum": ["north_of", "south_of", "east_of", "west_of", "inside", "on", "adjacent_to", "cuts", "under"],
+          "description": "Directional predicates compare box centres. inside = subject box within object box. on = subject set on object (mostly within it, drawn above it). adjacent_to = boxes touch (gap <= tolerance); covers 'abuts' and 'bonded with'. cuts = subject (a negative feature) is dug into object, boxes overlap, subject is drawn above. under = subject lies stratigraphically below object and is sealed by it where they overlap; in the top-down view the covered part is hidden, and a fully covered subject is pruned from the visible layout."
+        },
+        "object": { "type": "string", "pattern": "^[WFIP][0-9]+$" },
+        "source_span": {
+          "type": ["string", "null"],
+          "description": "Verbatim span from the report that states or implies the relation, or null if it is implied only by geometry already stated."
+        }
+      }
+    }
+  }
+}

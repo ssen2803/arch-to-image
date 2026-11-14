@@ -1,0 +1,133 @@
+{
+  "caption": "archaeological plan-view reconstruction of a open-air activity area with pits, Chalcolithic",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "beaten earth floor",
+      "evidence": "attested",
+      "box": [
+        0.2,
+        0.3,
+        0.8,
+        0.7
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "round stone installation",
+      "evidence": "attested",
+      "box": [
+        0.06,
+        0.45,
+        0.16,
+        0.55
+      ]
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "phrase": "round pit",
+      "evidence": "attested",
+      "box": [
+        0.26,
+        0.34,
+        0.38,
+        0.46
+      ]
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "phrase": "small round pit",
+      "evidence": "attested",
+      "box": [
+        0.46,
+        0.35,
+        0.55,
+        0.44
+      ]
+    },
+    {
+      "id": "P3",
+      "class": "pit",
+      "phrase": "large refuse pit",
+      "evidence": "attested",
+      "box": [
+        0.45,
+        0.52,
+        0.6,
+        0.67
+      ]
+    },
+    {
+      "id": "P4",
+      "class": "pit",
+      "phrase": "round pit",
+      "evidence": "attested",
+      "box": [
+        0.9,
+        0.68,
+        1.0,
+        0.78
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.852,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P3": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P4": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+jsonschema>=4.20
+matplotlib>=3.8
+numpy>=1.26
+pillow>=10.0
+pytest>=8.0
+# נדרש רק להמרה האוטומטית (src/extract_layout.py)
+anthropic

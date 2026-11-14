@@ -1,0 +1,133 @@
+{
+  "caption": "archaeological plan-view reconstruction of a farmhouse courtyard, Roman",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "flagstone courtyard pavement",
+      "evidence": "attested",
+      "box": [
+        0.1667,
+        0.1333,
+        0.8333,
+        0.9667
+      ]
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "stone wall",
+      "evidence": "attested",
+      "box": [
+        0.8333,
+        0.0,
+        0.9667,
+        1.0
+      ]
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "phrase": "stone wall",
+      "evidence": "attested",
+      "box": [
+        0.5833,
+        0.0333,
+        0.8333,
+        0.1333
+      ]
+    },
+    {
+      "id": "W3",
+      "class": "wall",
+      "phrase": "stone wall",
+      "evidence": "inferred",
+      "box": [
+        0.1667,
+        0.0333,
+        0.5833,
+        0.1333
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "stone-lined hearth",
+      "evidence": "attested",
+      "box": [
+        0.7,
+        0.4667,
+        0.8167,
+        0.5833
+      ]
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "phrase": "round storage silo pit",
+      "evidence": "attested",
+      "box": [
+        0.2333,
+        0.6667,
+        0.4667,
+        0.9
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.898,
+      "status": "visible"
+    },
+    "W1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W3": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

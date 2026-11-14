@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "id": "ex07_sealed_silo",
+    "language": "he",
+    "period": "unknown",
+    "context": "plastered floor with a tabun"
+  },
+  "area": { "label": "Area F", "width_m": 6, "height_m": 6, "dims_source": "stated" },
+  "elements": [
+    {
+      "id": "F1", "class": "floor", "subtype": "white plaster floor", "phrase": "white plaster floor",
+      "locus": "L701", "evidence": "attested",
+      "bbox": { "x": 0.5, "y": 0.5, "w": 5.0, "h": 5.0 }, "shape": "rect",
+      "dims_source": "stated", "position": "stated", "truncated": [],
+      "source_span": "נחשפה רצפת טיח לבנה (L701) שהשתמרה על פני כ-5×5 מ' במרכז השטח"
+    },
+    {
+      "id": "I1", "class": "installation", "subtype": "tabun", "phrase": "clay tabun oven",
+      "locus": null, "evidence": "attested",
+      "bbox": { "x": 2.6, "y": 4.3, "w": 0.8, "h": 0.8 }, "shape": "ellipse",
+      "dims_source": "stated", "position": "relative", "truncated": [],
+      "source_span": "על הרצפה, בחלקה הצפוני, נמצא טאבון (קוטר 0.8 מ')"
+    },
+    {
+      "id": "P1", "class": "pit", "subtype": "dug silo (sealed below the floor)", "phrase": "round storage silo pit",
+      "locus": "L702", "evidence": "attested",
+      "bbox": { "x": 1.0, "y": 2.4, "w": 1.2, "h": 1.2 }, "shape": "ellipse",
+      "dims_source": "stated", "position": "relative", "truncated": [],
+      "source_span": "בעת פירוק חלקה המערבי של הרצפה התגלתה מתחתיה ממגורה חפורה (L702, קוטר 1.2 מ'), שנאטמה על ידי הרצפה"
+    },
+    {
+      "id": "P2", "class": "pit", "subtype": "pit", "phrase": "round pit",
+      "locus": "L703", "evidence": "attested",
+      "bbox": { "x": 5.0, "y": 0.1, "w": 0.9, "h": 0.9 }, "shape": "ellipse",
+      "dims_source": "stated", "position": "stated", "truncated": [],
+      "source_span": "בפינה הדרום-מזרחית של השטח נחשף בור (L703, קוטר 0.9 מ') שחתך את שולי הרצפה"
+    }
+  ],
+  "relations": [
+    { "subject": "I1", "predicate": "on", "object": "F1", "source_span": "על הרצפה, בחלקה הצפוני" },
+    { "subject": "P1", "predicate": "under", "object": "F1", "source_span": "שנאטמה על ידי הרצפה" },
+    { "subject": "P1", "predicate": "inside", "object": "F1", "source_span": "חלקה המערבי של הרצפה" },
+    { "subject": "P2", "predicate": "cuts", "object": "F1", "source_span": "שחתך את שולי הרצפה" }
+  ],
+  "unmapped_mentions": [
+    { "text": "בחתך שנחפר בחלקה הדרומי של הרצפה נחשפה מתחתיה שכבת אפר עבה",
+      "reason": "deposit buried below F1: not visible in the top-down view of the uppermost surface, and deposits are not an element class" }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "caption": "archaeological plan-view reconstruction of a corner of a domestic building, Iron Age II",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "beaten earth floor",
+      "evidence": "attested",
+      "box": [
+        0.16,
+        0.16,
+        0.76,
+        0.86
+      ]
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "fieldstone wall",
+      "evidence": "attested",
+      "box": [
+        0.04,
+        0.04,
+        0.16,
+        0.88
+      ]
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "phrase": "fieldstone wall",
+      "evidence": "attested",
+      "box": [
+        0.04,
+        0.04,
+        0.74,
+        0.16
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "clay tabun oven",
+      "evidence": "attested",
+      "box": [
+        0.4,
+        0.18,
+        0.56,
+        0.34
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.952,
+      "status": "visible"
+    },
+    "W1": {
+      "visible_fraction": 0.856,
+      "status": "visible"
+    },
+    "W2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "fine": {
+    "HOR": 0.8,
+    "HOR_area": 0.9337,
+    "n_hallucinated": 4,
+    "n_correct": 1,
+    "foreign_components": 3,
+    "HAR": 1.0,
+    "object_recall": 0.2,
+    "n_elements": 5,
+    "missed": [
+      {
+        "id": "F1",
+        "class": "floor",
+        "coverage": 0.0,
+        "bbox": [
+          32,
+          128,
+          288,
+          384
+        ]
+      },
+      {
+        "id": "P1",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          147,
+          243,
+          173,
+          269
+        ]
+      },
+      {
+        "id": "I1",
+        "class": "installation",
+        "coverage": 0.0,
+        "bbox": [
+          339,
+          230,
+          454,
+          346
+        ]
+      },
+      {
+        "id": "P2",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          422,
+          371,
+          512,
+          448
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 0
+      },
+      "wall": {
+        "hallucinated": 1
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 3
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 125324,
+        "bbox": [
+          0,
+          64,
+          512,
+          448
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 149,
+        "bbox": [
+          432,
+          76,
+          443,
+          108
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 57949,
+        "bbox": [
+          34,
+          133,
+          286,
+          382
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 149,
+        "bbox": [
+          432,
+          152,
+          443,
+          173
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.25,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "fine"
+    }
+  },
+  "coarse": {
+    "HOR": 0.6667,
+    "HOR_area": 0.8458,
+    "n_hallucinated": 4,
+    "n_correct": 2,
+    "foreign_components": 3,
+    "HAR": 1.0,
+    "object_recall": 0.5,
+    "n_elements": 4,
+    "missed": [
+      {
+        "id": "P1",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          147,
+          243,
+          173,
+          269
+        ]
+      },
+      {
+        "id": "P2",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          422,
+          371,
+          512,
+          448
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 0
+      },
+      "wall": {
+        "hallucinated": 1
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 3
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 108032,
+        "bbox": [
+          0,
+          64,
+          512,
+          448
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 149,
+        "bbox": [
+          432,
+          76,
+          443,
+          108
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 57949,
+        "bbox": [
+          34,
+          133,
+          286,
+          382
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 149,
+        "bbox": [
+          432,
+          152,
+          443,
+          173
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.25,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "coarse"
+    }
+  }
+}

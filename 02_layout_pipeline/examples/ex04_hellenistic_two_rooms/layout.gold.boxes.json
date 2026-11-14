@@ -1,0 +1,165 @@
+{
+  "caption": "archaeological plan-view reconstruction of a two-room building, Hellenistic",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "white plaster floor",
+      "evidence": "attested",
+      "box": [
+        0.0667,
+        0.1667,
+        0.5,
+        0.7222
+      ]
+    },
+    {
+      "id": "F2",
+      "class": "floor",
+      "phrase": "beaten earth floor",
+      "evidence": "attested",
+      "box": [
+        0.5667,
+        0.1667,
+        1.0,
+        0.7222
+      ]
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "thick outer stone wall",
+      "evidence": "attested",
+      "box": [
+        0.0,
+        0.7222,
+        1.0,
+        0.8
+      ]
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "phrase": "stone partition wall",
+      "evidence": "attested",
+      "box": [
+        0.5,
+        0.4333,
+        0.5667,
+        0.7222
+      ]
+    },
+    {
+      "id": "W3",
+      "class": "wall",
+      "phrase": "stone partition wall",
+      "evidence": "attested",
+      "box": [
+        0.5,
+        0.1667,
+        0.5667,
+        0.3222
+      ]
+    },
+    {
+      "id": "W4",
+      "class": "wall",
+      "phrase": "robbed stone wall",
+      "evidence": "hypothetical",
+      "box": [
+        0.0,
+        0.1667,
+        0.0667,
+        0.7222
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "low stone bench",
+      "evidence": "attested",
+      "box": [
+        0.4444,
+        0.4778,
+        0.5,
+        0.7
+      ]
+    },
+    {
+      "id": "I2",
+      "class": "installation",
+      "phrase": "small clay oven",
+      "evidence": "attested",
+      "box": [
+        0.9111,
+        0.1889,
+        0.9778,
+        0.2556
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.95,
+      "status": "visible"
+    },
+    "F2": {
+      "visible_fraction": 0.985,
+      "status": "visible"
+    },
+    "W1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W3": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W4": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "I2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

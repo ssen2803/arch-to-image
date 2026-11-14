@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "id": "ex03_byzantine_winepress",
+    "language": "he",
+    "period": "Byzantine",
+    "context": "winepress"
+  },
+  "area": {
+    "label": "unnamed",
+    "width_m": 8,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "coarse white mosaic treading floor",
+      "phrase": "white mosaic treading floor",
+      "locus": "L301",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.5,
+        "y": 1.0,
+        "w": 4.0,
+        "h": 4.0
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "source_span": "משטח הדריכה (L301), מרוצף פסיפס לבן גס, מידותיו 4×4 מ' והוא נמצא בחלקו המערבי של שטח החפירה"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "press-beam socket",
+      "phrase": "square socket cut in the floor",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.3,
+        "y": 2.8,
+        "w": 0.4,
+        "h": 0.4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "במרכז משטח הדריכה נמצאה גומה מרובעת (0.4×0.4 מ') שנחצבה ברצפה"
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "stone wall",
+      "phrase": "stone wall",
+      "locus": "W30",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.5,
+        "y": 5.0,
+        "w": 4.0,
+        "h": 0.5
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30) שאורכו 4 מ' ורוחבו 0.5 מ'"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "plastered collecting vat",
+      "phrase": "plastered collecting vat",
+      "locus": "L302",
+      "evidence": "attested",
+      "bbox": {
+        "x": 5.3,
+        "y": 1.6,
+        "w": 1.8,
+        "h": 1.8
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "נחשף בור איגום מטויח (L302) שמידותיו 1.8×1.8 מ'"
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "subtype": "rock-cut cistern (mouth)",
+      "phrase": "rock-cut cistern opening",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 6.6,
+        "y": 0.0,
+        "w": 1.4,
+        "h": 1.2
+      },
+      "shape": "ellipse",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [
+        "S",
+        "E"
+      ],
+      "source_span": "בפינה הדרום-מזרחית של החפירה נחשף חלק מפיו של מאגר מים חצוב"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "P1",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "שנחצבה ברצפה"
+    },
+    {
+      "subject": "P1",
+      "predicate": "inside",
+      "object": "F1",
+      "source_span": "במרכז משטח הדריכה"
+    },
+    {
+      "subject": "W1",
+      "predicate": "north_of",
+      "object": "F1",
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30)"
+    },
+    {
+      "subject": "W1",
+      "predicate": "adjacent_to",
+      "object": "F1",
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30)"
+    },
+    {
+      "subject": "I1",
+      "predicate": "east_of",
+      "object": "F1",
+      "source_span": "ממזרח למשטח הדריכה"
+    },
+    {
+      "subject": "P2",
+      "predicate": "east_of",
+      "object": "F1",
+      "source_span": "בפינה הדרום-מזרחית של החפירה"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "ותעלה צרה החצובה בסלע מחברת בין השניים",
+      "reason": "channels are not a class in the v1 ontology (connects F1 to I1)"
+    },
+    {
+      "text": "במפלס נמוך ממנו",
+      "reason": "elevation difference cannot be represented in a 2D plan view"
+    },
+    {
+      "text": "המכוסה באבן גדולה",
+      "reason": "covering stone is part of the cistern, not a separate element"
+    }
+  ]
+}

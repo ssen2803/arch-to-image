@@ -1,0 +1,32 @@
+{
+  "epochs": 2,
+  "batch": 4,
+  "crop": 256,
+  "lr": 0.001,
+  "enc_lr": 0.0001,
+  "boundary_ignore": 3,
+  "geometric_aug": true,
+  "seed": 0,
+  "filters": {
+    "min_agree": 0.0,
+    "max_har": 1.0,
+    "filter_csv": null,
+    "drop_frac": 0.0
+  },
+  "exclude_tags": [],
+  "n_held_out": 0,
+  "n_train": 40,
+  "n_val": 8,
+  "class_weights": [
+    0.438,
+    0.439,
+    0.736,
+    1.929,
+    1.458
+  ],
+  "params": {
+    "encoder": 11176512,
+    "decoder": 3227877,
+    "total": 14404389
+  }
+}

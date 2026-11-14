@@ -1,0 +1,91 @@
+{
+  "caption": "archaeological plan-view reconstruction of a plastered floor with a tabun, unknown",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "white plaster floor",
+      "evidence": "attested",
+      "box": [
+        0.0833,
+        0.0833,
+        0.9167,
+        0.9167
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "clay tabun oven",
+      "evidence": "attested",
+      "box": [
+        0.4333,
+        0.15,
+        0.5667,
+        0.2833
+      ]
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "phrase": "round pit",
+      "evidence": "attested",
+      "box": [
+        0.8333,
+        0.8333,
+        0.9833,
+        0.9833
+      ]
+    }
+  ],
+  "occluded": [
+    "P1"
+  ],
+  "uncertain": [],
+  "visibility": {
+    "P1": {
+      "visible_fraction": 0.0,
+      "status": "occluded"
+    },
+    "F1": {
+      "visible_fraction": 0.972,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "id": "ex01_iron_age_room",
+    "language": "he",
+    "period": "Iron Age II",
+    "context": "corner of a domestic building"
+  },
+  "area": {
+    "label": "Square B2",
+    "width_m": 5,
+    "height_m": 5,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "fieldstone wall",
+      "phrase": "fieldstone wall",
+      "locus": "W12",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.2,
+        "y": 0.6,
+        "w": 0.6,
+        "h": 4.2
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "source_span": "קיר 12 (W12), הבנוי אבני שדה, נמשך בכיוון צפון–דרום לאורך הצד המערבי של הריבוע; אורכו 4.2 מ' ורוחבו 0.6 מ'"
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "subtype": "fieldstone wall",
+      "phrase": "fieldstone wall",
+      "locus": "W13",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.2,
+        "y": 4.2,
+        "w": 3.5,
+        "h": 0.6
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "source_span": "קיר 13 (W13), שאורכו 3.5 מ' ורוחבו 0.6 מ', והוא נמשך מזרחה לאורך הצד הצפוני של הריבוע"
+    },
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "beaten-earth floor",
+      "phrase": "beaten earth floor",
+      "locus": "L105",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.8,
+        "y": 0.7,
+        "w": 3.0,
+        "h": 3.5
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "רצפת עפר כבושה (L105) ששטחה כ-3×3.5 מ'"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "tabun",
+      "phrase": "clay tabun oven",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.0,
+        "y": 3.3,
+        "w": 0.8,
+        "h": 0.8
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "source_span": "נמצא טאבון (קוטרו 0.8 מ')"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "W2",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "בקצהו הצפוני מתחבר אליו בפינה קיר 13"
+    },
+    {
+      "subject": "F1",
+      "predicate": "east_of",
+      "object": "W1",
+      "source_span": "בחדר שבין הקירות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "והיא נצמדת לשני הקירות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "והיא נצמדת לשני הקירות"
+    },
+    {
+      "subject": "I1",
+      "predicate": "on",
+      "object": "F1",
+      "source_span": "על הרצפה"
+    },
+    {
+      "subject": "I1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "סמוך לקיר 13"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "ובתוכו שכבת אפר",
+      "reason": "fill/contents of an installation, not a plan-view element"
+    }
+  ]
+}

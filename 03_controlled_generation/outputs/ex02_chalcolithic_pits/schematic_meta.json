@@ -1,0 +1,54 @@
+{
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "controlnet": "lllyasviel/control_v11p_sd15_seg",
+  "dtype": "float16",
+  "attention": "xformers",
+  "offload": "model",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "gpu_total_mb": 6144,
+  "source": "..\\02_layout_pipeline\\examples\\ex02_chalcolithic_pits\\layout.gold.json",
+  "style": "schematic",
+  "prompt": "top-down archaeological site plan drawing of open-air activity area with pits, Chalcolithic, orthographic view, clean ink outlines, flat muted colours, technical illustration, high detail",
+  "negative_prompt": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "steps": 30,
+  "guidance": 7.5,
+  "cond_scale": 1.0,
+  "condition_mapping": {
+    "background": "earth",
+    "floor": "floor",
+    "wall": "wall",
+    "installation": "fireplace",
+    "pit": "swimming pool"
+  },
+  "size": 512,
+  "runs": [
+    {
+      "seed": 0,
+      "file": "schematic_s0.png",
+      "seconds": 9.2,
+      "peak_allocated_mb": 3115,
+      "peak_reserved_mb": 3378
+    },
+    {
+      "seed": 1,
+      "file": "schematic_s1.png",
+      "seconds": 9.2,
+      "peak_allocated_mb": 3113,
+      "peak_reserved_mb": 3372
+    },
+    {
+      "seed": 2,
+      "file": "schematic_s2.png",
+      "seconds": 9.5,
+      "peak_allocated_mb": 3116,
+      "peak_reserved_mb": 3374
+    },
+    {
+      "seed": 3,
+      "file": "schematic_s3.png",
+      "seconds": 9.4,
+      "peak_allocated_mb": 3116,
+      "peak_reserved_mb": 3370
+    }
+  ]
+}

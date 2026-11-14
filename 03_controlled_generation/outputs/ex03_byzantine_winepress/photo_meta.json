@@ -1,0 +1,54 @@
+{
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "controlnet": "lllyasviel/control_v11p_sd15_seg",
+  "dtype": "float16",
+  "attention": "xformers",
+  "offload": "model",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "gpu_total_mb": 6144,
+  "source": "..\\02_layout_pipeline\\examples\\ex03_byzantine_winepress\\layout.gold.json",
+  "style": "photo",
+  "prompt": "top-down drone orthophoto of an archaeological excavation, winepress, Byzantine, exposed stone walls, packed soil, natural light, high detail",
+  "negative_prompt": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "steps": 30,
+  "guidance": 7.5,
+  "cond_scale": 1.0,
+  "condition_mapping": {
+    "background": "earth",
+    "floor": "floor",
+    "wall": "wall",
+    "installation": "fireplace",
+    "pit": "swimming pool"
+  },
+  "size": 512,
+  "runs": [
+    {
+      "seed": 0,
+      "file": "photo_s0.png",
+      "seconds": 9.2,
+      "peak_allocated_mb": 3116,
+      "peak_reserved_mb": 3368
+    },
+    {
+      "seed": 1,
+      "file": "photo_s1.png",
+      "seconds": 9.3,
+      "peak_allocated_mb": 3115,
+      "peak_reserved_mb": 3380
+    },
+    {
+      "seed": 2,
+      "file": "photo_s2.png",
+      "seconds": 9.3,
+      "peak_allocated_mb": 3113,
+      "peak_reserved_mb": 3372
+    },
+    {
+      "seed": 3,
+      "file": "photo_s3.png",
+      "seconds": 9.2,
+      "peak_allocated_mb": 3112,
+      "peak_reserved_mb": 3380
+    }
+  ]
+}

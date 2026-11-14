@@ -1,0 +1,485 @@
+{
+  "fine": {
+    "HOR": 0.9375,
+    "HOR_area": 0.8093,
+    "n_hallucinated": 15,
+    "n_correct": 1,
+    "foreign_components": 3,
+    "HAR": 0.2913,
+    "object_recall": 0.1667,
+    "n_elements": 6,
+    "missed": [
+      {
+        "id": "W1",
+        "class": "wall",
+        "coverage": 0.475,
+        "bbox": [
+          427,
+          0,
+          495,
+          512
+        ]
+      },
+      {
+        "id": "F1",
+        "class": "floor",
+        "coverage": 0.0,
+        "bbox": [
+          85,
+          68,
+          427,
+          495
+        ]
+      },
+      {
+        "id": "P1",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          119,
+          341,
+          239,
+          461
+        ]
+      },
+      {
+        "id": "I1",
+        "class": "installation",
+        "coverage": 0.0,
+        "bbox": [
+          358,
+          239,
+          418,
+          299
+        ]
+      },
+      {
+        "id": "W2",
+        "class": "wall",
+        "coverage": 0.219,
+        "bbox": [
+          299,
+          17,
+          427,
+          68
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 1
+      },
+      "wall": {
+        "hallucinated": 11
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 3
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "floor",
+        "kind": "unsupported",
+        "area": 1408,
+        "bbox": [
+          146,
+          392,
+          190,
+          451
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 470,
+        "bbox": [
+          329,
+          0,
+          392,
+          9
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 112983,
+        "bbox": [
+          0,
+          24,
+          419,
+          462
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 140,
+        "bbox": [
+          407,
+          76,
+          419,
+          97
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 408,
+        "bbox": [
+          503,
+          204,
+          512,
+          255
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 106,
+        "bbox": [
+          0,
+          289,
+          13,
+          300
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 293,
+        "bbox": [
+          42,
+          380,
+          82,
+          392
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 300,
+        "bbox": [
+          0,
+          383,
+          37,
+          395
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 452,
+        "bbox": [
+          141,
+          424,
+          179,
+          448
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 2864,
+        "bbox": [
+          140,
+          455,
+          262,
+          496
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 808,
+        "bbox": [
+          275,
+          458,
+          331,
+          491
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 310,
+        "bbox": [
+          390,
+          459,
+          419,
+          479
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 99,
+        "bbox": [
+          157,
+          389,
+          183,
+          407
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 302,
+        "bbox": [
+          187,
+          415,
+          207,
+          438
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 401,
+        "bbox": [
+          297,
+          423,
+          323,
+          447
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.0,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "fine"
+    }
+  },
+  "coarse": {
+    "HOR": 0.875,
+    "HOR_area": 0.7722,
+    "n_hallucinated": 14,
+    "n_correct": 2,
+    "foreign_components": 3,
+    "HAR": 0.5945,
+    "object_recall": 0.4,
+    "n_elements": 5,
+    "missed": [
+      {
+        "id": "W1",
+        "class": "wall",
+        "coverage": 0.475,
+        "bbox": [
+          427,
+          0,
+          495,
+          512
+        ]
+      },
+      {
+        "id": "P1",
+        "class": "pit",
+        "coverage": 0.0,
+        "bbox": [
+          119,
+          341,
+          239,
+          461
+        ]
+      },
+      {
+        "id": "W2",
+        "class": "wall",
+        "coverage": 0.219,
+        "bbox": [
+          299,
+          17,
+          427,
+          68
+        ]
+      }
+    ],
+    "per_class": {
+      "floor": {
+        "hallucinated": 0
+      },
+      "wall": {
+        "hallucinated": 11
+      },
+      "installation": {
+        "hallucinated": 0
+      },
+      "pit": {
+        "hallucinated": 0
+      },
+      "foreign": {
+        "hallucinated": 3
+      }
+    },
+    "hallucinated": [
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 470,
+        "bbox": [
+          329,
+          0,
+          392,
+          9
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 107739,
+        "bbox": [
+          0,
+          24,
+          419,
+          462
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 140,
+        "bbox": [
+          407,
+          76,
+          419,
+          97
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 408,
+        "bbox": [
+          503,
+          204,
+          512,
+          255
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 106,
+        "bbox": [
+          0,
+          289,
+          13,
+          300
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 293,
+        "bbox": [
+          42,
+          380,
+          82,
+          392
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 300,
+        "bbox": [
+          0,
+          383,
+          37,
+          395
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 452,
+        "bbox": [
+          141,
+          424,
+          179,
+          448
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 2864,
+        "bbox": [
+          140,
+          455,
+          262,
+          496
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 808,
+        "bbox": [
+          275,
+          458,
+          331,
+          491
+        ]
+      },
+      {
+        "class": "wall",
+        "kind": "unsupported",
+        "area": 310,
+        "bbox": [
+          390,
+          459,
+          419,
+          479
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 99,
+        "bbox": [
+          157,
+          389,
+          183,
+          407
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 302,
+        "bbox": [
+          187,
+          415,
+          207,
+          438
+        ]
+      },
+      {
+        "class": "foreign",
+        "kind": "foreign",
+        "area": 401,
+        "bbox": [
+          297,
+          423,
+          323,
+          447
+        ]
+      }
+    ],
+    "unknown_pixel_ratio": 0.0,
+    "config": {
+      "min_area_px": 64,
+      "dilate_px": 8,
+      "recall_ratio": 0.5,
+      "granularity": "coarse"
+    }
+  }
+}

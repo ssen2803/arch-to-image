@@ -1,0 +1,117 @@
+{
+  "caption": "archaeological plan-view reconstruction of a winepress, Byzantine",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "white mosaic treading floor",
+      "evidence": "attested",
+      "box": [
+        0.0625,
+        0.25,
+        0.5625,
+        0.75
+      ]
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "stone wall",
+      "evidence": "attested",
+      "box": [
+        0.0625,
+        0.1875,
+        0.5625,
+        0.25
+      ]
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "phrase": "plastered collecting vat",
+      "evidence": "attested",
+      "box": [
+        0.6625,
+        0.45,
+        0.8875,
+        0.675
+      ]
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "phrase": "square socket cut in the floor",
+      "evidence": "attested",
+      "box": [
+        0.2875,
+        0.475,
+        0.3375,
+        0.525
+      ]
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "phrase": "rock-cut cistern opening",
+      "evidence": "attested",
+      "box": [
+        0.825,
+        0.725,
+        1.0,
+        0.875
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.99,
+      "status": "visible"
+    },
+    "W1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "I1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}
