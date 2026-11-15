@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from common import IGNORE  # noqa: E402
 from compositions import composition_tags  # noqa: E402
 from convert_annotations import color_table, convert  # noqa: E402
-from datasets import boundary_ignore, filter_rows, split_by_layout  # noqa: E402
+from datasets import boundary_ignore, drop_blank_images, filter_rows, is_blank_image, split_by_layout  # noqa: E402
 from metrics import (  # noqa: E402
     agreement, bootstrap_miou, coarsen_labels, confusion, iou_from_confusion, miou, paired_bootstrap_delta,
 )
@@ -88,6 +88,39 @@ def test_boundary_ignore_band():
 def test_filter_rows_thresholds():
     rows = [{"agree_miou": 0.8, "HAR": 0.1}, {"agree_miou": 0.1, "HAR": 0.1}, {"agree_miou": 0.9, "HAR": 0.9}]
     assert len(filter_rows(rows, min_agree=0.3, max_har=0.6)) == 1
+
+
+def test_is_blank_image():
+    rng = np.random.default_rng(0)
+    assert is_blank_image(np.zeros((64, 64, 3), np.uint8))                    # שחורה (מסנן הבטיחות)
+    assert is_blank_image(np.full((64, 64, 3), 128, np.uint8))                # אחידה
+    assert not is_blank_image(rng.integers(0, 255, (64, 64, 3)).astype(np.uint8))
+    dark = rng.integers(0, 40, (64, 64)).astype(np.uint8)                     # כהה אבל עם תוכן
+    assert not is_blank_image(dark)
+
+
+def test_drop_blank_images_and_remove_blank(tmp_path):
+    from PIL import Image
+    import csv
+    (tmp_path / "images").mkdir()
+    rng = np.random.default_rng(1)
+    Image.fromarray(np.zeros((32, 32, 3), np.uint8)).save(tmp_path / "images" / "a_s0.png")
+    Image.fromarray(rng.integers(0, 255, (32, 32, 3)).astype(np.uint8)).save(tmp_path / "images" / "a_s1.png")
+    rows = [{"image_path": tmp_path / "images" / n, "image": f"images/{n}"} for n in ("a_s0.png", "a_s1.png")]
+    kept, dropped = drop_blank_images(rows)
+    assert [r["image"] for r in kept] == ["images/a_s1.png"]
+    assert [r["image"] for r in dropped] == ["images/a_s0.png"]
+
+    from build_synthetic import FIELDS, remove_blank
+    with open(tmp_path / "manifest.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w.writeheader()
+        for n in ("a_s0.png", "a_s1.png"):
+            w.writerow({k: "" for k in FIELDS} | {"image": f"images/{n}", "label": "labels/a.png"})
+    assert remove_blank(tmp_path) == ["images/a_s0.png"]
+    assert not (tmp_path / "images" / "a_s0.png").exists()
+    with open(tmp_path / "manifest.csv", encoding="utf-8") as f:
+        assert [r["image"] for r in csv.DictReader(f)] == ["images/a_s1.png"]
 
 
 def test_split_by_layout_has_no_leakage():

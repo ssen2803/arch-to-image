@@ -36,7 +36,9 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import IGNORE, NUM_CLASSES, REAL_DIR, RUNS, SYNTH_DIR  # noqa: E402
 from compositions import composition_tags  # noqa: E402
-from datasets import SegDataset, filter_rows, read_manifest, real_items, split_by_layout  # noqa: E402
+from datasets import (  # noqa: E402
+    SegDataset, drop_blank_images, filter_rows, read_manifest, real_items, split_by_layout,
+)
 from metrics import confusion, iou_from_confusion, miou  # noqa: E402
 from unet import ResNet18UNet, count_parameters  # noqa: E402
 
@@ -176,7 +178,9 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
-    rows = read_manifest(args.data)
+    rows, blank = drop_blank_images(read_manifest(args.data))
+    if blank:
+        print(f"הוצאו {len(blank)} תמונות ריקות: {', '.join(Path(r['image']).name for r in blank)}")
     train_rows, val_rows = split_by_layout(rows)
     n_before = len(train_rows)
     train_rows = filter_rows(train_rows, args.min_agree, args.max_har)

@@ -38,6 +38,25 @@ def read_manifest(synth_dir: Path) -> list[dict]:
     return rows
 
 
+def is_blank_image(img: np.ndarray, max_level: int = 10, min_std: float = 2.0) -> bool:
+    """תמונה ריקה מהמחולל: שחורה לגמרי או אחידה כמעט לגמרי.
+
+    מסנן הבטיחות של Stable Diffusion מחזיר תמונה שחורה כשהוא מסמן תוצאה. בייצור של 600 תמונות
+    זה קרה פעמיים, והתמונה השחורה נשמרה עם מסכת תיוג מלאה. זה תיוג שגוי לגמרי.
+    """
+    g = img.astype(np.float32) if img.ndim == 2 else img.astype(np.float32).mean(axis=2)
+    return bool(g.max() < max_level or g.std() < min_std)
+
+
+def drop_blank_images(rows: list[dict]) -> tuple[list[dict], list[dict]]:
+    """מחזיר (שורות תקינות, שורות של תמונות ריקות). כל תמונה נפתחת פעם אחת, כ-5 שניות ל-600 תמונות."""
+    kept, dropped = [], []
+    for r in rows:
+        arr = np.asarray(Image.open(r["image_path"]).convert("L"))
+        (dropped if is_blank_image(arr) else kept).append(r)
+    return kept, dropped
+
+
 def split_by_layout(rows: list[dict], val_every: int = 10) -> tuple[list[dict], list[dict]]:
     """פיצול לפי Layout ולא לפי תמונה: כמה seeds של אותו Layout הם כמעט שכפול,
     ולכן כולם חייבים להיות באותו צד, אחרת יש דליפה מהאימון לוולידציה."""

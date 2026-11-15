@@ -6,8 +6,14 @@
 
 הריצה ניתנת לחידוש: תמונות שכבר קיימות מדולגות.
 
+תמונות ריקות: מסנן הבטיחות של SD מחזיר לפעמים תמונה שחורה (2 מתוך 600 בריצה הראשונה).
+תמונה כזו לא נשמרת. במקומה נעשה ניסיון חוזר עם seed = seed + 1000·ניסיון, ועמודת seed
+ב-manifest שומרת את ה-seed שבו השתמשו בפועל. שם הקובץ נשאר לפי ה-seed המבוקש.
+הדגל --fix-blank מוחק תמונות ריקות קיימות ואת השורות שלהן, ומייצר אותן מחדש.
+
 שימוש:
     python src/build_synthetic.py --n-layouts 300 --seeds 0 1
+    python src/build_synthetic.py --n-layouts 300 --seeds 0 1 --fix-blank
 """
 
 from __future__ import annotations
@@ -25,6 +31,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import SYNTH_DIR  # noqa: E402
+from datasets import is_blank_image  # noqa: E402
 from metrics import agreement  # noqa: E402
 from synth_layouts import generate_layout  # noqa: E402
 
@@ -36,6 +43,27 @@ from render_layout import render_seg  # noqa: E402  (שלב 2)
 LIGHTING = ["harsh midday sun", "soft overcast light", "late afternoon light", "even diffuse light"]
 FIELDS = ["image", "label", "layout_id", "seed", "agree_miou", "built_iou", "HOR_area", "object_recall", "HAR",
           "foreign_components", "prompt"]
+MAX_ATTEMPTS = 3
+RETRY_OFFSET = 1000
+
+
+def remove_blank(out: Path) -> list[str]:
+    """מוחק תמונות ריקות ואת השורות שלהן ב-manifest, כדי שהלולאה הרגילה תייצר אותן מחדש."""
+    manifest = out / "manifest.csv"
+    if not manifest.exists():
+        return []
+    with open(manifest, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    blank = [r["image"] for r in rows
+             if (out / r["image"]).exists() and is_blank_image(np.asarray(Image.open(out / r["image"]).convert("L")))]
+    if blank:
+        with open(manifest, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=FIELDS)
+            writer.writeheader()
+            writer.writerows(r for r in rows if r["image"] not in blank)
+        for name in blank:
+            (out / name).unlink()
+    return blank
 
 
 def main() -> int:
@@ -45,11 +73,15 @@ def main() -> int:
     ap.add_argument("--first", type=int, default=0, help="seed של ה-Layout הראשון")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1], help="seeds של הדיפוזיה לכל Layout")
     ap.add_argument("--out", type=Path, default=SYNTH_DIR)
+    ap.add_argument("--fix-blank", action="store_true", help="מחיקת תמונות ריקות קיימות וייצור מחדש")
     args = ap.parse_args()
 
     import torch
     for sub in ("layouts", "labels", "images"):
         (args.out / sub).mkdir(parents=True, exist_ok=True)
+    if args.fix_blank:
+        removed = remove_blank(args.out)
+        print(f"נמחקו {len(removed)} תמונות ריקות: {', '.join(removed) or '-'}")
     manifest = args.out / "manifest.csv"
     done = set()
     if manifest.exists():
@@ -81,14 +113,24 @@ def main() -> int:
                 name = f"{lid}_s{seed}.png"
                 if f"images/{name}" in done:
                     continue
-                image = pipe(prompt=prompt, negative_prompt=NEGATIVE, image=control, height=SIZE, width=SIZE,
-                             num_inference_steps=30, guidance_scale=7.5, controlnet_conditioning_scale=1.0,
-                             generator=torch.Generator(device="cpu").manual_seed(seed)).images[0]
+                for attempt in range(MAX_ATTEMPTS):
+                    used_seed = seed + RETRY_OFFSET * attempt
+                    result = pipe(prompt=prompt, negative_prompt=NEGATIVE, image=control, height=SIZE, width=SIZE,
+                                  num_inference_steps=30, guidance_scale=7.5, controlnet_conditioning_scale=1.0,
+                                  generator=torch.Generator(device="cpu").manual_seed(used_seed))
+                    image = result.images[0]
+                    nsfw = getattr(result, "nsfw_content_detected", None)
+                    if not ((nsfw and nsfw[0]) or is_blank_image(np.array(image))):
+                        break
+                    print(f"{name}: תמונה ריקה עם seed {used_seed}, מנסה שוב")
+                else:
+                    print(f"{name}: ריקה גם אחרי {MAX_ATTEMPTS} ניסיונות; לא נשמרת")
+                    continue
                 image.save(args.out / "images" / name)
                 pred = evaluator(np.array(image))
                 rep = hallucination_report(pred, labels, cfg=cfg)
                 writer.writerow({"image": f"images/{name}", "label": f"labels/{lid}.png", "layout_id": lid,
-                                 "seed": seed, **agreement(pred, labels),
+                                 "seed": used_seed, **agreement(pred, labels),
                                  "HOR_area": rep["HOR_area"], "object_recall": rep["object_recall"],
                                  "HAR": rep["HAR"], "foreign_components": rep["foreign_components"],
                                  "prompt": prompt})
