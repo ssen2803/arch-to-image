@@ -44,7 +44,7 @@
     {
       "id": "W1",
       "class": "wall",
-      "phrase": "stone wall",
+      "phrase": "wall",
       "evidence": "attested",
       "box": [
         0.8333,
@@ -56,7 +56,7 @@
     {
       "id": "W2",
       "class": "wall",
-      "phrase": "stone wall",
+      "phrase": "wall",
       "evidence": "attested",
       "box": [
         0.5833,
@@ -68,7 +68,7 @@
     {
       "id": "W3",
       "class": "wall",
-      "phrase": "stone wall",
+      "phrase": "wall",
       "evidence": "inferred",
       "box": [
         0.1667,

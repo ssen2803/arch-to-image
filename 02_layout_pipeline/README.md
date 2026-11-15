@@ -15,8 +15,9 @@ layout.json ──► schematic.png (איור מקודד-ראיות)
 
 | נתיב | תוכן |
 |---|---|
-| [ontology.md](ontology.md) | 5 המחלקות, כללי גבול, רמות ראיה, מערכת צירים, 8 היחסים |
-| [schema/arch_layout.schema.json](schema/arch_layout.schema.json) | הסכמה המוגדרת (JSON Schema 2020-12) |
+| [ontology.md](ontology.md) | 5 המחלקות, כללי גבול, רמות ראיה, מערכת צירים, היחסים, מונחים ותכונות (1.2) |
+| [schema/arch_layout.schema.json](schema/arch_layout.schema.json) | הסכמה המוגדרת (JSON Schema 2020-12), גרסה 1.2 |
+| [schema/thesaurus.json](schema/thesaurus.json) | אוצר המונחים: 31 מונחים בהיררכיה מתחת ל-4 המחלקות, עם צורות עבריות, ו-8 חומרים |
 | [prompts/text_to_layout_system.md](prompts/text_to_layout_system.md) | הפרומפט המובנה למודל, כולל כללי מיפוי מעברית ודוגמה |
 | [src/layout_core.py](src/layout_core.py) | ליבה: אימות, גיאומטריה, המרה לקואורדינטות תמונה |
 | [src/extract_layout.py](src/extract_layout.py) | טקסט ← Layout בעזרת Claude, עם לולאת תיקון |
@@ -24,7 +25,14 @@ layout.json ──► schematic.png (איור מקודד-ראיות)
 | [src/render_layout.py](src/render_layout.py) | רינדור לאיור, למסכה ולתיבות, עם סדר סטרטיגרפי, גיזום של אלמנטים מוסתרים ואזורי אי-ודאות |
 | [src/compare_layouts.py](src/compare_layouts.py) | מדידת הזיות של המחלץ מול gold: אלמנטים מומצאים, מיקום מומצא, IoU, גיזום של מוסתרים, יחסים |
 | [examples/](examples/) | 7 תיאורים ו-7 Layouts מאומתים (gold) עם הרינדורים שלהם |
-| [tests/](tests/) | 46 בדיקות, כולל בדיקות שליליות שמוודאות שהמאמת תופס שגיאות |
+| [tests/](tests/) | 60 בדיקות, כולל בדיקות שליליות שמוודאות שהמאמת תופס שגיאות |
+
+## גרסת סכמה 1.2: מונחים, תכונות ושדות לטופולוגיית אתר
+
+- **`term` לכל אלמנט:** מונח מתוך אוצר מונחים סגור, עם `basis` (stated או inferred). המונח צריך להיות ספציפי בדיוק כמו הטקסט, ולא יותר. מונח שמסומן stated ולא מופיע בציטוט מסומן כ**ספציפיות-יתר**.
+- **`attributes`:** חומר, גובה שהשתמר ומספר נדבכים, כל אחד עם basis.
+- **שדות אופציונליים לטופולוגיית אתר:** זהות אתר ודו"ח, עיגון לרשת ישראל, תיארוך, גבהים ושלב לכל אלמנט.
+- **ביקורת עצמית:** הכלל מצא ספציפיות-יתר ב-8 מתוך 35 האלמנטים ב-gold של 1.1, ו-gold תוקן. הפירוט נמצא ב-[ontology.md](ontology.md), סעיף 9.
 
 ## גרסת סכמה 1.1: מידע חסר והסתרה
 
@@ -45,7 +53,7 @@ layout.json ──► schematic.png (איור מקודד-ראיות)
 **מדידת המחלץ:**
 
 ```bash
-python src/compare_layouts.py --all    # כל examples/*/layout.pred.json מול layout.gold.json
+python src/compare_layouts.py --all    # כל examples/*/layout.pred.json מול layout.gold.json (כולל מדדי מונחים)
 ```
 
 ## פקודות

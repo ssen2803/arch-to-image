@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "source": {
     "id": "ex05_roman_courtyard",
     "language": "he",
@@ -16,8 +16,8 @@
     {
       "id": "W1",
       "class": "wall",
-      "subtype": "stone wall",
-      "phrase": "stone wall",
+      "subtype": "wall",
+      "phrase": "wall",
       "locus": "W50",
       "evidence": "attested",
       "bbox": {
@@ -33,7 +33,11 @@
         "N",
         "S"
       ],
-      "source_span": "בצד המזרחי של הריבוע נחשף קיר (W50) בכיוון צפון–דרום, שרוחבו 0.8 מ', והוא נמשך מעבר לגבולות הריבוע מצפון ומדרום"
+      "source_span": "בצד המזרחי של הריבוע נחשף קיר (W50) בכיוון צפון–דרום, שרוחבו 0.8 מ', והוא נמשך מעבר לגבולות הריבוע מצפון ומדרום",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      }
     },
     {
       "id": "F1",
@@ -52,7 +56,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "ממערב לקיר נחשף ריצוף אבנים שטוחות של החצר (L501), ששטחו כ-4×5 מ' והוא נצמד לקיר"
+      "source_span": "ממערב לקיר נחשף ריצוף אבנים שטוחות של החצר (L501), ששטחו כ-4×5 מ' והוא נצמד לקיר",
+      "term": {
+        "value": "flagstone pavement",
+        "basis": "stated"
+      }
     },
     {
       "id": "P1",
@@ -71,7 +79,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "בממגורה עגולה שנחפרה בקרקע (L503, קוטר 1.4 מ')"
+      "source_span": "בממגורה עגולה שנחפרה בקרקע (L503, קוטר 1.4 מ')",
+      "term": {
+        "value": "silo",
+        "basis": "stated"
+      }
     },
     {
       "id": "I1",
@@ -90,13 +102,23 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "נמצא מוקד אש התחום באבנים קטנות (0.7×0.7 מ')"
+      "source_span": "נמצא מוקד אש התחום באבנים קטנות (0.7×0.7 מ')",
+      "term": {
+        "value": "hearth",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "stone",
+          "basis": "stated"
+        }
+      }
     },
     {
       "id": "W2",
       "class": "wall",
-      "subtype": "stone wall (exposed segment)",
-      "phrase": "stone wall",
+      "subtype": "wall (exposed segment)",
+      "phrase": "wall",
       "locus": "W51",
       "evidence": "attested",
       "bbox": {
@@ -109,13 +131,17 @@
       "dims_source": "estimated",
       "position": "stated",
       "truncated": [],
-      "source_span": "נחשף קטע קיר בכיוון מזרח–מערב (W51) שאורכו החשוף 1.5 מ' בלבד, והוא מתחבר לקיר W50"
+      "source_span": "נחשף קטע קיר בכיוון מזרח–מערב (W51) שאורכו החשוף 1.5 מ' בלבד, והוא מתחבר לקיר W50",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      }
     },
     {
       "id": "W3",
       "class": "wall",
-      "subtype": "stone wall (inferred continuation)",
-      "phrase": "stone wall",
+      "subtype": "wall (inferred continuation)",
+      "phrase": "wall",
       "locus": "W51",
       "evidence": "inferred",
       "bbox": {
@@ -128,7 +154,11 @@
       "dims_source": "estimated",
       "position": "relative",
       "truncated": [],
-      "source_span": "נראה כי קיר W51 נמשך מערבה לכל רוחב החצר וסגר אותה מצפון"
+      "source_span": "נראה כי קיר W51 נמשך מערבה לכל רוחב החצר וסגר אותה מצפון",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      }
     }
   ],
   "relations": [

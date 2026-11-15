@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "source": {
     "id": "ex03_byzantine_winepress",
     "language": "he",
@@ -30,12 +30,22 @@
       "dims_source": "stated",
       "position": "stated",
       "truncated": [],
-      "source_span": "משטח הדריכה (L301), מרוצף פסיפס לבן גס, מידותיו 4×4 מ' והוא נמצא בחלקו המערבי של שטח החפירה"
+      "source_span": "משטח הדריכה (L301), מרוצף פסיפס לבן גס, מידותיו 4×4 מ' והוא נמצא בחלקו המערבי של שטח החפירה",
+      "term": {
+        "value": "treading floor",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "mosaic",
+          "basis": "stated"
+        }
+      }
     },
     {
       "id": "P1",
       "class": "pit",
-      "subtype": "press-beam socket",
+      "subtype": "square socket (probably for a press beam)",
       "phrase": "square socket cut in the floor",
       "locus": null,
       "evidence": "attested",
@@ -49,13 +59,17 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "במרכז משטח הדריכה נמצאה גומה מרובעת (0.4×0.4 מ') שנחצבה ברצפה"
+      "source_span": "במרכז משטח הדריכה נמצאה גומה מרובעת (0.4×0.4 מ') שנחצבה ברצפה",
+      "term": {
+        "value": "socket",
+        "basis": "stated"
+      }
     },
     {
       "id": "W1",
       "class": "wall",
-      "subtype": "stone wall",
-      "phrase": "stone wall",
+      "subtype": "wall",
+      "phrase": "wall",
       "locus": "W30",
       "evidence": "attested",
       "bbox": {
@@ -68,7 +82,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "משטח הדריכה תחום מצפון בקיר (W30) שאורכו 4 מ' ורוחבו 0.5 מ'"
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30) שאורכו 4 מ' ורוחבו 0.5 מ'",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      }
     },
     {
       "id": "I1",
@@ -87,7 +105,17 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "נחשף בור איגום מטויח (L302) שמידותיו 1.8×1.8 מ'"
+      "source_span": "נחשף בור איגום מטויח (L302) שמידותיו 1.8×1.8 מ'",
+      "term": {
+        "value": "collecting vat",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "plaster",
+          "basis": "stated"
+        }
+      }
     },
     {
       "id": "P2",
@@ -109,7 +137,17 @@
         "S",
         "E"
       ],
-      "source_span": "בפינה הדרום-מזרחית של החפירה נחשף חלק מפיו של מאגר מים חצוב"
+      "source_span": "בפינה הדרום-מזרחית של החפירה נחשף חלק מפיו של מאגר מים חצוב",
+      "term": {
+        "value": "cistern",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "rock-cut",
+          "basis": "stated"
+        }
+      }
     }
   ],
   "relations": [

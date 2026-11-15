@@ -44,7 +44,7 @@
     {
       "id": "W1",
       "class": "wall",
-      "phrase": "stone wall",
+      "phrase": "wall",
       "evidence": "attested",
       "box": [
         0.0625,

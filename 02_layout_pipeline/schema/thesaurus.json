@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "description": "Controlled vocabulary for ArchLayout 1.2 element terms (level 1 under the 5 base classes) and materials. 'broader' links a term to its parent; the four class roots have broader = null. 'he' lists Hebrew surface forms used to check that a term marked 'stated' actually appears in the element's source_span. Linking terms to Getty AAT or CIDOC-CRM identifiers is future work: identifiers are not listed here because they have not been verified.",
+  "terms": {
+    "wall":               {"class": "wall", "broader": null, "he": ["קיר", "קטע קיר", "קירות"]},
+    "outer wall":         {"class": "wall", "broader": "wall", "he": ["קיר חיצוני", "הקיר החיצוני"]},
+    "partition wall":     {"class": "wall", "broader": "wall", "he": ["קיר מחיצה"]},
+    "foundation":         {"class": "wall", "broader": "wall", "he": ["יסוד", "יסודות"]},
+    "terrace wall":       {"class": "wall", "broader": "wall", "he": ["קיר טרסה", "קיר דירוג", "טרסה"]},
+    "retaining wall":     {"class": "wall", "broader": "wall", "he": ["קיר תמך"]},
+    "city wall":          {"class": "wall", "broader": "wall", "he": ["חומה", "חומת העיר", "חומת עיר"]},
+
+    "floor":              {"class": "floor", "broader": null, "he": ["רצפה", "רצפת", "משטח", "ריצוף"]},
+    "beaten-earth floor": {"class": "floor", "broader": "floor", "he": ["רצפת עפר"]},
+    "plaster floor":      {"class": "floor", "broader": "floor", "he": ["רצפת טיח"]},
+    "flagstone pavement": {"class": "floor", "broader": "floor", "he": ["ריצוף אבנים", "ריצוף אבני"]},
+    "mosaic floor":       {"class": "floor", "broader": "floor", "he": ["פסיפס", "רצפת פסיפס"]},
+    "cobbled floor":      {"class": "floor", "broader": "floor", "he": ["ריצוף חלוקים", "חלוקי נחל"]},
+    "treading floor":     {"class": "floor", "broader": "floor", "he": ["משטח דריכה", "משטח הדריכה"]},
+
+    "installation":       {"class": "installation", "broader": null, "he": ["מתקן"]},
+    "tabun":              {"class": "installation", "broader": "installation", "he": ["טאבון"]},
+    "oven":               {"class": "installation", "broader": "installation", "he": ["תנור"]},
+    "hearth":             {"class": "installation", "broader": "installation", "he": ["מוקד אש", "מוקד"]},
+    "kiln":               {"class": "installation", "broader": "installation", "he": ["כבשן"]},
+    "bench":              {"class": "installation", "broader": "installation", "he": ["ספסל"]},
+    "basin":              {"class": "installation", "broader": "installation", "he": ["אגן"]},
+    "collecting vat":     {"class": "installation", "broader": "installation", "he": ["בור איגום"]},
+    "winepress":          {"class": "installation", "broader": "installation", "he": ["גת"]},
+    "olive press":        {"class": "installation", "broader": "installation", "he": ["בית בד"]},
+
+    "pit":                {"class": "pit", "broader": null, "he": ["בור", "בורות"]},
+    "refuse pit":         {"class": "pit", "broader": "pit", "he": ["בור אשפה"]},
+    "silo":               {"class": "pit", "broader": "pit", "he": ["ממגורה"]},
+    "socket":             {"class": "pit", "broader": "pit", "he": ["גומה", "שקע"]},
+    "posthole":           {"class": "pit", "broader": "socket", "he": ["גומה לעמוד", "גומת עמוד"]},
+    "cistern":            {"class": "pit", "broader": "pit", "he": ["מאגר מים", "בור מים", "מאגר חצוב"]},
+    "grave":              {"class": "pit", "broader": "pit", "he": ["קבר"]}
+  },
+  "materials": {
+    "fieldstone": {"he": ["אבני שדה"]},
+    "ashlar":     {"he": ["גזית"]},
+    "stone":      {"he": ["אבן", "אבנים"]},
+    "mudbrick":   {"he": ["לבני בוץ", "לבנים"]},
+    "plaster":    {"he": ["טיח", "מטויח"]},
+    "mosaic":     {"he": ["פסיפס"]},
+    "rock-cut":   {"he": ["חצוב", "חצובה", "נחצב", "בסלע"]},
+    "earth":      {"he": ["עפר"]}
+  }
+}

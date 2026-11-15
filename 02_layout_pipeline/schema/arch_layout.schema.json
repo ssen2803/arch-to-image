@@ -1,43 +1,178 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "arch_layout.schema.json",
-  "title": "ArchLayout v1.1",
-  "description": "Plan-view spatial layout extracted from an archaeological excavation report. Coordinates are metres in the excavation-area frame: origin at the south-west corner, x grows east, y grows north. 'background' is implicit (everything not covered by an element) and is never listed as an element.",
+  "title": "ArchLayout v1.2",
+  "description": "Plan-view spatial layout extracted from an archaeological excavation report. Coordinates are metres in the excavation-area frame: origin at the south-west corner, x grows east, y grows north. 'background' is implicit (everything not covered by an element) and is never listed as an element. Version 1.2 adds optional fields for controlled terms, attributes, dating, elevation and site/report identity; a 1.1 document stays valid.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "source", "area", "elements", "relations", "unmapped_mentions"],
+  "required": [
+    "schema_version",
+    "source",
+    "area",
+    "elements",
+    "relations",
+    "unmapped_mentions"
+  ],
   "properties": {
-    "schema_version": { "const": "1.1" },
+    "schema_version": {
+      "enum": [
+        "1.1",
+        "1.2"
+      ]
+    },
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "language", "period", "context"],
+      "required": [
+        "id",
+        "language",
+        "period",
+        "context"
+      ],
       "properties": {
-        "id": { "type": "string", "description": "Identifier of the source description, e.g. 'ex01_iron_age_room'." },
-        "language": { "enum": ["he", "en"], "description": "Language of the source text." },
-        "period": { "type": "string", "description": "Archaeological period in English, e.g. 'Iron Age II'. Use 'unknown' if not stated." },
-        "context": { "type": "string", "description": "Short English description of the excavated context, e.g. 'corner of a domestic building'." }
+        "id": {
+          "type": "string",
+          "description": "Identifier of the source description, e.g. 'ex01_iron_age_room'."
+        },
+        "language": {
+          "enum": [
+            "he",
+            "en"
+          ],
+          "description": "Language of the source text."
+        },
+        "period": {
+          "type": "string",
+          "description": "Archaeological period in English, e.g. 'Iron Age II'. Use 'unknown' if not stated."
+        },
+        "context": {
+          "type": "string",
+          "description": "Short English description of the excavated context, e.g. 'corner of a domestic building'."
+        },
+        "site": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name"
+          ],
+          "description": "1.2: the site this report belongs to, so several reports on one site can be linked.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Stable slug, e.g. 'tel-rekhesh'."
+            },
+            "name": {
+              "type": "string",
+              "description": "Site name as written in the report."
+            }
+          }
+        },
+        "report": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id"
+          ],
+          "description": "1.2: bibliographic identity of the report.",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "year": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "Publication or excavation year."
+            },
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Season label as written, or null."
+            },
+            "citation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
       }
     },
     "area": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["label", "width_m", "height_m", "dims_source"],
+      "required": [
+        "label",
+        "width_m",
+        "height_m",
+        "dims_source"
+      ],
       "properties": {
-        "label": { "type": "string", "description": "Name of the excavated unit as given in the report (square / area), or 'unnamed'." },
-        "width_m": { "type": "number", "exclusiveMinimum": 0, "description": "East-west extent of the excavated area, metres." },
-        "height_m": { "type": "number", "exclusiveMinimum": 0, "description": "North-south extent of the excavated area, metres." },
-        "dims_source": { "$ref": "#/$defs/dims_source" }
+        "label": {
+          "type": "string",
+          "description": "Name of the excavated unit as given in the report (square / area), or 'unnamed'."
+        },
+        "width_m": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "East-west extent of the excavated area, metres."
+        },
+        "height_m": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "North-south extent of the excavated area, metres."
+        },
+        "dims_source": {
+          "$ref": "#/$defs/dims_source"
+        },
+        "georef": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "crs",
+            "x0",
+            "y0",
+            "source"
+          ],
+          "description": "1.2: position of the area frame origin (its south-west corner) in a national grid, so areas from different reports can be placed together.",
+          "properties": {
+            "crs": {
+              "enum": [
+                "EPSG:2039",
+                "EPSG:28193"
+              ],
+              "description": "EPSG:2039 = Israel TM Grid (new); EPSG:28193 = Palestine 1923 / Israel CS Grid (old)."
+            },
+            "x0": {
+              "type": "number"
+            },
+            "y0": {
+              "type": "number"
+            },
+            "source": {
+              "$ref": "#/$defs/dims_source"
+            }
+          }
+        }
       }
     },
     "elements": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/element" }
+      "items": {
+        "$ref": "#/$defs/element"
+      }
     },
     "relations": {
       "type": "array",
-      "items": { "$ref": "#/$defs/relation" }
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
     },
     "unmapped_mentions": {
       "type": "array",
@@ -45,82 +180,369 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["text", "reason"],
+        "required": [
+          "text",
+          "reason"
+        ],
         "properties": {
-          "text": { "type": "string", "description": "Verbatim span from the report." },
-          "reason": { "type": "string", "description": "Why it is not an element (in English)." }
+          "text": {
+            "type": "string",
+            "description": "Verbatim span from the report."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why it is not an element (in English)."
+          }
         }
       }
     }
   },
   "$defs": {
     "dims_source": {
-      "enum": ["stated", "estimated"],
+      "enum": [
+        "stated",
+        "estimated"
+      ],
       "description": "'stated' = the numbers come from the report text; 'estimated' = the extractor estimated them from qualitative wording."
     },
     "bbox": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["x", "y", "w", "h"],
+      "required": [
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
       "description": "Axis-aligned plan-view box in metres: (x, y) is the south-west corner, w is the east-west size, h is the north-south size.",
       "properties": {
-        "x": { "type": "number", "minimum": 0 },
-        "y": { "type": "number", "minimum": 0 },
-        "w": { "type": "number", "exclusiveMinimum": 0 },
-        "h": { "type": "number", "exclusiveMinimum": 0 }
+        "x": {
+          "type": "number",
+          "minimum": 0
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0
+        },
+        "w": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "h": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
       }
     },
     "element": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "class", "subtype", "phrase", "locus", "evidence", "bbox", "shape", "dims_source", "position", "truncated", "source_span"],
+      "required": [
+        "id",
+        "class",
+        "subtype",
+        "phrase",
+        "locus",
+        "evidence",
+        "bbox",
+        "shape",
+        "dims_source",
+        "position",
+        "truncated",
+        "source_span"
+      ],
       "properties": {
         "id": {
           "type": "string",
           "pattern": "^[WFIP][0-9]+$",
           "description": "Internal id. Prefix encodes the class: W=wall, F=floor, I=installation, P=pit. Numbered from 1 per class."
         },
-        "class": { "enum": ["wall", "floor", "installation", "pit"] },
-        "subtype": { "type": "string", "description": "Specific type in English, e.g. 'tabun', 'plaster floor', 'refuse pit'." },
-        "phrase": { "type": "string", "description": "Short English noun phrase used as the grounding phrase for layout-conditioned diffusion, e.g. 'fieldstone wall'." },
+        "class": {
+          "enum": [
+            "wall",
+            "floor",
+            "installation",
+            "pit"
+          ]
+        },
+        "subtype": {
+          "type": "string",
+          "description": "Specific type in English, e.g. 'tabun', 'plaster floor', 'refuse pit'."
+        },
+        "phrase": {
+          "type": "string",
+          "description": "Short English noun phrase used as the grounding phrase for layout-conditioned diffusion, e.g. 'fieldstone wall'."
+        },
         "locus": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Locus / wall number exactly as written in the report (e.g. 'L105', 'W12'), or null."
         },
         "evidence": {
-          "enum": ["attested", "inferred", "hypothetical"],
+          "enum": [
+            "attested",
+            "inferred",
+            "hypothetical"
+          ],
           "description": "Archaeological status per the report: attested = exposed/observed; inferred = the report infers its extent or continuation; hypothetical = the report proposes its existence without direct remains."
         },
-        "bbox": { "$ref": "#/$defs/bbox" },
-        "shape": { "enum": ["rect", "ellipse"], "description": "Footprint drawn inside the bbox. Round features (pits, tabuns, silos) are 'ellipse'." },
-        "dims_source": { "$ref": "#/$defs/dims_source" },
+        "bbox": {
+          "$ref": "#/$defs/bbox"
+        },
+        "shape": {
+          "enum": [
+            "rect",
+            "ellipse"
+          ],
+          "description": "Footprint drawn inside the bbox. Round features (pits, tabuns, silos) are 'ellipse'."
+        },
+        "dims_source": {
+          "$ref": "#/$defs/dims_source"
+        },
         "position": {
-          "enum": ["stated", "relative", "unspecified"],
+          "enum": [
+            "stated",
+            "relative",
+            "unspecified"
+          ],
           "description": "Where the location comes from. stated = the report places it in the excavation-area frame (side, corner, centre, coordinates). relative = derived from relations to other elements. unspecified = the report gives no location; the bbox is only a placeholder of the right size, the element is NOT drawn at that spot, and it is rendered as a region of uncertainty consistent with whatever relations exist."
         },
         "truncated": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "enum": ["N", "S", "E", "W"] },
+          "items": {
+            "enum": [
+              "N",
+              "S",
+              "E",
+              "W"
+            ]
+          },
           "description": "Sides at which the element continues beyond the excavation limit. The bbox is clipped to the area and must touch those sides."
         },
-        "source_span": { "type": "string", "description": "Verbatim span from the report that supports this element (traceability / paradata)." }
+        "source_span": {
+          "type": "string",
+          "description": "Verbatim span from the report that supports this element (traceability / paradata)."
+        },
+        "term": {
+          "$ref": "#/$defs/term"
+        },
+        "attributes": {
+          "$ref": "#/$defs/attributes"
+        },
+        "dating": {
+          "$ref": "#/$defs/dating"
+        },
+        "elevation": {
+          "$ref": "#/$defs/elevation"
+        },
+        "phase": {
+          "type": "string",
+          "description": "1.2: stratum or phase label exactly as written, e.g. 'Stratum III'."
+        }
       }
     },
     "relation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["subject", "predicate", "object", "source_span"],
+      "required": [
+        "subject",
+        "predicate",
+        "object",
+        "source_span"
+      ],
       "properties": {
-        "subject": { "type": "string", "pattern": "^[WFIP][0-9]+$" },
+        "subject": {
+          "type": "string",
+          "pattern": "^[WFIP][0-9]+$"
+        },
         "predicate": {
-          "enum": ["north_of", "south_of", "east_of", "west_of", "inside", "on", "adjacent_to", "cuts", "under"],
+          "enum": [
+            "north_of",
+            "south_of",
+            "east_of",
+            "west_of",
+            "inside",
+            "on",
+            "adjacent_to",
+            "cuts",
+            "under"
+          ],
           "description": "Directional predicates compare box centres. inside = subject box within object box. on = subject set on object (mostly within it, drawn above it). adjacent_to = boxes touch (gap <= tolerance); covers 'abuts' and 'bonded with'. cuts = subject (a negative feature) is dug into object, boxes overlap, subject is drawn above. under = subject lies stratigraphically below object and is sealed by it where they overlap; in the top-down view the covered part is hidden, and a fully covered subject is pruned from the visible layout."
         },
-        "object": { "type": "string", "pattern": "^[WFIP][0-9]+$" },
+        "object": {
+          "type": "string",
+          "pattern": "^[WFIP][0-9]+$"
+        },
         "source_span": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Verbatim span from the report that states or implies the relation, or null if it is implied only by geometry already stated."
+        }
+      }
+    },
+    "basis": {
+      "enum": [
+        "stated",
+        "inferred"
+      ],
+      "description": "stated = the report says it in so many words; inferred = the extractor or the report infers it (e.g. function from fill contents, 'probably')."
+    },
+    "term": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "basis"
+      ],
+      "description": "1.2: controlled term from schema/thesaurus.json. Use the most specific term the text supports; otherwise fall back to the class root ('wall', 'floor', 'installation', 'pit').",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "basis": {
+          "$ref": "#/$defs/basis"
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "1.2: optional attributes, each with the basis it rests on.",
+      "properties": {
+        "material": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "basis"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "fieldstone",
+                "ashlar",
+                "stone",
+                "mudbrick",
+                "plaster",
+                "mosaic",
+                "rock-cut",
+                "earth"
+              ]
+            },
+            "basis": {
+              "$ref": "#/$defs/basis"
+            }
+          }
+        },
+        "preserved_height_m": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "basis"
+          ],
+          "properties": {
+            "value": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "basis": {
+              "$ref": "#/$defs/basis"
+            }
+          }
+        },
+        "courses": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "basis"
+          ],
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "basis": {
+              "$ref": "#/$defs/basis"
+            }
+          }
+        }
+      }
+    },
+    "dating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "period",
+        "basis"
+      ],
+      "description": "1.2: date of this element. Years are calendar years, negative = BCE. basis 'from_source' = the element is not dated individually and inherits source.period.",
+      "properties": {
+        "period": {
+          "type": "string"
+        },
+        "start_year": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "end_year": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "stated",
+            "inferred",
+            "from_source"
+          ]
+        },
+        "source_span": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "elevation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "datum",
+        "basis"
+      ],
+      "description": "1.2: top and bottom levels in metres. asl = above sea level (comparable across excavations); local = relative to a local datum.",
+      "properties": {
+        "top_m": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "bottom_m": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "datum": {
+          "enum": [
+            "asl",
+            "local"
+          ]
+        },
+        "basis": {
+          "$ref": "#/$defs/dims_source"
         }
       }
     }

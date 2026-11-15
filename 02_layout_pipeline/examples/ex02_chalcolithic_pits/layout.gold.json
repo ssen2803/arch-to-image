@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "source": {
     "id": "ex02_chalcolithic_pits",
     "language": "he",
@@ -30,7 +30,11 @@
       "dims_source": "stated",
       "position": "stated",
       "truncated": [],
-      "source_span": "במרכז השטח נחשפה רצפת עפר כבושה (L210) שהשתמרה על פני כ-6×4 מ'"
+      "source_span": "במרכז השטח נחשפה רצפת עפר כבושה (L210) שהשתמרה על פני כ-6×4 מ'",
+      "term": {
+        "value": "beaten-earth floor",
+        "basis": "stated"
+      }
     },
     {
       "id": "P1",
@@ -49,7 +53,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "בור 211 (קוטר 1.2 מ') בחלקה הצפוני-מערבי"
+      "source_span": "בור 211 (קוטר 1.2 מ') בחלקה הצפוני-מערבי",
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      }
     },
     {
       "id": "P2",
@@ -68,13 +76,17 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "בור 212 (קוטר 0.9 מ') ממזרח לו"
+      "source_span": "בור 212 (קוטר 0.9 מ') ממזרח לו",
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      }
     },
     {
       "id": "P3",
       "class": "pit",
-      "subtype": "refuse pit",
-      "phrase": "large refuse pit",
+      "subtype": "pit (animal bones and jar sherds in its fill)",
+      "phrase": "large pit",
       "locus": "213",
       "evidence": "attested",
       "bbox": {
@@ -87,7 +99,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "בור 213 (קוטר 1.5 מ'), הגדול שבהם, בחלקה הדרומי של הרצפה"
+      "source_span": "בור 213 (קוטר 1.5 מ'), הגדול שבהם, בחלקה הדרומי של הרצפה",
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      }
     },
     {
       "id": "P4",
@@ -108,7 +124,11 @@
       "truncated": [
         "E"
       ],
-      "source_span": "בור רביעי (214) נחשף בפינה הדרום-מזרחית של השטח, מחוץ לתחום הרצפה, והוא נמשך אל מעבר לגבול החפירה המזרחי"
+      "source_span": "בור רביעי (214) נחשף בפינה הדרום-מזרחית של השטח, מחוץ לתחום הרצפה, והוא נמשך אל מעבר לגבול החפירה המזרחי",
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      }
     },
     {
       "id": "I1",
@@ -127,7 +147,17 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "ממערב לרצפה נמצא מתקן עגול בנוי אבנים (קוטר 1 מ') שייעודו אינו ברור"
+      "source_span": "ממערב לרצפה נמצא מתקן עגול בנוי אבנים (קוטר 1 מ') שייעודו אינו ברור",
+      "term": {
+        "value": "installation",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "stone",
+          "basis": "stated"
+        }
+      }
     }
   ],
   "relations": [

@@ -56,7 +56,7 @@
     {
       "id": "W1",
       "class": "wall",
-      "phrase": "thick outer stone wall",
+      "phrase": "outer wall",
       "evidence": "attested",
       "box": [
         0.0,

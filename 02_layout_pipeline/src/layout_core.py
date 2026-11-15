@@ -1,4 +1,4 @@
-"""ליבת ה-Layout: סכמה, גיאומטריה, ואימות סמנטי של קובצי ArchLayout v1.0.
+"""ליבת ה-Layout: סכמה, גיאומטריה, ואימות סמנטי של קובצי ArchLayout (גרסאות 1.1 ו-1.2).
 
 האימות מתבצע בשתי שכבות:
 1. מבני - מול JSON Schema (טיפוסים, שדות חובה, enum).
@@ -22,6 +22,11 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = ROOT / "schema" / "arch_layout.schema.json"
+THESAURUS_PATH = ROOT / "schema" / "thesaurus.json"
+
+# שדות שנוספו בגרסה 1.2. מסמך שמצהיר 1.1 אינו רשאי להכיל אותם.
+V12_FIELDS = {"source": {"site", "report"}, "area": {"georef"},
+              "element": {"term", "attributes", "dating", "elevation", "phase"}}
 
 # סובלנות גיאומטרית במטרים - מתאימה לדיוק מקובל בתיאורי חפירה (עשרות ס"מ).
 DEFAULT_TOL_M = 0.3
@@ -105,6 +110,40 @@ def load_layout(path: str | Path) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+_THESAURUS: dict | None = None
+
+
+def load_thesaurus() -> dict:
+    global _THESAURUS
+    if _THESAURUS is None:
+        _THESAURUS = json.loads(THESAURUS_PATH.read_text(encoding="utf-8"))
+    return _THESAURUS
+
+
+def term_ancestors(term: str) -> list[str]:
+    """המונח ואבותיו עד שורש המחלקה, למשל posthole -> socket -> pit."""
+    terms = load_thesaurus()["terms"]
+    chain = []
+    while term is not None and term not in chain:
+        chain.append(term)
+        term = terms[term]["broader"] if term in terms else None
+    return chain
+
+
+def is_class_root(term: str) -> bool:
+    return load_thesaurus()["terms"].get(term, {}).get("broader", "x") is None
+
+
+def _surface_forms(term_or_material: str, kind: str, language: str) -> list[str]:
+    entry = load_thesaurus()[kind].get(term_or_material, {})
+    return entry.get("he", []) if language == "he" else [term_or_material]
+
+
+def _appears_in(forms: list[str], span: str) -> bool:
+    span = span.lower()
+    return any(f.lower() in span for f in forms)
+
+
 _UNSUPPORTED_BY_API = {
     "$schema", "$id", "minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum",
     "multipleOf", "minLength", "maxLength", "pattern", "minItems", "maxItems", "uniqueItems",
@@ -137,7 +176,13 @@ def api_schema(schema: dict | None = None) -> dict:
             return [walk(v) for v in node]
         return node
 
-    return walk(schema)
+    out = walk(schema)
+    # מונחים: הרשימה הסגורה נמצאת ב-thesaurus.json. ב-API היא נאכפת כ-enum, ומקומית ב-validate_semantics.
+    term_value = out.get("$defs", {}).get("term", {}).get("properties", {}).get("value")
+    if term_value is not None:
+        term_value["enum"] = sorted(load_thesaurus()["terms"])
+        term_value.pop("type", None)
+    return out
 
 
 # ---------------------------------------------------------------- אימות
@@ -323,6 +368,70 @@ def validate_semantics(layout: dict, tol: float = DEFAULT_TOL_M) -> list[Issue]:
                 issues.append(Issue("warning", f"elements/{i} ({el['id']})",
                                     "מציין המקום של אלמנט בלי מיקום נמצא מחוץ לאזור שהיחסים מאפשרים"))
 
+    issues += validate_v12(layout)
+    return issues
+
+
+def validate_v12(layout: dict) -> list[Issue]:
+    """בדיקות של שדות 1.2: גרסה, מונחים מאוצר המונחים, ספציפיות לפי הראיה, תיארוך וגבהים.
+
+    עיקרון הענווה: מונח ספציפי מסומן stated רק אם הוא מופיע בציטוט. אחרת זו "ספציפיות-יתר",
+    כלומר המחלץ (או המתייג) אמר יותר ממה שהטקסט אומר, וזו הזיה עדינה.
+    """
+    issues: list[Issue] = []
+    version = layout.get("schema_version")
+    if version == "1.1":
+        found = sorted({f for f in V12_FIELDS["source"] if f in layout["source"]}
+                       | {f for f in V12_FIELDS["area"] if f in layout["area"]}
+                       | {f for el in layout["elements"] for f in V12_FIELDS["element"] if f in el})
+        if found:
+            issues.append(Issue("error", "schema_version", f"שדות של גרסה 1.2 במסמך 1.1: {', '.join(found)}"))
+        return issues
+
+    terms = load_thesaurus()["terms"]
+    lang = layout["source"]["language"]
+    for i, el in enumerate(layout["elements"]):
+        where = f"elements/{i} ({el['id']})"
+        term = el.get("term")
+        if not term:
+            issues.append(Issue("warning", where, "אלמנט בגרסה 1.2 בלי term (אפשר את שורש המחלקה)"))
+        if term:
+            value = term["value"]
+            if value not in terms:
+                issues.append(Issue("error", where, f"המונח '{value}' אינו באוצר המונחים"))
+            elif terms[value]["class"] != el["class"]:
+                issues.append(Issue("error", where,
+                                    f"המונח '{value}' שייך למחלקה '{terms[value]['class']}' ולא '{el['class']}'"))
+            elif term["basis"] == "stated" and not is_class_root(value) \
+                    and not _appears_in(_surface_forms(value, "terms", lang), el["source_span"]):
+                issues.append(Issue("warning", where,
+                                    f"ספציפיות-יתר: המונח '{value}' מסומן stated אך אינו מופיע בציטוט"))
+            # מונח ספציפי עם basis=inferred הוא הצהרה כנה ולא שגיאה. הוא נמדד ב-compare_layouts מול ה-gold.
+        material = el.get("attributes", {}).get("material")
+        if material and material["basis"] == "stated" \
+                and not _appears_in(_surface_forms(material["value"], "materials", lang), el["source_span"]):
+            issues.append(Issue("warning", where,
+                                f"החומר '{material['value']}' מסומן stated אך אינו מופיע בציטוט"))
+        dating = el.get("dating")
+        if dating and dating.get("start_year") is not None and dating.get("end_year") is not None \
+                and dating["start_year"] > dating["end_year"]:
+            issues.append(Issue("error", where, "תיארוך: שנת ההתחלה מאוחרת משנת הסיום"))
+        elev = el.get("elevation")
+        if elev and elev.get("top_m") is not None and elev.get("bottom_m") is not None \
+                and elev["top_m"] < elev["bottom_m"]:
+            issues.append(Issue("error", where, "גובה: הראש נמוך מהבסיס"))
+
+    # יחס "מתחת ל-" מול גבהים: אלמנט שמתחת לאחר לא יכול שראשו יהיה גבוה מראש האלמנט שמעליו
+    by_id = {el["id"]: el for el in layout["elements"]}
+    for j, rel in enumerate(layout["relations"]):
+        if rel["predicate"] != "under" or rel["subject"] not in by_id or rel["object"] not in by_id:
+            continue
+        lo, hi = by_id[rel["subject"]].get("elevation"), by_id[rel["object"]].get("elevation")
+        if lo and hi and lo["datum"] == hi["datum"] and lo.get("top_m") is not None \
+                and hi.get("top_m") is not None and lo["top_m"] > hi["top_m"] + 0.05:
+            issues.append(Issue("warning", f"relations/{j}",
+                                f"{rel['subject']} מתחת ל-{rel['object']}, אך ראשו גבוה יותר "
+                                f"({lo['top_m']} מול {hi['top_m']} מ')"))
     return issues
 
 

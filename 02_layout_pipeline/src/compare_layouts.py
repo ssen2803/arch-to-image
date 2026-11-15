@@ -13,6 +13,12 @@
   false_occlusion_rate      - מבין האלמנטים הנראים ב-gold, כמה המחלץ הסתיר בטעות
   relation_precision/recall - על שלשות (נושא, יחס, מושא) אחרי מיפוי המזהים
 
+מדדי מונחים (סכמה 1.2, רק לזוגות שיש בהם term בשני הצדדים):
+  term_exact                - המונח זהה
+  term_hier                 - דמיון היררכי: חפיפת שרשראות האבות (Jaccard), כך שאב נכון מקבל קרדיט חלקי
+  over_specification_rate   - המונח החזוי צאצא ממש של מונח ה-gold: המחלץ אמר יותר ממה שהטקסט תומך
+  under_specification_rate  - המונח החזוי אב ממש של מונח ה-gold: המחלץ אמר פחות (זהיר מדי, לא שגוי)
+
 שימוש:
     python src/compare_layouts.py --pred examples/ex01_iron_age_room/layout.pred.json \
                                   --gold examples/ex01_iron_age_room/layout.gold.json
@@ -30,7 +36,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from layout_core import ROOT, Box, find_report_text, load_layout  # noqa: E402
+from layout_core import ROOT, Box, find_report_text, load_layout, term_ancestors  # noqa: E402
 
 
 def _interval(text: str, span: str) -> tuple[int, int] | None:
@@ -97,6 +103,15 @@ def compare(pred: dict, gold: dict, text: str = "") -> dict:
     def ratio(a, b):
         return round(a / b, 4) if b else None
 
+    tpairs = [(P[p]["term"]["value"], G[g]["term"]["value"]) for p, g in pairs if "term" in P[p] and "term" in G[g]]
+    over = under = 0
+    hier = []
+    for tp, tg in tpairs:
+        ap, ag = term_ancestors(tp), term_ancestors(tg)
+        hier.append(len(set(ap) & set(ag)) / len(set(ap) | set(ag)))
+        over += tp != tg and tg in ap
+        under += tp != tg and tp in ag
+
     return {
         "n_pred": len(P), "n_gold": len(G), "n_matched": len(pairs),
         "element_precision": ratio(len(pairs), len(P)),
@@ -112,6 +127,11 @@ def compare(pred: dict, gold: dict, text: str = "") -> dict:
         "false_occlusion_rate": ratio(len(false_occ), len(gold_vis)),
         "relation_precision": ratio(rel_tp, len(rel_p)),
         "relation_recall": ratio(rel_tp, len(rel_g)),
+        "n_term_pairs": len(tpairs),
+        "term_exact": ratio(sum(tp == tg for tp, tg in tpairs), len(tpairs)),
+        "term_hier": round(statistics.mean(hier), 4) if hier else None,
+        "over_specification_rate": ratio(over, len(tpairs)),
+        "under_specification_rate": ratio(under, len(tpairs)),
         "matches": pairs,
     }
 

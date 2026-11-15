@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "source": {
     "id": "ex01_iron_age_room",
     "language": "he",
@@ -30,13 +30,23 @@
       "dims_source": "stated",
       "position": "stated",
       "truncated": [],
-      "source_span": "קיר 12 (W12), הבנוי אבני שדה, נמשך בכיוון צפון–דרום לאורך הצד המערבי של הריבוע; אורכו 4.2 מ' ורוחבו 0.6 מ'"
+      "source_span": "קיר 12 (W12), הבנוי אבני שדה, נמשך בכיוון צפון–דרום לאורך הצד המערבי של הריבוע; אורכו 4.2 מ' ורוחבו 0.6 מ'",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "fieldstone",
+          "basis": "stated"
+        }
+      }
     },
     {
       "id": "W2",
       "class": "wall",
-      "subtype": "fieldstone wall",
-      "phrase": "fieldstone wall",
+      "subtype": "wall",
+      "phrase": "wall",
       "locus": "W13",
       "evidence": "attested",
       "bbox": {
@@ -49,7 +59,11 @@
       "dims_source": "stated",
       "position": "stated",
       "truncated": [],
-      "source_span": "קיר 13 (W13), שאורכו 3.5 מ' ורוחבו 0.6 מ', והוא נמשך מזרחה לאורך הצד הצפוני של הריבוע"
+      "source_span": "קיר 13 (W13), שאורכו 3.5 מ' ורוחבו 0.6 מ', והוא נמשך מזרחה לאורך הצד הצפוני של הריבוע",
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      }
     },
     {
       "id": "F1",
@@ -68,7 +82,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "רצפת עפר כבושה (L105) ששטחה כ-3×3.5 מ'"
+      "source_span": "רצפת עפר כבושה (L105) ששטחה כ-3×3.5 מ'",
+      "term": {
+        "value": "beaten-earth floor",
+        "basis": "stated"
+      }
     },
     {
       "id": "I1",
@@ -87,7 +105,11 @@
       "dims_source": "stated",
       "position": "relative",
       "truncated": [],
-      "source_span": "נמצא טאבון (קוטרו 0.8 מ')"
+      "source_span": "נמצא טאבון (קוטרו 0.8 מ')",
+      "term": {
+        "value": "tabun",
+        "basis": "stated"
+      }
     }
   ],
   "relations": [

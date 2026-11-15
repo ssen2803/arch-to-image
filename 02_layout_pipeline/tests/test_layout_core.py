@@ -308,3 +308,113 @@ def test_missed_occlusion_is_measured():
     pred["relations"] = [r for r in pred["relations"] if r["predicate"] != "under"]
     r = compare(pred, gold, _text("ex07_sealed_silo"))
     assert r["occlusion_recall"] == 0       # המחלץ לא גזם את הממגורה הקבורה
+
+
+# ------------------------------------------------------------ סכמה 1.2: מונחים, תכונות, תיארוך וגבהים
+
+from layout_core import load_thesaurus, term_ancestors, validate_v12  # noqa: E402
+
+
+def _warn_text(layout: dict) -> str:
+    return "\n".join(str(i) for i in validate(layout) if i.level == "warning")
+
+
+def test_thesaurus_is_a_consistent_hierarchy():
+    terms = load_thesaurus()["terms"]
+    roots = {t for t, e in terms.items() if e["broader"] is None}
+    assert roots == {"wall", "floor", "installation", "pit"}
+    for t, e in terms.items():
+        assert e["broader"] is None or e["broader"] in terms, t
+        assert term_ancestors(t)[-1] == e["class"], t          # כל שרשרת מסתיימת בשורש המחלקה שלה
+        assert e["he"], t
+
+
+def test_all_gold_examples_are_v12_with_terms():
+    for p in EXAMPLES:
+        lay = load_layout(p)
+        assert lay["schema_version"] == "1.2"
+        assert all("term" in e for e in lay["elements"]), p.parent.name
+        assert [i for i in validate(lay) if i.level == "warning"] == [], p.parent.name
+
+
+def test_unknown_term_is_an_error():
+    lay = _ex("ex01_iron_age_room")
+    _el(lay, "I1")["term"]["value"] = "barbecue"
+    assert "אינו באוצר המונחים" in _error_text(lay)
+
+
+def test_term_from_another_class_is_an_error():
+    lay = _ex("ex01_iron_age_room")
+    _el(lay, "I1")["term"]["value"] = "silo"            # ממגורה היא בור, לא מתקן
+    assert "שייך למחלקה" in _error_text(lay)
+
+
+def test_over_specified_term_is_flagged():
+    lay = _ex("ex02_chalcolithic_pits")
+    _el(lay, "P3")["term"] = {"value": "refuse pit", "basis": "stated"}   # הטקסט מתאר רק את המילוי
+    assert "ספציפיות-יתר" in _warn_text(lay)
+
+
+def test_inferred_specific_term_is_an_honest_declaration():
+    lay = _ex("ex02_chalcolithic_pits")
+    _el(lay, "P3")["term"] = {"value": "refuse pit", "basis": "inferred"}
+    assert "ספציפיות-יתר" not in _warn_text(lay)
+
+
+def test_material_not_in_span_is_flagged():
+    lay = _ex("ex06_underspecified_pit")
+    _el(lay, "W1")["attributes"] = {"material": {"value": "stone", "basis": "stated"}}
+    assert "החומר 'stone'" in _warn_text(lay)
+
+
+def test_v12_fields_in_v11_document_are_an_error():
+    lay = _ex("ex01_iron_age_room")
+    lay["schema_version"] = "1.1"
+    assert "שדות של גרסה 1.2 במסמך 1.1" in _error_text(lay)
+
+
+def test_v11_document_without_new_fields_is_still_valid():
+    lay = _ex("ex01_iron_age_room")
+    lay["schema_version"] = "1.1"
+    for e in lay["elements"]:
+        e.pop("term", None)
+        e.pop("attributes", None)
+    assert errors_only(validate(lay)) == []
+
+
+def test_dating_and_elevation_order():
+    lay = _ex("ex07_sealed_silo")
+    _el(lay, "F1")["dating"] = {"period": "Iron Age II", "start_year": -700, "end_year": -900, "basis": "stated"}
+    _el(lay, "I1")["elevation"] = {"top_m": 10.0, "bottom_m": 10.5, "datum": "local", "basis": "stated"}
+    text = _error_text(lay)
+    assert "שנת ההתחלה מאוחרת" in text and "הראש נמוך מהבסיס" in text
+
+
+def test_under_relation_contradicted_by_elevation_warns():
+    lay = _ex("ex07_sealed_silo")              # P1 (ממגורה) under F1 (רצפה)
+    _el(lay, "F1")["elevation"] = {"top_m": 100.0, "bottom_m": 99.9, "datum": "asl", "basis": "stated"}
+    _el(lay, "P1")["elevation"] = {"top_m": 100.4, "bottom_m": 98.8, "datum": "asl", "basis": "stated"}
+    assert "מתחת ל-F1, אך ראשו גבוה יותר" in _warn_text(lay)
+
+
+def test_api_schema_constrains_terms_to_the_thesaurus():
+    value = api_schema()["$defs"]["term"]["properties"]["value"]
+    assert set(value["enum"]) == set(load_thesaurus()["terms"])
+
+
+def test_prompt_lists_every_thesaurus_term():
+    prompt = (ROOT / "prompts" / "text_to_layout_system.md").read_text(encoding="utf-8")
+    missing = [t for t in load_thesaurus()["terms"] if f"`{t}`" not in prompt]
+    assert missing == []
+
+
+def test_term_metrics_reward_parent_and_count_over_specification():
+    gold = _ex("ex02_chalcolithic_pits")
+    pred = copy.deepcopy(gold)
+    _el(pred, "P3")["term"] = {"value": "refuse pit", "basis": "inferred"}   # צאצא של 'pit' שב-gold
+    r = compare(pred, gold, _text("ex02_chalcolithic_pits"))
+    assert r["over_specification_rate"] == pytest.approx(1 / 6, abs=1e-3)
+    assert r["term_exact"] == pytest.approx(5 / 6, abs=1e-3)
+    assert 5 / 6 < r["term_hier"] < 1                  # קרדיט חלקי: האב נכון
+    r2 = compare(gold, pred, _text("ex02_chalcolithic_pits"))
+    assert r2["under_specification_rate"] == pytest.approx(1 / 6, abs=1e-3) and r2["over_specification_rate"] == 0
