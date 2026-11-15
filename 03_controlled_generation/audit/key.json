@@ -1,0 +1,272 @@
+[
+ {
+  "item": 1,
+  "example": "ex01_iron_age_room",
+  "condition": "photo",
+  "seed": 2,
+  "HOR": 0.8667,
+  "HOR_area": 0.2903,
+  "n_flagged": 13
+ },
+ {
+  "item": 2,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "photo_textonly",
+  "seed": 1,
+  "HOR": 1.0,
+  "HOR_area": 1.0,
+  "n_flagged": 4
+ },
+ {
+  "item": 3,
+  "example": "ex05_roman_courtyard",
+  "condition": "photo",
+  "seed": 2,
+  "HOR": 0.4286,
+  "HOR_area": 0.7432,
+  "n_flagged": 3
+ },
+ {
+  "item": 4,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "gligen",
+  "seed": 0,
+  "HOR": 0.3333,
+  "HOR_area": 0.6721,
+  "n_flagged": 3
+ },
+ {
+  "item": 5,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "gligen",
+  "seed": 3,
+  "HOR": 1.0,
+  "HOR_area": 1.0,
+  "n_flagged": 1
+ },
+ {
+  "item": 6,
+  "example": "ex01_iron_age_room",
+  "condition": "gligen",
+  "seed": 3,
+  "HOR": 0.8182,
+  "HOR_area": 0.7421,
+  "n_flagged": 9
+ },
+ {
+  "item": 7,
+  "example": "ex05_roman_courtyard",
+  "condition": "gligen",
+  "seed": 3,
+  "HOR": 0.7778,
+  "HOR_area": 0.7855,
+  "n_flagged": 7
+ },
+ {
+  "item": 8,
+  "example": "ex03_byzantine_winepress",
+  "condition": "gligen",
+  "seed": 3,
+  "HOR": 0.8889,
+  "HOR_area": 0.8627,
+  "n_flagged": 8
+ },
+ {
+  "item": 9,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "photo_textonly",
+  "seed": 1,
+  "HOR": 1.0,
+  "HOR_area": 0.8512,
+  "n_flagged": 5
+ },
+ {
+  "item": 10,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "photo",
+  "seed": 0,
+  "HOR": 0.6667,
+  "HOR_area": 0.9709,
+  "n_flagged": 2
+ },
+ {
+  "item": 11,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "photo",
+  "seed": 0,
+  "HOR": 0.25,
+  "HOR_area": 0.6693,
+  "n_flagged": 2
+ },
+ {
+  "item": 12,
+  "example": "ex05_roman_courtyard",
+  "condition": "photo",
+  "seed": 1,
+  "HOR": 0.6667,
+  "HOR_area": 0.4673,
+  "n_flagged": 8
+ },
+ {
+  "item": 13,
+  "example": "ex01_iron_age_room",
+  "condition": "gligen",
+  "seed": 0,
+  "HOR": 0.8889,
+  "HOR_area": 0.6934,
+  "n_flagged": 16
+ },
+ {
+  "item": 14,
+  "example": "ex05_roman_courtyard",
+  "condition": "photo_textonly",
+  "seed": 1,
+  "HOR": 0.5556,
+  "HOR_area": 0.6624,
+  "n_flagged": 5
+ },
+ {
+  "item": 15,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "photo",
+  "seed": 2,
+  "HOR": 0.9167,
+  "HOR_area": 0.8439,
+  "n_flagged": 11
+ },
+ {
+  "item": 16,
+  "example": "ex01_iron_age_room",
+  "condition": "photo",
+  "seed": 0,
+  "HOR": 0.75,
+  "HOR_area": 0.6623,
+  "n_flagged": 6
+ },
+ {
+  "item": 17,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "photo",
+  "seed": 1,
+  "HOR": 0.25,
+  "HOR_area": 0.6694,
+  "n_flagged": 2
+ },
+ {
+  "item": 18,
+  "example": "ex03_byzantine_winepress",
+  "condition": "photo",
+  "seed": 0,
+  "HOR": 0.6,
+  "HOR_area": 0.8411,
+  "n_flagged": 3
+ },
+ {
+  "item": 19,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "photo",
+  "seed": 2,
+  "HOR": 0.25,
+  "HOR_area": 0.6693,
+  "n_flagged": 2
+ },
+ {
+  "item": 20,
+  "example": "ex03_byzantine_winepress",
+  "condition": "photo",
+  "seed": 1,
+  "HOR": 0.8182,
+  "HOR_area": 0.8408,
+  "n_flagged": 9
+ },
+ {
+  "item": 21,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "photo",
+  "seed": 1,
+  "HOR": 0.8,
+  "HOR_area": 0.9489,
+  "n_flagged": 4
+ },
+ {
+  "item": 22,
+  "example": "ex01_iron_age_room",
+  "condition": "photo_textonly",
+  "seed": 1,
+  "HOR": 1.0,
+  "HOR_area": 0.9861,
+  "n_flagged": 1
+ },
+ {
+  "item": 23,
+  "example": "ex03_byzantine_winepress",
+  "condition": "photo_textonly",
+  "seed": 1,
+  "HOR": 1.0,
+  "HOR_area": 0.996,
+  "n_flagged": 8
+ },
+ {
+  "item": 24,
+  "example": "ex03_byzantine_winepress",
+  "condition": "photo",
+  "seed": 2,
+  "HOR": 0.5,
+  "HOR_area": 0.8659,
+  "n_flagged": 2
+ },
+ {
+  "item": 25,
+  "example": "ex04_hellenistic_two_rooms",
+  "condition": "gligen",
+  "seed": 3,
+  "HOR": 0.25,
+  "HOR_area": 0.6643,
+  "n_flagged": 2
+ },
+ {
+  "item": 26,
+  "example": "ex02_chalcolithic_pits",
+  "condition": "gligen",
+  "seed": 0,
+  "HOR": 0.9333,
+  "HOR_area": 0.8926,
+  "n_flagged": 14
+ },
+ {
+  "item": 27,
+  "example": "ex05_roman_courtyard",
+  "condition": "gligen",
+  "seed": 0,
+  "HOR": 0.6,
+  "HOR_area": 0.812,
+  "n_flagged": 3
+ },
+ {
+  "item": 28,
+  "example": "ex05_roman_courtyard",
+  "condition": "photo",
+  "seed": 0,
+  "HOR": 0.7273,
+  "HOR_area": 0.7406,
+  "n_flagged": 8
+ },
+ {
+  "item": 29,
+  "example": "ex01_iron_age_room",
+  "condition": "photo",
+  "seed": 1,
+  "HOR": 0.75,
+  "HOR_area": 0.6007,
+  "n_flagged": 6
+ },
+ {
+  "item": 30,
+  "example": "ex03_byzantine_winepress",
+  "condition": "gligen",
+  "seed": 0,
+  "HOR": 0.6667,
+  "HOR_area": 0.8295,
+  "n_flagged": 4
+ }
+]

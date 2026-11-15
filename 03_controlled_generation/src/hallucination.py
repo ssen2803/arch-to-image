@@ -74,12 +74,15 @@ def hallucination_report(pred: np.ndarray, gt: np.ndarray, elements: list[dict] 
                          cfg: HallucinationConfig = HallucinationConfig(),
                          valid: np.ndarray | None = None,
                          uncertain: list[dict] | None = None,
-                         occluded: list[dict] | None = None) -> dict:
+                         occluded: list[dict] | None = None,
+                         return_component_map: bool = False) -> dict:
     """pred, gt: מפות תוויות באותו גודל. elements: [{id, label, mask}] מה-Layout (אופציונלי).
 
     בלי elements, ה-recall מחושב על רכיבים קשירים של ה-GT במקום על אלמנטים.
     valid: מסכה בוליאנית של שטח החפירה. מחוץ לה המצב לא ידוע (לא נחפר), ולכן
     שום דבר שם אינו נספר כהזיה וגם אינו נחשב "שטח ריק" ל-HAR.
+    return_component_map: מוסיף "component_map", מפה שבה k = הרכיב ה-k ברשימת hallucinated (מבוסס 1).
+    משמש לביקורת האנושית (audit_sample.py). החישוב עצמו לא משתנה.
     """
     if pred.shape != gt.shape:
         raise ValueError(f"גודל לא תואם: pred {pred.shape} מול gt {gt.shape}")
@@ -111,6 +114,7 @@ def hallucination_report(pred: np.ndarray, gt: np.ndarray, elements: list[dict] 
     # אינו הזיה - אבל רק עד מספר האלמנטים כאלה שהטקסט מזכיר (הגדולים ביותר נחשבים להם).
     excess_any = pred == FOREIGN
     hallucinated, uncertain_found, uncertain_missed = [], 0, []
+    comp_map = np.zeros(pred.shape, np.int16) if return_component_map else None
     for c in FG_LABELS:
         excess = (pred == c) & ~_dilate(gt == c, cfg.dilate_px)
         comps = components(excess.astype(np.uint8), 1, cfg.min_area_px)
@@ -136,8 +140,12 @@ def hallucination_report(pred: np.ndarray, gt: np.ndarray, elements: list[dict] 
             if k not in supported_idx:
                 hallucinated.append({"class": LABEL_NAMES[c], "kind": "unsupported",
                                      "area": comp["area"], "bbox": comp["bbox"]})
+                if comp_map is not None:
+                    comp_map[comp["slice"]][comp["mask"]] = len(hallucinated)
     for comp in components(pred, FOREIGN, cfg.min_area_px):
         hallucinated.append({"class": "foreign", "kind": "foreign", "area": comp["area"], "bbox": comp["bbox"]})
+        if comp_map is not None:
+            comp_map[comp["slice"]][comp["mask"]] = len(hallucinated)
 
     per_class = {name: {"hallucinated": sum(h["class"] == name for h in hallucinated)}
                  for name in [LABEL_NAMES[c] for c in FG_LABELS] + ["foreign"]}
@@ -187,7 +195,8 @@ def hallucination_report(pred: np.ndarray, gt: np.ndarray, elements: list[dict] 
     # המכנה סופר אובייקטים נכונים לפי אלמנטי ה-Layout, ולכן אינו תלוי בפיצול שלהם בתמונה.
     n_hall = len(hallucinated)
     drawn_fg = (pred != BG) & (pred != UNKNOWN)
-    return {
+    extra = {"component_map": comp_map} if comp_map is not None else {}
+    return {**extra,
         "occlusion_leak_rate": (round(sum(t["leaked"] for t in occlusion_tests) / len(occlusion_tests), 4)
                                 if occlusion_tests else None),
         "occlusion_tests": occlusion_tests,

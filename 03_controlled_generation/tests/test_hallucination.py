@@ -320,3 +320,24 @@ def test_gligen_inputs_skip_hidden_and_unplaced_elements():
     assert all(0 <= v <= 1 for b in boxes for v in b) and all(b[0] < b[2] and b[1] < b[3] for b in boxes)
     phrases, _ = gligen_inputs(load_layout(ex / "ex06_underspecified_pit" / "layout.gold.json"))
     assert phrases == ["wall"]                              # הבור בלי מיקום נכנס לפרומפט בלבד
+
+
+def test_component_map_matches_hallucinated_list():
+    gt = np.zeros((64, 64), np.uint8)
+    gt[10:20, 10:50] = 2                               # קיר ב-Layout
+    pred = gt.copy()
+    pred[40:50, 5:25] = 2                              # קיר מומצא
+    pred[40:52, 40:52] = 4                             # בור מומצא
+    rep = hallucination_report(pred, gt, cfg=HallucinationConfig(min_area_px=16, dilate_px=2),
+                               return_component_map=True)
+    cmap = rep["component_map"]
+    assert sorted(set(np.unique(cmap)) - {0}) == list(range(1, len(rep["hallucinated"]) + 1))
+    for k, h in enumerate(rep["hallucinated"], start=1):
+        assert int((cmap == k).sum()) == h["area"]
+    assert "component_map" not in hallucination_report(pred, gt, cfg=HallucinationConfig(min_area_px=16, dilate_px=2))
+
+
+def test_audit_kappa():
+    from audit_sample import kappa
+    assert kappa([1, 0, 1, 0], [1, 0, 1, 0]) == 1.0
+    assert kappa([1, 1, 0, 0], [0, 0, 1, 1]) == -1.0
