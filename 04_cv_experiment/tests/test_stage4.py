@@ -207,3 +207,12 @@ def test_evaluate_refuses_non_real_split(tmp_path):
     r = subprocess.run([sys.executable, str(ROOT / "src" / "evaluate.py"), "--split", str(tmp_path),
                         "--out", str(tmp_path / "o")], capture_output=True, text=True, encoding="utf-8")
     assert r.returncode != 0 and "data/real" in (r.stdout + r.stderr)
+
+
+def test_rating_auc_extremes_and_ties():
+    from rating_auc import auc
+    good = np.array([True, True, False, False])
+    assert auc(np.array([0.9, 0.8, 0.2, 0.1]), good) == 1.0        # הציון מפריד בדיוק
+    assert auc(np.array([0.1, 0.2, 0.8, 0.9]), good) == 0.0        # הפוך
+    assert auc(np.array([0.5, 0.5, 0.5, 0.5]), good) == 0.5        # תיקו מלא = ניחוש
+    assert np.isnan(auc(np.array([0.5, 0.6]), np.array([True, True])))
