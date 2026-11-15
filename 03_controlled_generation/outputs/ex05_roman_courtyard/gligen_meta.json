@@ -1,0 +1,77 @@
+{
+  "pipeline": {
+    "model": "masterful/gligen-1-4-generation-text-box",
+    "attention": "xformers",
+    "offload": "model",
+    "dtype": "float16"
+  },
+  "prompt": "top-down drone orthophoto of an archaeological excavation, farmhouse courtyard, Roman, exposed stone walls, packed soil, natural light, high detail",
+  "negative": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "phrases": [
+    "flagstone courtyard pavement",
+    "wall",
+    "wall",
+    "wall",
+    "stone-lined hearth",
+    "round storage silo pit"
+  ],
+  "boxes": [
+    [
+      0.1667,
+      0.1333,
+      0.8333,
+      0.9667
+    ],
+    [
+      0.8333,
+      0.0,
+      0.9667,
+      1.0
+    ],
+    [
+      0.5833,
+      0.0333,
+      0.8333,
+      0.1333
+    ],
+    [
+      0.1667,
+      0.0333,
+      0.5833,
+      0.1333
+    ],
+    [
+      0.7,
+      0.4667,
+      0.8167,
+      0.5833
+    ],
+    [
+      0.2333,
+      0.6667,
+      0.4667,
+      0.9
+    ]
+  ],
+  "steps": 50,
+  "guidance": 7.5,
+  "beta": 1.0,
+  "seeds": {
+    "0": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    },
+    "1": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    },
+    "2": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    },
+    "3": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    }
+  }
+}

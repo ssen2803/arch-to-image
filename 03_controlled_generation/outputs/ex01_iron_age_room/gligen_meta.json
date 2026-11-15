@@ -1,0 +1,63 @@
+{
+  "pipeline": {
+    "model": "masterful/gligen-1-4-generation-text-box",
+    "attention": "xformers",
+    "offload": "model",
+    "dtype": "float16"
+  },
+  "prompt": "top-down drone orthophoto of an archaeological excavation, corner of a domestic building, Iron Age II, exposed stone walls, packed soil, natural light, high detail",
+  "negative": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "phrases": [
+    "beaten earth floor",
+    "fieldstone wall",
+    "wall",
+    "tabun oven"
+  ],
+  "boxes": [
+    [
+      0.16,
+      0.16,
+      0.76,
+      0.86
+    ],
+    [
+      0.04,
+      0.04,
+      0.16,
+      0.88
+    ],
+    [
+      0.04,
+      0.04,
+      0.74,
+      0.16
+    ],
+    [
+      0.4,
+      0.18,
+      0.56,
+      0.34
+    ]
+  ],
+  "steps": 50,
+  "guidance": 7.5,
+  "beta": 1.0,
+  "seeds": {
+    "0": {
+      "seconds": 21.3,
+      "peak_vram_mb": 2790
+    },
+    "1": {
+      "seconds": 15.0,
+      "peak_vram_mb": 2793
+    },
+    "2": {
+      "seconds": 15.0,
+      "peak_vram_mb": 2793
+    },
+    "3": {
+      "seconds": 15.0,
+      "peak_vram_mb": 2793
+    }
+  }
+}

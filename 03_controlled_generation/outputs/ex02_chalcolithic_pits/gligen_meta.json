@@ -1,0 +1,77 @@
+{
+  "pipeline": {
+    "model": "masterful/gligen-1-4-generation-text-box",
+    "attention": "xformers",
+    "offload": "model",
+    "dtype": "float16"
+  },
+  "prompt": "top-down drone orthophoto of an archaeological excavation, open-air activity area with pits, Chalcolithic, exposed stone walls, packed soil, natural light, high detail",
+  "negative": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "phrases": [
+    "beaten earth floor",
+    "round stone installation",
+    "round pit",
+    "small round pit",
+    "large pit",
+    "round pit"
+  ],
+  "boxes": [
+    [
+      0.2,
+      0.3,
+      0.8,
+      0.7
+    ],
+    [
+      0.06,
+      0.45,
+      0.16,
+      0.55
+    ],
+    [
+      0.26,
+      0.34,
+      0.38,
+      0.46
+    ],
+    [
+      0.46,
+      0.35,
+      0.55,
+      0.44
+    ],
+    [
+      0.45,
+      0.52,
+      0.6,
+      0.67
+    ],
+    [
+      0.9,
+      0.68,
+      1.0,
+      0.78
+    ]
+  ],
+  "steps": 50,
+  "guidance": 7.5,
+  "beta": 1.0,
+  "seeds": {
+    "0": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    },
+    "1": {
+      "seconds": 15.0,
+      "peak_vram_mb": 2793
+    },
+    "2": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    },
+    "3": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    }
+  }
+}

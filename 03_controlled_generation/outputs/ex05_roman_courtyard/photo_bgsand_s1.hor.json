@@ -1,5 +1,8 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8333,
     "HOR_area": 0.6048,
     "n_hallucinated": 15,
@@ -97,7 +100,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 26959,
+        "area": 26958,
         "bbox": [
           106,
           76,
@@ -174,7 +177,7 @@
       {
         "class": "installation",
         "kind": "unsupported",
-        "area": 129,
+        "area": 130,
         "bbox": [
           337,
           501,
@@ -236,6 +239,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.7778,
     "HOR_area": 0.5729,
     "n_hallucinated": 14,
@@ -300,7 +306,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 21715,
+        "area": 21714,
         "bbox": [
           106,
           76,
@@ -377,7 +383,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 129,
+        "area": 130,
         "bbox": [
           337,
           501,

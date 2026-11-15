@@ -1,0 +1,91 @@
+{
+  "pipeline": {
+    "model": "masterful/gligen-1-4-generation-text-box",
+    "attention": "xformers",
+    "offload": "model",
+    "dtype": "float16"
+  },
+  "prompt": "top-down drone orthophoto of an archaeological excavation, two-room building, Hellenistic, exposed stone walls, packed soil, natural light, high detail",
+  "negative": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "phrases": [
+    "white plaster floor",
+    "beaten earth floor",
+    "outer wall",
+    "partition wall",
+    "partition wall",
+    "robbed wall",
+    "low stone bench",
+    "small oven"
+  ],
+  "boxes": [
+    [
+      0.0667,
+      0.1667,
+      0.5,
+      0.7222
+    ],
+    [
+      0.5667,
+      0.1667,
+      1.0,
+      0.7222
+    ],
+    [
+      0.0,
+      0.7222,
+      1.0,
+      0.8
+    ],
+    [
+      0.5,
+      0.4333,
+      0.5667,
+      0.7222
+    ],
+    [
+      0.5,
+      0.1667,
+      0.5667,
+      0.3222
+    ],
+    [
+      0.0,
+      0.1667,
+      0.0667,
+      0.7222
+    ],
+    [
+      0.4444,
+      0.4778,
+      0.5,
+      0.7
+    ],
+    [
+      0.9111,
+      0.1889,
+      0.9778,
+      0.2556
+    ]
+  ],
+  "steps": 50,
+  "guidance": 7.5,
+  "beta": 1.0,
+  "seeds": {
+    "0": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    },
+    "1": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    },
+    "2": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    },
+    "3": {
+      "seconds": 14.8,
+      "peak_vram_mb": 2793
+    }
+  }
+}

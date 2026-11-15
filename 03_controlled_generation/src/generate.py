@@ -107,6 +107,33 @@ def load_condition(layout_path: Path | None, mask_path: Path | None, mapping: di
     return labels, labels_to_ade_rgb(labels, mapping), layout, name
 
 
+RETRY_OFFSET = 1000
+MAX_ATTEMPTS = 3
+
+
+def is_blank(image) -> bool:
+    """תמונה שחורה או אחידה. מסנן הבטיחות של SD מחזיר תמונה שחורה כשהוא מסמן תוצאה, וזה קרה
+    גם על תמונות חפירה תמימות: 2 מתוך 600 בנתונים הסינתטיים, ו-1 מתוך 20 בניסוי GLIGEN."""
+    import numpy as np
+    g = np.asarray(image.convert("L"), dtype=np.float32)
+    return bool(g.max() < 10 or g.std() < 2.0)
+
+
+def run_with_retry(pipe, seed: int, **kwargs):
+    """מריץ את ה-pipeline. אם התמונה סומנה או ריקה, מנסה שוב עם seed + 1000·ניסיון.
+    מחזיר (תמונה, ה-seed שבו השתמשו בפועל). אחרי MAX_ATTEMPTS ניסיונות זורק RuntimeError."""
+    import torch
+    for attempt in range(MAX_ATTEMPTS):
+        used = seed + RETRY_OFFSET * attempt
+        result = pipe(generator=torch.Generator(device="cpu").manual_seed(used), **kwargs)
+        image = result.images[0]
+        nsfw = getattr(result, "nsfw_content_detected", None)
+        if not ((nsfw and nsfw[0]) or is_blank(image)):
+            return image, used
+        print(f"seed {used}: תמונה ריקה (מסנן הבטיחות), מנסה שוב")
+    raise RuntimeError(f"התמונה ריקה גם אחרי {MAX_ATTEMPTS} ניסיונות (seed {seed})")
+
+
 def build_prompt(layout: dict | None, style: str, prompt: str | None) -> str:
     if prompt:
         return prompt
@@ -159,14 +186,14 @@ def main() -> int:
         for seed in args.seeds:
             torch.cuda.reset_peak_memory_stats()
             t0 = time.perf_counter()
-            image = pipe(prompt=prompt, negative_prompt=NEGATIVE, image=control,
-                         height=SIZE, width=SIZE, num_inference_steps=args.steps,
-                         guidance_scale=args.guidance, controlnet_conditioning_scale=args.cond_scale,
-                         generator=torch.Generator(device="cpu").manual_seed(seed)).images[0]
+            image, used_seed = run_with_retry(
+                pipe, seed, prompt=prompt, negative_prompt=NEGATIVE, image=control,
+                height=SIZE, width=SIZE, num_inference_steps=args.steps,
+                guidance_scale=args.guidance, controlnet_conditioning_scale=args.cond_scale)
             dt = time.perf_counter() - t0
             fname = f"{condition}_s{seed}.png"
             image.save(out_dir / fname)
-            runs.append({"seed": seed, "file": fname, "seconds": round(dt, 1),
+            runs.append({"seed": seed, "used_seed": used_seed, "file": fname, "seconds": round(dt, 1),
                          "peak_allocated_mb": round(torch.cuda.max_memory_allocated() / 2**20),
                          "peak_reserved_mb": round(torch.cuda.max_memory_reserved() / 2**20)})
             print(f"{name} seed={seed}: {dt:.1f}s, VRAM peak {runs[-1]['peak_allocated_mb']} MB -> {out_dir / fname}")

@@ -1,5 +1,8 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.9,
     "HOR_area": 0.9347,
     "n_hallucinated": 9,
@@ -181,6 +184,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8182,
     "HOR_area": 0.8408,
     "n_hallucinated": 9,

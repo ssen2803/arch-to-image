@@ -1,7 +1,10 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.875,
-    "HOR_area": 0.2936,
+    "HOR_area": 0.2935,
     "n_hallucinated": 14,
     "n_correct": 2,
     "foreign_components": 10,
@@ -152,7 +155,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 186,
+        "area": 185,
         "bbox": [
           24,
           153,
@@ -185,7 +188,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 242,
+        "area": 241,
         "bbox": [
           61,
           332,
@@ -214,6 +217,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8667,
     "HOR_area": 0.2903,
     "n_hallucinated": 13,
@@ -344,7 +350,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 186,
+        "area": 185,
         "bbox": [
           24,
           153,
@@ -377,7 +383,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 242,
+        "area": 241,
         "bbox": [
           61,
           332,

@@ -308,3 +308,15 @@ def test_drawing_sealed_silo_is_occlusion_leak():
     r = _report(leaked, gt, t)
     assert r["occlusion_leak_rate"] == 1
     assert r["per_class"]["pit"]["hallucinated"] >= 1  # והיא נספרת גם כהזיה רגילה
+
+
+# ------------------------------------------------------------ GLIGEN (#14): קלט התיבות
+
+def test_gligen_inputs_skip_hidden_and_unplaced_elements():
+    from generate_gligen import gligen_inputs
+    ex = ROOT.parent / "02_layout_pipeline" / "examples"
+    phrases, boxes = gligen_inputs(load_layout(ex / "ex07_sealed_silo" / "layout.gold.json"))
+    assert len(phrases) == len(boxes) == 3                 # F1, I1, P2; הממגורה הקבורה P1 לא מקבלת תיבה
+    assert all(0 <= v <= 1 for b in boxes for v in b) and all(b[0] < b[2] and b[1] < b[3] for b in boxes)
+    phrases, _ = gligen_inputs(load_layout(ex / "ex06_underspecified_pit" / "layout.gold.json"))
+    assert phrases == ["wall"]                              # הבור בלי מיקום נכנס לפרומפט בלבד

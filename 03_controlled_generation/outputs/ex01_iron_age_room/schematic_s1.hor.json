@@ -1,11 +1,14 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.9355,
     "HOR_area": 0.8193,
     "n_hallucinated": 29,
     "n_correct": 2,
     "foreign_components": 14,
-    "HAR": 0.9932,
+    "HAR": 0.9931,
     "object_recall": 0.5,
     "n_elements": 4,
     "missed": [
@@ -53,7 +56,7 @@
       {
         "class": "floor",
         "kind": "unsupported",
-        "area": 4662,
+        "area": 4661,
         "bbox": [
           0,
           448,
@@ -97,7 +100,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 162084,
+        "area": 162085,
         "bbox": [
           0,
           0,
@@ -130,7 +133,7 @@
       {
         "class": "installation",
         "kind": "unsupported",
-        "area": 1350,
+        "area": 1351,
         "bbox": [
           112,
           181,
@@ -379,6 +382,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8421,
     "HOR_area": 0.7592,
     "n_hallucinated": 16,
@@ -409,7 +415,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 165504,
+        "area": 165506,
         "bbox": [
           0,
           0,

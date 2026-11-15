@@ -1,0 +1,71 @@
+{
+  "pipeline": {
+    "model": "masterful/gligen-1-4-generation-text-box",
+    "attention": "xformers",
+    "offload": "model",
+    "dtype": "float16"
+  },
+  "prompt": "top-down drone orthophoto of an archaeological excavation, winepress, Byzantine, exposed stone walls, packed soil, natural light, high detail",
+  "negative": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "phrases": [
+    "white mosaic treading floor",
+    "wall",
+    "plastered collecting vat",
+    "square socket cut in the floor",
+    "rock-cut cistern opening"
+  ],
+  "boxes": [
+    [
+      0.0625,
+      0.25,
+      0.5625,
+      0.75
+    ],
+    [
+      0.0625,
+      0.1875,
+      0.5625,
+      0.25
+    ],
+    [
+      0.6625,
+      0.45,
+      0.8875,
+      0.675
+    ],
+    [
+      0.2875,
+      0.475,
+      0.3375,
+      0.525
+    ],
+    [
+      0.825,
+      0.725,
+      1.0,
+      0.875
+    ]
+  ],
+  "steps": 50,
+  "guidance": 7.5,
+  "beta": 1.0,
+  "seeds": {
+    "0": {
+      "seconds": 15.0,
+      "peak_vram_mb": 2793
+    },
+    "1": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    },
+    "2": {
+      "seconds": 14.9,
+      "peak_vram_mb": 2793
+    },
+    "3": {
+      "used_seed": 1003,
+      "seconds": 31.1,
+      "peak_vram_mb": 2793
+    }
+  }
+}

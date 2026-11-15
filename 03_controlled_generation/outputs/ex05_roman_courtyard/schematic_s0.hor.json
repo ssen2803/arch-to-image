@@ -1,5 +1,8 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.875,
     "HOR_area": 0.7123,
     "n_hallucinated": 21,
@@ -64,7 +67,7 @@
       {
         "class": "floor",
         "kind": "unsupported",
-        "area": 6176,
+        "area": 6177,
         "bbox": [
           128,
           353,
@@ -86,7 +89,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 124566,
+        "area": 124561,
         "bbox": [
           0,
           0,
@@ -119,7 +122,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 3652,
+        "area": 3650,
         "bbox": [
           248,
           142,
@@ -185,7 +188,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 20943,
+        "area": 20944,
         "bbox": [
           157,
           81,
@@ -218,7 +221,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 1561,
+        "area": 1562,
         "bbox": [
           314,
           237,
@@ -273,7 +276,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 7279,
+        "area": 7281,
         "bbox": [
           215,
           369,
@@ -302,6 +305,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8182,
     "HOR_area": 0.7084,
     "n_hallucinated": 18,
@@ -344,7 +350,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 123631,
+        "area": 123626,
         "bbox": [
           0,
           0,
@@ -377,7 +383,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 3652,
+        "area": 3650,
         "bbox": [
           248,
           142,
@@ -432,7 +438,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 20943,
+        "area": 20944,
         "bbox": [
           157,
           81,
@@ -465,7 +471,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 1561,
+        "area": 1562,
         "bbox": [
           314,
           237,
@@ -520,7 +526,7 @@
       {
         "class": "foreign",
         "kind": "foreign",
-        "area": 7279,
+        "area": 7281,
         "bbox": [
           215,
           369,

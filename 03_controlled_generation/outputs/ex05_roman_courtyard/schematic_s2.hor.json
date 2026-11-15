@@ -1,5 +1,8 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.625,
     "HOR_area": 0.7441,
     "n_hallucinated": 5,
@@ -64,7 +67,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 186330,
+        "area": 186329,
         "bbox": [
           0,
           0,
@@ -126,6 +129,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.5556,
     "HOR_area": 0.7252,
     "n_hallucinated": 5,
@@ -168,7 +174,7 @@
       {
         "class": "wall",
         "kind": "unsupported",
-        "area": 181466,
+        "area": 181465,
         "bbox": [
           0,
           0,

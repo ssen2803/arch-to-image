@@ -1,11 +1,14 @@
 {
   "fine": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.8696,
     "HOR_area": 0.6743,
     "n_hallucinated": 20,
     "n_correct": 3,
     "foreign_components": 2,
-    "HAR": 0.6844,
+    "HAR": 0.6845,
     "object_recall": 0.5,
     "n_elements": 6,
     "missed": [
@@ -291,6 +294,9 @@
     }
   },
   "coarse": {
+    "occlusion_leak_rate": null,
+    "occlusion_tests": [],
+    "uncertain_found": 0,
     "HOR": 0.84,
     "HOR_area": 0.6565,
     "n_hallucinated": 21,
