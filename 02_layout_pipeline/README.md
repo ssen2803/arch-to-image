@@ -24,8 +24,9 @@ layout.json ──► schematic.png (איור מקודד-ראיות)
 | [src/validate_layout.py](src/validate_layout.py) | אימות קובצי Layout משורת הפקודה |
 | [src/render_layout.py](src/render_layout.py) | רינדור לאיור, למסכה ולתיבות, עם סדר סטרטיגרפי, גיזום של אלמנטים מוסתרים ואזורי אי-ודאות |
 | [src/compare_layouts.py](src/compare_layouts.py) | מדידת הזיות של המחלץ מול gold: אלמנטים מומצאים, מיקום מומצא, IoU, גיזום של מוסתרים, יחסים |
-| [examples/](examples/) | 7 תיאורים ו-7 Layouts מאומתים (gold) עם הרינדורים שלהם |
-| [tests/](tests/) | 60 בדיקות, כולל בדיקות שליליות שמוודאות שהמאמת תופס שגיאות |
+| [src/render_period.py](src/render_period.py) | מפת תקופה וחתך אנכי מתוך תיארוך וגבהים (סכמה 1.2) |
+| [examples/](examples/) | 8 תיאורים ו-8 Layouts מאומתים (gold) עם הרינדורים שלהם |
+| [tests/](tests/) | 68 בדיקות, כולל בדיקות שליליות שמוודאות שהמאמת תופס שגיאות |
 
 ## גרסת סכמה 1.2: מונחים, תכונות ושדות לטופולוגיית אתר
 
@@ -63,17 +64,18 @@ pip install -r requirements.txt
 
 python src/validate_layout.py examples/*/layout.gold.json      # אימות
 python src/render_layout.py   examples/*/layout.gold.json      # רינדור
+python src/render_period.py   examples/ex08_two_phases/layout.gold.json --section x 3.0   # מפות תקופה וחתך
 python -m pytest tests -q                                       # בדיקות
 
 python src/extract_layout.py examples/ex01_iron_age_room/report.he.txt --dry-run   # הצגת הבקשה בלבד
 python src/extract_layout.py examples/*/report.he.txt          # המרה אמיתית (דורש ANTHROPIC_API_KEY)
 ```
 
-## חמש הדוגמאות
+## הדוגמאות
 
 התיאורים **סינתטיים**. הם נכתבו בסגנון דו"חות "חדשות ארכיאולוגיות" לצורך הדגמה, ואינם דו"חות אמיתיים. כל Layout עובר את המאמת ללא שגיאות וללא אזהרות.
 
-ex06 ו-ex07 נוספו כדי לכסות שני מקרי קצה: מידע חסר והסתרה סטרטיגרפית.
+ex06 ו-ex07 נוספו כדי לכסות שני מקרי קצה: מידע חסר והסתרה סטרטיגרפית. ex08 מדגימה את שדות 1.2: תיארוך, גבהים, שלבים ועיגון לרשת ישראל.
 
 | דוגמה | תקופה | שטח | אלמנטים | יחסים | מה היא מדגימה |
 |---|---|---|---|---|---|
@@ -84,6 +86,7 @@ ex06 ו-ex07 נוספו כדי לכסות שני מקרי קצה: מידע חס�
 | ex05_roman_courtyard | רומית | 6×6 | 3 קירות, רצפה, בור, מתקן | 11 | קטע קיר חשוף לצד המשך **משוער** (`inferred`); מפולת ← unmapped |
 | ex06_underspecified_pit | פרסית | 5×5 | קיר, בור | 0 | **מידע חסר:** הטקסט לא אומר איפה הבור. הוא מסומן `unspecified` ומוצג כאזור אי-ודאות |
 | ex07_sealed_silo | לא ידועה | 6×6 | רצפה, טאבון, 2 בורות | 4 | **הסתרה:** ממגורה `under` רצפה נגזמת מהמבט; אפר קבור ← unmapped; בור שחותך את הרצפה נראה |
+| ex08_two_phases | ברזל ב' ופרסית | 6×6 | 2 קירות, 2 רצפות, בור | 7 | **שני שלבי בנייה:** מפת תקופה לכל שלב, וחתך אנכי. רצפת העפר מתקופת הברזל נראית במלואה במפה של התקופה שלה, ובמפה הפרסית היא מופיעה כ-earlier |
 
 בכל תיקיית דוגמה יש:
 - `report.he.txt`: הטקסט.

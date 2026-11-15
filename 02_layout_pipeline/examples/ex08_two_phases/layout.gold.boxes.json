@@ -1,0 +1,117 @@
+{
+  "caption": "archaeological plan-view reconstruction of a two building phases in one square, Iron Age II; Persian",
+  "canvas_px": 512,
+  "palette": {
+    "background": [
+      240,
+      234,
+      222
+    ],
+    "floor": [
+      214,
+      178,
+      112
+    ],
+    "wall": [
+      92,
+      64,
+      51
+    ],
+    "installation": [
+      196,
+      78,
+      56
+    ],
+    "pit": [
+      58,
+      90,
+      120
+    ]
+  },
+  "boxes": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "phrase": "beaten-earth floor",
+      "evidence": "attested",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        0.8
+      ]
+    },
+    {
+      "id": "F2",
+      "class": "floor",
+      "phrase": "plaster floor",
+      "evidence": "attested",
+      "box": [
+        0.2333,
+        0.0333,
+        0.9,
+        0.45
+      ]
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "phrase": "wall",
+      "evidence": "attested",
+      "box": [
+        0.0,
+        0.8,
+        1.0,
+        0.9333
+      ]
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "phrase": "wall",
+      "evidence": "attested",
+      "box": [
+        0.9,
+        0.0,
+        1.0,
+        0.8
+      ]
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "phrase": "round pit",
+      "evidence": "attested",
+      "box": [
+        0.4,
+        0.15,
+        0.6,
+        0.35
+      ]
+    }
+  ],
+  "occluded": [],
+  "uncertain": [],
+  "visibility": {
+    "F1": {
+      "visible_fraction": 0.553,
+      "status": "visible"
+    },
+    "F2": {
+      "visible_fraction": 0.888,
+      "status": "visible"
+    },
+    "W1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "W2": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    },
+    "P1": {
+      "visible_fraction": 1.0,
+      "status": "visible"
+    }
+  }
+}

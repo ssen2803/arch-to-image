@@ -22,7 +22,7 @@
 | תיקייה | שלב | תוכן |
 |---|---|---|
 | [01_literature_review/](01_literature_review/) | סקירת ספרות | הפער המחקרי, שאלת המחקר, הכרעת הסגנון, מטריצת כיסוי של 35 עבודות |
-| [02_layout_pipeline/](02_layout_pipeline/) | טקסט ← פריסה | אונטולוגיה של 5 מחלקות עם אוצר מונחים היררכי, סכמת JSON 1.2, מחלץ מבוסס Claude, מאמת, רינדור, 7 דוגמאות |
+| [02_layout_pipeline/](02_layout_pipeline/) | טקסט ← פריסה | אונטולוגיה של 5 מחלקות עם אוצר מונחים היררכי, סכמת JSON 1.2, מחלץ מבוסס Claude, מאמת, רינדור, מפות תקופה וחתכים, 8 דוגמאות |
 | [03_controlled_generation/](03_controlled_generation/) | חלק א' | ייצור ב-6GB VRAM (FP16, xformers, CPU offloading), מדד הזיות, 80 תמונות ותוצאות |
 | [04_cv_experiment/](04_cv_experiment/) | חלק ב' | U-Net (ResNet-18) מול Grounded-SAM, מדדי mIoU, פרוטוקול קבוצת מבחן אמיתית |
 
@@ -46,7 +46,7 @@ py -3.12 -m venv .venv
 
 ## בדיקות
 
-125 בדיקות אוטומטיות (60 בשלב 2, 46 בשלב 3, 19 בשלב 4). אף אחת מהן לא דורשת GPU.
+136 בדיקות אוטומטיות (68 בשלב 2, 49 בשלב 3, 19 בשלב 4). אף אחת מהן לא דורשת GPU.
 
 ```bash
 cd 02_layout_pipeline && ..\.venv\Scripts\python -m pytest tests -q

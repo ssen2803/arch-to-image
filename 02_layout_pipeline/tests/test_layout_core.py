@@ -33,8 +33,8 @@ def _error_text(layout: dict) -> str:
 
 # ------------------------------------------------------------ דוגמאות ה-gold
 
-def test_there_are_seven_examples():
-    assert len(EXAMPLES) == 7
+def test_there_are_eight_examples():
+    assert len(EXAMPLES) == 8
 
 
 @pytest.mark.parametrize("path", EXAMPLES, ids=lambda p: p.parent.name)
@@ -418,3 +418,56 @@ def test_term_metrics_reward_parent_and_count_over_specification():
     assert 5 / 6 < r["term_hier"] < 1                  # קרדיט חלקי: האב נכון
     r2 = compare(gold, pred, _text("ex02_chalcolithic_pits"))
     assert r2["under_specification_rate"] == pytest.approx(1 / 6, abs=1e-3) and r2["over_specification_rate"] == 0
+
+
+# ------------------------------------------------------------ מפת תקופה וחתך (ex08: שני שלבי בנייה)
+
+from render_period import periods_in, render_period_map, render_section, section_elements, slice_layout  # noqa: E402
+
+
+def test_periods_are_read_from_element_dating():
+    assert periods_in(_ex("ex08_two_phases")) == [("Iron Age II", -800, -701), ("Persian", -500, -301)]
+
+
+def test_early_period_slice_shows_the_sealed_floor_whole():
+    lay = _ex("ex08_two_phases")
+    sliced, context = slice_layout(lay, -800, -701)
+    assert {e["id"] for e in sliced["elements"]} == {"W1", "F1"} and context == []
+    from render_layout import visibility
+    assert visibility(sliced)["F1"]["visible_fraction"] == pytest.approx(1.0, abs=0.01)   # עוד לא כוסתה
+    assert visibility(lay)["F1"]["visible_fraction"] < 0.75                                # בפריסה המלאה כן
+
+
+def test_late_period_slice_marks_earlier_remains_without_drawing_them_as_current():
+    sliced, context = slice_layout(_ex("ex08_two_phases"), -500, -301)
+    assert {e["id"] for e in sliced["elements"]} == {"W2", "F2", "P1"}
+    assert {e["id"]: e["_context"] for e in context} == {"W1": "earlier", "F1": "earlier"}
+    assert all(r["subject"] in {"W2", "F2", "P1"} and r["object"] in {"W2", "F2", "P1"} for r in sliced["relations"])
+
+
+def test_undated_elements_are_context_not_current():
+    lay = _ex("ex08_two_phases")
+    del _el(lay, "W2")["dating"]
+    sliced, context = slice_layout(lay, -500, -301)
+    assert "W2" not in {e["id"] for e in sliced["elements"]}
+    assert {e["id"]: e["_context"] for e in context}["W2"] == "undated"
+
+
+def test_section_crosses_the_right_elements_in_stratigraphic_order():
+    els, no_elev = section_elements(_ex("ex08_two_phases"), "x", 3.0)
+    ids = [e["id"] for e in els]
+    assert set(ids) == {"W1", "F1", "F2", "P1"} and no_elev == []
+    assert ids.index("F1") < ids.index("F2") < ids.index("P1")       # הבור החותך מצויר אחרון
+    lay = _ex("ex08_two_phases")
+    del _el(lay, "F2")["elevation"]
+    _, no_elev = section_elements(lay, "x", 3.0)
+    assert no_elev == ["F2"]
+
+
+def test_period_and_section_render(tmp_path):
+    lay = _ex("ex08_two_phases")
+    info = render_period_map(lay, "Persian", -500, -301, tmp_path / "p.png")
+    assert info["earlier"] == ["W1", "F1"] and (tmp_path / "p.png").stat().st_size > 0
+    assert render_section(lay, "x", 3.0, tmp_path / "s.png")["elements"]
+    with pytest.raises(ValueError):
+        render_period_map(lay, "Roman", 1, 300, tmp_path / "r.png")

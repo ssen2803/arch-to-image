@@ -43,7 +43,7 @@
       "id": "W2",
       "class": "wall",
       "subtype": "partition wall (south segment)",
-      "phrase": "stone partition wall",
+      "phrase": "partition wall",
       "locus": "W41",
       "evidence": "attested",
       "bbox": {
@@ -66,7 +66,7 @@
       "id": "W3",
       "class": "wall",
       "subtype": "partition wall (north segment)",
-      "phrase": "stone partition wall",
+      "phrase": "partition wall",
       "locus": "W41",
       "evidence": "attested",
       "bbox": {
@@ -91,7 +91,7 @@
       "id": "W4",
       "class": "wall",
       "subtype": "robbed wall (proposed line)",
-      "phrase": "robbed stone wall",
+      "phrase": "robbed wall",
       "locus": null,
       "evidence": "hypothetical",
       "bbox": {
@@ -196,7 +196,7 @@
       "id": "I2",
       "class": "installation",
       "subtype": "small oven",
-      "phrase": "small clay oven",
+      "phrase": "small oven",
       "locus": null,
       "evidence": "attested",
       "bbox": {

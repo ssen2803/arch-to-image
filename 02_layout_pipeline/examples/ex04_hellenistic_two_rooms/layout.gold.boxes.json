@@ -68,7 +68,7 @@
     {
       "id": "W2",
       "class": "wall",
-      "phrase": "stone partition wall",
+      "phrase": "partition wall",
       "evidence": "attested",
       "box": [
         0.5,
@@ -80,7 +80,7 @@
     {
       "id": "W3",
       "class": "wall",
-      "phrase": "stone partition wall",
+      "phrase": "partition wall",
       "evidence": "attested",
       "box": [
         0.5,
@@ -92,7 +92,7 @@
     {
       "id": "W4",
       "class": "wall",
-      "phrase": "robbed stone wall",
+      "phrase": "robbed wall",
       "evidence": "hypothetical",
       "box": [
         0.0,
@@ -116,7 +116,7 @@
     {
       "id": "I2",
       "class": "installation",
-      "phrase": "small clay oven",
+      "phrase": "small oven",
       "evidence": "attested",
       "box": [
         0.9111,

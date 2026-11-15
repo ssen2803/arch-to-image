@@ -97,7 +97,13 @@ def render_seg(layout: dict, size: int = 512) -> Image.Image:
     return Image.fromarray(lut[ids])
 
 
-def render_schematic(layout: dict, out_path: Path) -> None:
+CONTEXT_STYLE = {"earlier": ((0, (6, 2, 1, 2)), "earlier"), "undated": ((0, (2, 2)), "undated")}
+
+
+def render_schematic(layout: dict, out_path: Path, context: list[dict] | None = None,
+                     title: str | None = None) -> None:
+    """context: אלמנטים שאינם חלק מהתקופה המוצגת (מוקדמים או לא מתוארכים). הם מצוירים כקו מתאר
+    אפור בלבד, עם הכיתוב earlier או undated, כדי לא להציג אותם כחלק מהתקופה וגם לא להעלים אותם."""
     W, H = layout["area"]["width_m"], layout["area"]["height_m"]
     fig, ax = plt.subplots(figsize=(7.5, 7.5 * max(H / W, 0.55) + 1.2))
     fig.patch.set_facecolor(_rgb(PALETTE["background"]))
@@ -105,6 +111,15 @@ def render_schematic(layout: dict, out_path: Path) -> None:
 
     # גבול החפירה
     ax.add_patch(Rectangle((0, 0), W, H, fill=False, edgecolor="#8a8170", linestyle="--", linewidth=1.0))
+
+    for el in context or []:
+        bb = el["bbox"]
+        ls, word = CONTEXT_STYLE[el["_context"]]
+        shape_cls = Ellipse if el["shape"] == "ellipse" else Rectangle
+        args = ((bb["x"] + bb["w"] / 2, bb["y"] + bb["h"] / 2), bb["w"], bb["h"]) if el["shape"] == "ellipse"             else ((bb["x"], bb["y"]), bb["w"], bb["h"])
+        ax.add_patch(shape_cls(*args, fill=False, edgecolor="#9a9082", linestyle=ls, linewidth=1.0, zorder=0.6))
+        ax.text(bb["x"] + 0.08, bb["y"] + 0.08, f"{el['id']} ({word})", ha="left", va="bottom", fontsize=6.5,
+                color="#7d7466", zorder=0.7)
 
     vis = visibility(layout)
     # אלמנטים בלי מיקום: אזור אי-ודאות מקווקו (האזור שהיחסים מאפשרים), לא צורה בנקודה מומצאת
@@ -173,7 +188,8 @@ def render_schematic(layout: dict, out_path: Path) -> None:
               ncol=7, fontsize=7.5, frameon=False, handlelength=2.2)
 
     src = layout["source"]
-    ax.set_title(f"{src['id']}  |  {src['period']}  |  {layout['area']['label']} ({W:g}x{H:g} m)", fontsize=10)
+    ax.set_title(title or f"{src['id']}  |  {src['period']}  |  {layout['area']['label']} ({W:g}x{H:g} m)",
+                 fontsize=10)
     ax.set_xlim(-span * 0.1, W + span * 0.14)
     ax.set_ylim(-span * 0.16, H + span * 0.1)
     ax.set_aspect("equal")
