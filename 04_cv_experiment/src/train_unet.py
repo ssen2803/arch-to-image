@@ -107,6 +107,9 @@ def fit(train_rows: list[dict], val_rows: list[dict], hp: dict, out: Path | None
     val_dl = torch.utils.data.DataLoader(SegDataset(val_rows, train=False), batch_size=4, num_workers=0)
 
     model = ResNet18UNet(NUM_CLASSES, pretrained=True).to(device)
+    if hp.get("init"):                       # כוונון ממודל קיים, למשל ממודל שאומן על הנתונים הסינתטיים
+        state = torch.load(hp["init"], map_location=device, weights_only=True)
+        model.load_state_dict(state["model"] if "model" in state else state)
     weights = class_weights(train_rows).to(device)
     opt = torch.optim.AdamW([{"params": model.encoder_parameters(), "lr": hp["enc_lr"]},
                              {"params": model.decoder_parameters(), "lr": hp["lr"]}], weight_decay=1e-4)
@@ -176,6 +179,11 @@ def main() -> int:
     ap.add_argument("--real-dev", type=Path, default=REAL_DIR / "dev")
     ap.add_argument("--max-train", type=int, default=0, help="להרצת עשן בלבד")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--train-source", choices=["synthetic", "real", "both"], default="synthetic",
+                    help="על מה מאמנים. real/both מבודדים את תרומת הנתונים הסינתטיים (README, סעיף 3)")
+    ap.add_argument("--real-train", type=Path, default=REAL_DIR / "train", help="צילומים אמיתיים מתויגים לאימון")
+    ap.add_argument("--real-repeat", type=int, default=5, help="ב-both: כמה פעמים לחזור על כל תמונה אמיתית")
+    ap.add_argument("--init", type=Path, help="נקודת התחלה לכוונון (best.pt של אימון קודם)")
     args = ap.parse_args()
 
     rows, blank = drop_blank_images(read_manifest(args.data))
@@ -198,6 +206,13 @@ def main() -> int:
         train_rows = keep
     if args.max_train:
         train_rows = train_rows[:args.max_train]
+    if args.train_source != "synthetic":
+        real = real_items(args.real_train)
+        if not real:
+            raise SystemExit(f"אין צילומים אמיתיים מתויגים ב-{args.real_train}")
+        train_rows = real if args.train_source == "real" else train_rows + real * args.real_repeat
+        if args.real_dev.exists() and any((args.real_dev / "images").glob("*")):
+            val_rows = real_items(args.real_dev)        # בחירת המודל לפי dev אמיתי, לא לפי סינתטי
     print(f"train: {len(train_rows)} (מתוך {n_before} לפני סינון/הוצאה), val: {len(val_rows)}, "
           f"הוצאו בגלל קומפוזיציה: {len(held_out)}")
 
@@ -206,15 +221,18 @@ def main() -> int:
         dev_dl = torch.utils.data.DataLoader(SegDataset(real_items(args.real_dev), train=False), batch_size=1)
     out = RUNS / args.name
     hp = {"epochs": args.epochs, "batch": args.batch, "crop": args.crop, "lr": args.lr, "enc_lr": args.enc_lr,
-          "boundary_ignore": args.boundary_ignore, "geometric_aug": not args.no_geometric_aug, "seed": args.seed}
+          "boundary_ignore": args.boundary_ignore, "geometric_aug": not args.no_geometric_aug, "seed": args.seed,
+          "init": str(args.init) if args.init else None}
     extra = {"filters": {"min_agree": args.min_agree, "max_har": args.max_har,
                          "filter_csv": str(args.filter_csv) if args.filter_csv else None, "drop_frac": args.drop_frac},
-             "exclude_tags": args.exclude_tags, "n_held_out": len(held_out)}
+             "exclude_tags": args.exclude_tags, "n_held_out": len(held_out),
+             "train_source": args.train_source, "real_repeat": args.real_repeat}
     if held_out:
         out.mkdir(parents=True, exist_ok=True)
         (out / "held_out_images.txt").write_text("\n".join(str(r["image_path"]) for r in held_out), encoding="utf-8")
     _, _, best = fit(train_rows, val_rows, hp, out, dev_dl, extra)
-    print(f"best synthetic val mIoU = {best:.4f} -> {out / 'best.pt'}")
+    val_kind = "real dev" if args.train_source != "synthetic" else "synthetic val"
+    print(f"best {val_kind} mIoU = {best:.4f} -> {out / 'best.pt'}")
     return 0
 
 

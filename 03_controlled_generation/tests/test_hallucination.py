@@ -341,3 +341,74 @@ def test_audit_kappa():
     from audit_sample import kappa
     assert kappa([1, 0, 1, 0], [1, 0, 1, 0]) == 1.0
     assert kappa([1, 1, 0, 0], [0, 0, 1, 1]) == -1.0
+
+
+# ------------------------------------------------------------ שאלת המחקר: שלוש עדשות ופירוק לשלבים
+
+def _rq_case(tmp_path):
+    """מקרה סינתטי: טקסט = ex01, תוכנית = ex01 ועוד בור שהדו"ח לא מזכיר, LLM = ex01 עם טאבון שזז."""
+    import copy
+    import json
+    ex = ROOT.parent / "02_layout_pipeline" / "examples" / "ex01_iron_age_room"
+    text = load_layout(ex / "layout.gold.json")
+    plan = copy.deepcopy(text)
+    plan["elements"].append({**copy.deepcopy(text["elements"][-1]), "id": "P9", "class": "pit",
+                             "bbox": {"x": 3.9, "y": 0.1, "w": 0.8, "h": 0.8}, "source_span": "plan only"})
+    llm = copy.deepcopy(text)
+    next(e for e in llm["elements"] if e["id"] == "I1")["bbox"].update({"x": 1.2, "y": 1.0})
+    case = tmp_path / "c1"
+    (case / "images").mkdir(parents=True)
+    (case / "report.he.txt").write_text((ex / "report.he.txt").read_text(encoding="utf-8"), encoding="utf-8")
+    for name, lay in (("text_gold", text), ("plan", plan), ("llm", llm)):
+        (case / f"layout.{name}.json").write_text(json.dumps(lay, ensure_ascii=False), encoding="utf-8")
+    blank = copy.deepcopy(text)
+    blank["elements"], blank["relations"] = [], []
+    render_seg(blank, 512).save(case / "images" / "text_only_s0.png")
+    render_seg(llm, 512).save(case / "images" / "llm_layout_s0.png")
+    render_seg(plan, 512).save(case / "images" / "plan_layout_s0.png")
+    return case, text, plan, llm
+
+
+def test_three_lenses_separate_text_fidelity_from_plan_agreement(tmp_path):
+    from fidelity import three_way
+    _, text, plan, _ = _rq_case(tmp_path)
+    ev = PaletteEvaluator()
+    plan_img = ev(np.array(render_seg(plan, 512)))
+    r = three_way(plan_img, text, plan)
+    assert r["plan_agreement"]["miou"] == 1.0                    # תואם לתוכנית לגמרי
+    assert r["text_grounded"]["miou"] < 1.0                      # אבל מכיל בור שהטקסט לא מזכיר
+    assert r["unsupported"]["HOR_area"] > 0
+    text_img = ev(np.array(render_seg(text, 512)))
+    r2 = three_way(text_img, text, plan)
+    assert r2["text_grounded"]["miou"] == 1.0 and r2["unsupported"]["HOR_area"] == 0
+    assert r2["text_grounded"]["relation_fidelity"] == 1.0 and r2["plan_agreement"]["miou"] < 1.0
+
+
+def test_relation_fidelity_catches_a_moved_element(tmp_path):
+    from fidelity import relation_fidelity
+    _, text, _, llm = _rq_case(tmp_path)
+    moved = PaletteEvaluator()(np.array(render_seg(llm, 512)))
+    r = relation_fidelity(moved, text)
+    assert r["n_checked"] > 0 and r["rate"] < 1.0                 # הטאבון כבר לא צמוד לקיר 13
+
+
+def test_retention_is_undefined_when_plan_and_text_are_close():
+    from fidelity import retention
+    assert retention([0.5, 0.6], [0.40, 0.42], [0.42, 0.43])["value"] is None
+    r = retention([0.6, 0.7], [0.2, 0.3], [0.8, 0.9])
+    assert r["value"] == pytest.approx(((0.65 - 0.25) / (0.85 - 0.25)), abs=1e-3)
+    assert retention([0.95], [0.2], [0.8])["value"] > 1              # לא נחתך ל-[0,1]
+
+
+def test_rq_eval_end_to_end_on_a_synthetic_case(tmp_path):
+    from hallucination import PaletteEvaluator as PE
+    from rq_eval import aggregate, evaluate_case, to_markdown
+    case, *_ = _rq_case(tmp_path)
+    res = evaluate_case(case, PE())
+    ex = res["extraction"]
+    assert 0 < ex["text_gold_vs_plan_miou"] < 1 and 0 < ex["llm_vs_plan_miou"] < 1
+    assert ex["llm_vs_text_gold"]["element_recall"] == 1.0
+    s = aggregate([res])
+    p = {c: s[c]["plan_agreement.miou"]["mean"] for c in ("text_only", "llm_layout", "plan_layout")}
+    assert p["text_only"] < p["llm_layout"] < p["plan_layout"] == 1.0
+    assert s["retention_plan_miou"]["value"] is not None and "Retention" in to_markdown(s)

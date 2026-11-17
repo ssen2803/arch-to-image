@@ -1,0 +1,18 @@
+{
+ "gligen": {
+  "relation_fidelity": 0.86,
+  "checked_share": 0.146
+ },
+ "photo_bgsand": {
+  "relation_fidelity": 0.9,
+  "checked_share": 0.181
+ },
+ "photo": {
+  "relation_fidelity": 1.0,
+  "checked_share": 0.181
+ },
+ "photo_textonly": {
+  "relation_fidelity": 0.854,
+  "checked_share": 0.125
+ }
+}

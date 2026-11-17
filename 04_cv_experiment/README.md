@@ -130,6 +130,8 @@ $PY src/crossfit_filter.py --folds 2 --epochs 15                 # ציוני ז
 $PY src/train_unet.py --name base
 $PY src/train_unet.py --name crossfit20 --filter-csv runs/crossfit/scores.csv --drop-frac 0.2
 $PY src/train_unet.py --name ood_pit_in_floor --exclude-tags pit_in_floor
+$PY src/train_unet.py --name real_only --train-source real                          # בידוד: אמיתי בלבד
+$PY src/train_unet.py --name real_plus_synth --train-source both --init runs/base/best.pt   # אמיתי + סינתטי
 $PY src/evaluate.py --split data/real/dev  --unet runs/base/best.pt --zeroshot grounded_sam --out results/dev
 $PY src/evaluate.py --split data/real/test --unet runs/<chosen>/best.pt --zeroshot grounded_sam --out results/test
 $PY -m pytest tests -q
@@ -137,8 +139,10 @@ $PY -m pytest tests -q
 
 ## 7. מצב נוכחי
 
+**עדכון 17.11.2026, בעקבות סקירה חיצונית:** חלק ב' הוא ניסוי משני ומצומצם. ההשוואה הנדרשת בקורס, U-Net סינתטי מול Grounded-SAM, נשארת. אם יהיו מספיק צילומים אמיתיים מתויגים לאימון, יתווספו שני מסלולים שמבודדים את תרומת הנתונים הסינתטיים: אמיתי בלבד, ואמיתי ועוד סינתטי (`--train-source real|both`, `--init`). המסלולים נבדקו בהרצת עשן.
+
 **מאומת:**
-- **בדיקות:** 20 בדיקות עוברות בשלב 4, ועוד 68 בשלב 2 ו-52 בשלב 3.
+- **בדיקות:** 20 בדיקות עוברות בשלב 4, ועוד 68 בשלב 2 ו-56 בשלב 3.
 - **ייצור הנתונים:** הסתיים. 600 תמונות מ-300 פריסות, 12.6 שניות לתמונה.
 - **אימון:** 2 אפוקים בתצורה המלאה רצו בלי תקלה. ה-loss ירד מ-1.68 ל-1.26, והשיא היה 1.7GB. ה-mIoU על קבוצת האימות הסינתטית אינו מדווח, כי התוויות שלה רועשות.
 - **הערכה:** הרצת צנרת מלאה עם U-Net ועם Grounded-SAM, על 4 תמונות סינתטיות ובדגל `--allow-synthetic`. המספרים לא מדווחים.
