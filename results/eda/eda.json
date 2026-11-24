@@ -1,0 +1,182 @@
+{
+ "n_images": 600,
+ "n_layouts": 300,
+ "sanity": {
+  "image_sizes": {
+   "(512, 512)": 600
+  },
+  "missing_values": {
+   "built_iou": 2
+  },
+  "exact_duplicate_images": 0,
+  "blank_images": [],
+  "labels_with_invalid_values": 0
+ },
+ "coverage": {
+  "pixel_share": {
+   "background": 0.4709,
+   "floor": 0.33,
+   "wall": 0.1382,
+   "installation": 0.0181,
+   "pit": 0.0428
+  },
+  "layouts_with_class": {
+   "background": 296,
+   "floor": 254,
+   "wall": 244,
+   "installation": 209,
+   "pit": 246
+  },
+  "elements_per_class": {
+   "floor": 362,
+   "wall": 787,
+   "installation": 363,
+   "pit": 587
+  },
+  "element_types": {
+   "wall/stone wall": 787,
+   "pit/refuse pit": 206,
+   "pit/pit": 197,
+   "pit/silo": 184,
+   "installation/stone bench": 137,
+   "floor/beaten-earth floor": 97,
+   "floor/flagstone pavement": 95,
+   "floor/white plaster floor": 85,
+   "floor/coarse mosaic floor": 85,
+   "installation/tabun": 81,
+   "installation/hearth": 75,
+   "installation/round basin": 70
+  },
+  "elements_per_layout": {
+   "mean": 7.0,
+   "min": 2,
+   "max": 15
+  },
+  "components_per_mask": {
+   "floor": {
+    "mean": 1.15,
+    "max": 4
+   },
+   "wall": {
+    "mean": 1.46,
+    "max": 6
+   },
+   "installation": {
+    "mean": 1.21,
+    "max": 4
+   },
+   "pit": {
+    "mean": 1.95,
+    "max": 5
+   }
+  },
+  "periods": {
+   "Chalcolithic": 54,
+   "Roman": 47,
+   "Early Islamic": 43,
+   "Byzantine": 41,
+   "Iron Age II": 40,
+   "Hellenistic": 38,
+   "Bronze Age": 37
+  },
+  "contexts": {
+   "domestic building": 195,
+   "open-air activity area": 105
+  },
+  "composition_tags": {
+   "pit_in_floor": 147,
+   "pit_in_open": 180,
+   "installation_on_floor": 151,
+   "installation_in_open": 76,
+   "wall_south_of_pit": 47,
+   "wall_north_of_pit": 38
+  },
+  "empty_layouts": 0
+ },
+ "leakage": {
+  "split_images": {
+   "train": 480,
+   "val": 60,
+   "test": 60
+  },
+  "split_layouts": {
+   "train": 240,
+   "val": 30,
+   "test": 30
+  },
+  "layouts_shared_between_splits": 0,
+  "identical_masks_across_layouts": 0,
+  "near_duplicate_pairs_dhash<=6": 12,
+  "near_duplicate_pairs_across_splits": 5
+ },
+ "variability": {
+  "pixel_correlation_64px": {
+   "same_layout_diff_seed": {
+    "median": 0.245,
+    "n_pairs": 300
+   },
+   "diff_layout_same_seed": {
+    "median": 0.381,
+    "n_pairs": 89700
+   },
+   "diff_layout_diff_seed": {
+    "median": 0.119,
+    "n_pairs": 89700
+   }
+  },
+  "n_diffusion_seeds": 2,
+  "unique_prompts": 56
+ },
+ "label_quality": {
+  "segformer_agreement": {
+   "median": 0.241,
+   "share>=0.3": 0.3383,
+   "share>=0.5": 0.0533,
+   "share>=0.8": 0.0083
+  },
+  "HAR_median": 0.482,
+  "crossfit_oof_miou": {
+   "median": 0.677,
+   "n": 540
+  }
+ },
+ "realism": {
+  "n_synth": 200,
+  "n_real": 14,
+  "stats": {
+   "brightness": {
+    "synth_median": 0.4323,
+    "real_median": 0.4809,
+    "ks": 0.488
+   },
+   "contrast": {
+    "synth_median": 0.2027,
+    "real_median": 0.1714,
+    "ks": 0.454
+   },
+   "saturation": {
+    "synth_median": 0.467,
+    "real_median": 0.1304,
+    "ks": 1.0
+   },
+   "sharpness": {
+    "synth_median": 0.0762,
+    "real_median": 0.044,
+    "ks": 0.735
+   },
+   "green_frac": {
+    "synth_median": 0.0,
+    "real_median": 0.0242,
+    "ks": 0.585
+   }
+  },
+  "wall_thickness_share_of_side": {
+   "synth_median": 0.0977,
+   "real_median": 0.0418
+  },
+  "wall_pixel_share": {
+   "synth_median": 0.1416,
+   "real_median": 0.1049
+  }
+ }
+}

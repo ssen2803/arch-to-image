@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex01_iron_age_room",
+    "language": "he",
+    "period": "Iron Age II",
+    "context": "corner of a domestic building with beaten-earth floor and tabun"
+  },
+  "area": {
+    "label": "Square B2",
+    "width_m": 5,
+    "height_m": 5,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "fieldstone wall",
+      "locus": "W12",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.6,
+        "h": 4.2
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "fieldstone",
+          "basis": "stated"
+        }
+      },
+      "dating": {
+        "period": "Iron Age II",
+        "basis": "inferred"
+      },
+      "source_span": "קיר 12 (W12), הבנוי אבני שדה, נמשך בכיוון צפון–דרום לאורך הצד המערבי של הריבוע; אורכו 4.2 מ' ורוחבו 0.6 מ'"
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W13",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0,
+        "y": 4.4,
+        "w": 3.5,
+        "h": 0.6
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "dating": {
+        "period": "Iron Age II",
+        "basis": "inferred"
+      },
+      "source_span": "מתחבר אליו בפינה קיר 13 (W13), שאורכו 3.5 מ' ורוחבו 0.6 מ', והוא נמשך מזרחה לאורך הצד הצפוני של הריבוע"
+    },
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "beaten-earth floor",
+      "phrase": "beaten-earth floor",
+      "locus": "L105",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.6,
+        "y": 0.9,
+        "w": 3.0,
+        "h": 3.5
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "beaten-earth floor",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "earth",
+          "basis": "stated"
+        }
+      },
+      "source_span": "נחשפה רצפת עפר כבושה (L105) ששטחה כ-3×3.5 מ', והיא נצמדת לשני הקירות"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "tabun",
+      "phrase": "tabun oven",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 1.5,
+        "y": 3.5,
+        "w": 0.8,
+        "h": 0.8
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "tabun",
+        "basis": "stated"
+      },
+      "source_span": "נמצא טאבון (קוטרו 0.8 מ')"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "W2",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "בקצהו הצפוני מתחבר אליו בפינה"
+    },
+    {
+      "subject": "W2",
+      "predicate": "north_of",
+      "object": "W1",
+      "source_span": "בקצהו הצפוני מתחבר אליו בפינה"
+    },
+    {
+      "subject": "F1",
+      "predicate": "east_of",
+      "object": "W1",
+      "source_span": "בחדר שבין הקירות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "south_of",
+      "object": "W2",
+      "source_span": "בחדר שבין הקירות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "והיא נצמדת לשני הקירות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "והיא נצמדת לשני הקירות"
+    },
+    {
+      "subject": "I1",
+      "predicate": "on",
+      "object": "F1",
+      "source_span": "על הרצפה, סמוך לקיר 13"
+    },
+    {
+      "subject": "I1",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "סמוך לקיר 13"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "פינה של מבנה מגורים מתקופת הברזל ב'",
+      "reason": "overall interpretation and dating of the building, not a separate plan-view element"
+    },
+    {
+      "text": "ובתוכו שכבת אפר",
+      "reason": "ash deposit inside the tabun; a fill, not a representable element class"
+    }
+  ]
+}

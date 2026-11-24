@@ -1,0 +1,58 @@
+<!-- title: ArchaeoLayout: figures for the README -->
+
+<section class="slide norod">
+<h2>ArchaeoLayout: from an excavation report to a checked image</h2>
+<div class="abs" style="left:110px;top:200px;width:1700px;display:grid;grid-template-columns:repeat(5,1fr);gap:26px">
+<div><div class="sheet" style="height:330px;padding:18px;overflow:hidden"><p class="he" style="font-size:23px;line-height:1.5">בשטח C (9×6 מ') נחשפו שני חדרים של מבנה מהתקופה ההלניסטית. הקיר החיצוני הדרומי של המבנה (W40), שרוחבו 0.7 מ', נמשך לכל אורך השטח ומעבר לגבולותיו ממזרח וממערב. קיר מחיצה (W41), שרוחבו 0.6 מ'...</p></div><h3 style="margin-top:18px">1. Report</h3><p class="t-s mut">Free text. Dense, partial, uncertain.</p></div>
+<div><div class="mm always" style="height:330px;display:flex;align-items:center;justify-content:center">{{ plan(load_layout(ROOT / '02_layout_pipeline/examples/ex04_hellenistic_two_rooms/layout.pred.json'), s=33, pad=12, labels=False, scale=False) }}</div><h3 style="margin-top:18px">2. Layout</h3><p class="t-s mut">A language model extracts elements; a validator checks every quote and relation.</p></div>
+<div><div class="im" style="height:330px">{{ img('03_controlled_generation/outputs/ex04_hellenistic_two_rooms/photo_llm_s0.png', 460, crop=(.05,.1,.95,.95), alt='Generated image') }}<div class="hyp" style="font-size:18px">Hypothetical reconstruction</div></div><h3 style="margin-top:18px">3. Image</h3><p class="t-s mut">Stable Diffusion 1.5, guided by ControlNet.</p></div>
+<div><div class="im" style="height:330px">{{ img('03_controlled_generation/outputs/ex04_hellenistic_two_rooms/photo_llm_s0.hor.png', 460, crop=(.05,.1,.95,.95), alt='Unsupported content') }}</div><h3 style="margin-top:18px">4. Measurement</h3><p class="t-s mut">What in the image is not supported by the report?</p></div>
+<div><div class="im" style="height:330px">{{ overlay_mask('04_cv_experiment/data/real/walls/test/images/' + TILE + '.png','04_cv_experiment/data/real/walls/test/masks/' + TILE + '.png','results/predictions/real_walls/unet_synth_real/' + TILE + '.png',460) }}</div><h3 style="margin-top:18px">5. Segmentation</h3><p class="t-s mut">A U-Net, fine-tuned on 14 real tiles, finds walls in drone photos.</p></div>
+</div>
+<div class="abs g3" style="left:110px;top:770px;width:1700px">
+<div class="note"><h3>Use</h3><p class="mut">Check a report against its plan; picture a site from text without mistaking guesses for finds.</p></div>
+<div class="note b"><h3>Uncertainty is shown</h3><p class="mut">Three evidence levels, zones for unknown positions, buried layers removed by rule.</p></div>
+<div class="note o"><h3>Everything is measured</h3><p class="mut">Extraction, generation and segmentation each have a baseline and an error analysis.</p></div>
+</div>
+<p class="src" style="bottom:34px">Example text written for this project. Tile: Uziel, Zohar and Jaffe 2026 (MIT licence). Green: wall found, red: false alarm, yellow: missed.</p>
+</section>
+
+<section class="slide norod">
+<h2>Pipeline</h2>
+<svg class="abs" style="left:110px;top:170px" width="1700" height="800" viewBox="0 0 1700 800">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#15222A"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C1272D"/></marker></defs>
+<g font-size="25">
+<g><rect x="0" y="40" width="300" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="24" y="86" font-weight="600" font-size="28">Report text</text><text x="24" y="124" class="ax">Hebrew, free text</text><text x="24" y="158" class="ax">8 examples so far</text></g>
+<g><rect x="400" y="40" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="424" y="86" font-weight="600" font-size="28">Language model</text><text x="424" y="124" class="ax">Claude, prompt + schema</text><text x="424" y="158" class="ax">extract_layout.py</text></g>
+<g><rect x="880" y="40" width="340" height="150" fill="#fff" stroke="#15222A" stroke-width="3"/><text x="904" y="86" font-weight="600" font-size="28">Validator</text><text x="904" y="124" class="ax">schema, geometry, quotes</text><text x="904" y="158" class="ax">rules, not a model</text></g>
+<g><rect x="1320" y="40" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="1344" y="86" font-weight="600" font-size="28">Layout</text><text x="1344" y="124" class="ax">elements, relations, evidence</text><text x="1344" y="158" class="ax">unknown position = zone</text></g>
+<g stroke="#15222A" stroke-width="4" fill="none" marker-end="url(#ah)"><path d="M300 115 H392"/><path d="M780 115 H872"/><path d="M1220 115 H1312"/></g>
+<path d="M1050 190 V250 H590 V198" stroke="#C1272D" stroke-width="4" fill="none" marker-end="url(#ar)"/><text x="610" y="282" class="ax">errors go back, up to 3 attempts</text>
+<g><rect x="1320" y="330" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="1344" y="376" font-weight="600" font-size="28">Mask, ADE20K colours</text><text x="1344" y="414" class="ax">stratigraphy engine removes</text><text x="1344" y="446" class="ax">buried elements</text></g>
+<g><rect x="880" y="330" width="340" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="904" y="376" font-weight="600" font-size="28">Diffusion</text><text x="904" y="414" class="ax">SD 1.5 + ControlNet-seg</text><text x="904" y="446" class="ax">also: text only, GLIGEN</text></g>
+<g><rect x="400" y="330" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="424" y="376" font-weight="600" font-size="28">Measurement</text><text x="424" y="414" class="ax">SegFormer, then recall,</text><text x="424" y="446" class="ax">HOR, HAR, mIoU</text></g>
+<g><rect x="0" y="330" width="300" height="150" fill="#FBEDEC" stroke="#C1272D" stroke-width="3"/><text x="24" y="376" font-weight="600" font-size="28">Scores</text><text x="24" y="414" class="ax">faithful to text,</text><text x="24" y="446" class="ax">unsupported content</text></g>
+<g stroke="#15222A" stroke-width="4" fill="none" marker-end="url(#ah)"><path d="M1510 190 V322"/><path d="M1320 405 H1228"/><path d="M880 405 H788"/><path d="M400 405 H308"/></g>
+<line x1="0" x2="1700" y1="540" y2="540" stroke="#B5C4BF" stroke-width="2" stroke-dasharray="10 8"/><text x="0" y="584" class="ax">Part B</text>
+<g><rect x="0" y="610" width="300" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="24" y="656" font-weight="600" font-size="28">Random layouts</text><text x="24" y="694" class="ax">300, same validator</text><text x="24" y="728" class="ax">synth_layouts.py</text></g>
+<g><rect x="400" y="610" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="424" y="656" font-weight="600" font-size="28">600 generated images</text><text x="424" y="694" class="ax">the mask is the label</text><text x="424" y="728" class="ax">build_synthetic.py</text></g>
+<g><rect x="880" y="610" width="340" height="150" fill="#FBEDEC" stroke="#C1272D" stroke-width="3"/><text x="904" y="656" font-weight="600" font-size="28">U-Net, trained by us</text><text x="904" y="694" class="ax">ResNet-18 encoder, 14.4M</text><text x="904" y="728" class="ax">train_unet.py</text></g>
+<g><rect x="1320" y="610" width="380" height="150" fill="#fff" stroke="#B5C4BF" stroke-width="3"/><text x="1344" y="656" font-weight="600" font-size="28">Real drone tiles</text><text x="1344" y="694" class="ax">against Grounded-SAM,</text><text x="1344" y="728" class="ax">SegFormer, simple rules</text></g>
+<g stroke="#15222A" stroke-width="4" fill="none" marker-end="url(#ah)"><path d="M300 685 H392"/><path d="M780 685 H872"/><path d="M1220 685 H1312"/></g>
+</g></svg>
+</section>
+
+<section class="slide norod">
+<h2>Generation: the layout is drawn, and so are walls nobody reported</h2>
+<div class="abs" style="left:110px;top:170px;width:820px">{{ GENCHART(w=820) }}</div>
+<div class="abs row" style="left:1010px;top:180px;gap:18px"><figure style="width:390px"><div class="im" style="width:390px;height:390px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_textonly_s0.png', 420, alt='Text only') }}</div><figcaption>Text only</figcaption></figure><figure style="width:390px"><div class="im" style="width:390px;height:390px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_s0.png', 420, alt='Hand-built layout') }}</div><figcaption>Hand-built layout, same seed</figcaption></figure></div>
+<div class="abs row" style="left:1010px;top:636px;gap:18px"><figure style="width:290px"><div class="im" style="width:290px;height:290px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_llm_s0.png', 320, alt='LLM layout') }}</div><figcaption>LLM layout, same seed</figcaption></figure><figure style="width:290px"><div class="im" style="width:290px;height:290px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/gligen_s0.png', 320, alt='GLIGEN') }}</div><figcaption>GLIGEN</figcaption></figure></div>
+<p class="src" style="bottom:34px">5 example layouts × 4 seeds per condition. Hypothetical reconstructions, generated by diffusion.</p>
+</section>
+
+<section class="slide norod">
+<h2>Segmentation: wall IoU on {{ W['n_test'] }} real drone tiles</h2>
+<div class="abs" style="left:110px;top:180px">{{ WALLCHART(w=1000) }}</div>
+<div class="abs row" style="left:1170px;top:180px;gap:16px;flex-wrap:wrap;width:660px">{{ ''.join('<figure style="width:312px"><div class="im" style="width:312px;height:312px">' + overlay_mask('04_cv_experiment/data/real/walls/test/images/' + TILE + '.png','04_cv_experiment/data/real/walls/test/masks/' + TILE + '.png','results/predictions/real_walls/' + m + '/' + TILE + '.png',380) + '</div><figcaption>' + t + '</figcaption></figure>' for m, t in (('grounded_sam','Grounded-SAM, zero-shot'),('unet_synth','U-Net, generated only'),('unet_real','U-Net, 14 real tiles'),('unet_synth_real','U-Net, generated + 14 real'))) }}</div>
+<p class="src" style="bottom:34px">Green: wall found. Red: false alarm. Yellow: missed. Bars: 95% interval, bootstrap over overlap groups. Tile: Uziel et al. 2026 (MIT).</p>
+</section>

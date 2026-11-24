@@ -1,0 +1,5 @@
+# Python 3.12. On Windows with an NVIDIA GPU install torch + xformers first, from the PyTorch index:
+#   python -m pip install xformers==0.0.35 --index-url https://download.pytorch.org/whl/cu128
+-r 02_layout_pipeline/requirements.txt
+-r 03_controlled_generation/requirements.txt
+torchvision==0.26.0

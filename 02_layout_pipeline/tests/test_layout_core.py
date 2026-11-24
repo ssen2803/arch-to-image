@@ -471,3 +471,11 @@ def test_period_and_section_render(tmp_path):
     assert render_section(lay, "x", 3.0, tmp_path / "s.png")["elements"]
     with pytest.raises(ValueError):
         render_period_map(lay, "Roman", 1, 300, tmp_path / "r.png")
+
+
+def test_cli_extractor_reads_json_with_or_without_code_fence():
+    from extract_layout_cli import parse_json
+    assert parse_json('{"a": 1}') == {"a": 1}
+    assert parse_json('Here it is:\n```json\n{"a": {"b": 2}}\n```') == {"a": {"b": 2}}
+    with pytest.raises(ValueError):
+        parse_json("no json here")

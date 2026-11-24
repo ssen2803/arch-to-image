@@ -37,7 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import IGNORE, NUM_CLASSES, REAL_DIR, RUNS, SYNTH_DIR  # noqa: E402
 from compositions import composition_tags  # noqa: E402
 from datasets import (  # noqa: E402
-    SegDataset, drop_blank_images, filter_rows, read_manifest, real_items, split_by_layout,
+    SegDataset, drop_blank_images, filter_rows, read_manifest, real_items, split_by_layout, split_by_layout3,
 )
 from metrics import confusion, iou_from_confusion, miou  # noqa: E402
 from unet import ResNet18UNet, count_parameters  # noqa: E402
@@ -183,13 +183,18 @@ def main() -> int:
                     help="על מה מאמנים. real/both מבודדים את תרומת הנתונים הסינתטיים (README, סעיף 3)")
     ap.add_argument("--real-train", type=Path, default=REAL_DIR / "train", help="צילומים אמיתיים מתויגים לאימון")
     ap.add_argument("--real-repeat", type=int, default=5, help="ב-both: כמה פעמים לחזור על כל תמונה אמיתית")
+    ap.add_argument("--hold-synthetic-test", action="store_true",
+                    help="מוציא מהאימון את ה-test הסינתטי (Layouts שמספרם נגמר ב-5), כדי לדווח עליו בנפרד")
     ap.add_argument("--init", type=Path, help="נקודת התחלה לכוונון (best.pt של אימון קודם)")
     args = ap.parse_args()
 
     rows, blank = drop_blank_images(read_manifest(args.data))
     if blank:
         print(f"הוצאו {len(blank)} תמונות ריקות: {', '.join(Path(r['image']).name for r in blank)}")
-    train_rows, val_rows = split_by_layout(rows)
+    if args.hold_synthetic_test:
+        train_rows, val_rows, _ = split_by_layout3(rows)
+    else:
+        train_rows, val_rows = split_by_layout(rows)
     n_before = len(train_rows)
     train_rows = filter_rows(train_rows, args.min_agree, args.max_har)
     if args.filter_csv and args.drop_frac > 0:
@@ -226,7 +231,7 @@ def main() -> int:
     extra = {"filters": {"min_agree": args.min_agree, "max_har": args.max_har,
                          "filter_csv": str(args.filter_csv) if args.filter_csv else None, "drop_frac": args.drop_frac},
              "exclude_tags": args.exclude_tags, "n_held_out": len(held_out),
-             "train_source": args.train_source, "real_repeat": args.real_repeat}
+             "hold_synthetic_test": args.hold_synthetic_test, "train_source": args.train_source, "real_repeat": args.real_repeat}
     if held_out:
         out.mkdir(parents=True, exist_ok=True)
         (out / "held_out_images.txt").write_text("\n".join(str(r["image_path"]) for r in held_out), encoding="utf-8")

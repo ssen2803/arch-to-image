@@ -1,0 +1,47 @@
+{
+  "backend": "claude -p (headless, no tools)",
+  "model": "opus",
+  "attempts": [
+    {
+      "attempt": 1,
+      "seconds": 50.6,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1305,
+        "cache_read_input_tokens": 4346,
+        "output_tokens": 4810
+      },
+      "models_used": [
+        "claude-opus-5"
+      ],
+      "errors": [
+        "[error] area/georef: הפרת סכמה: '223850/644400' is not of type 'object'",
+        "[error] elements/0/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/1/attributes: הפרת סכמה: Additional properties are not allowed ('basis' was unexpected)",
+        "[error] elements/1/attributes/material: הפרת סכמה: 'earth' is not of type 'object'",
+        "[error] elements/1/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/2/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/3/attributes: הפרת סכמה: Additional properties are not allowed ('basis' was unexpected)",
+        "[error] elements/3/attributes/material: הפרת סכמה: 'plaster' is not of type 'object'",
+        "[error] elements/3/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/4/elevation: הפרת סכמה: 'basis' is a required property"
+      ]
+    },
+    {
+      "attempt": 2,
+      "seconds": 30.4,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4288,
+        "cache_read_input_tokens": 4346,
+        "output_tokens": 2766
+      },
+      "models_used": [
+        "claude-opus-5"
+      ],
+      "errors": []
+    }
+  ],
+  "valid": true,
+  "source_id_sent": "report_7a872cf7"
+}

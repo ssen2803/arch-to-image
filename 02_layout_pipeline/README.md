@@ -69,6 +69,7 @@ python -m pytest tests -q                                       # בדיקות
 
 python src/extract_layout.py examples/ex01_iron_age_room/report.he.txt --dry-run   # הצגת הבקשה בלבד
 python src/extract_layout.py examples/*/report.he.txt          # המרה אמיתית (דורש ANTHROPIC_API_KEY)
+python src/extract_layout_cli.py examples/*/report.he.txt --model opus   # בלי מפתח API, דרך Claude Code במצב headless
 ```
 
 ## הדוגמאות
@@ -95,8 +96,8 @@ ex06 ו-ex07 נוספו כדי לכסות שני מקרי קצה: מידע חס�
 
 ## הערות
 
-- **Gold ולא רק דוגמאות:** חמשת ה-Layouts הוכנו ידנית ואומתו. הם יכולים לשמש gold standard למדידת דיוק המחלץ האוטומטי, כלומר השוואה של `layout.pred.json` מול `layout.gold.json` לפי התאמת מחלקות ו-IoU של תיבות.
-- **המחלץ האוטומטי טרם הורץ מול ה-API.** בסביבה הנוכחית אין מפתח API ואין SDK מותקן. מה שנבדק: בניית הבקשה (`--dry-run`), תקפות סכמת ה-API, והמאמת שהמחלץ מפעיל על התשובה.
+- **Gold ולא רק דוגמאות:** שמונת ה-Layouts הוכנו ידנית ואומתו, והם משמשים gold standard למדידת המחלץ: `layout.pred.json` (Opus) ו-`layout.pred_sonnet.json` מול `layout.gold.json`.
+- **המחלץ הורץ על 8 הדוגמאות (24.11.2026)** דרך Claude Code במצב headless (`extract_layout_cli.py`), בשני מודלים, בלי עריכה ועם מזהים ניטרליים. בריצה קודמת נשלח שם התיקייה כמזהה, והוא רמז על המקרה; התוצאות המדווחות הן מהריצה הנקייה. ההרצה הישירה מול ה-API (`extract_layout.py`) עדיין לא נבדקה, כי אין מפתח.
 - **מודל ו-fallback:** הסקריפט משתמש ב-`claude-opus-5-5`. מופעל בו fallback בצד השרת (`fallbacks: "default"`): אם מסווג בטיחות דוחה בקשה, היא רצה מחדש על מודל חלופי. אפשר להסיר את שני השדות האלה ב-`build_request`.
 - **אילוצים שמוסרים מסכמת ה-API:** מסכמת ה-API מוסרים אילוצים שהשירות עשוי לא לתמוך בהם, כמו `minimum` ו-`pattern`. הם נאכפים מקומית, כך שהקפדנות נשמרת.
 - **מגבלות v1:**

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex06_underspecified_pit",
+    "language": "he",
+    "period": "Persian period",
+    "context": "wall segment and pit in an excavation square"
+  },
+  "area": {
+    "label": "Square E2",
+    "width_m": 5,
+    "height_m": 5,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W60",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0,
+        "y": 0.25,
+        "w": 5,
+        "h": 0.6
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [
+        "E",
+        "W"
+      ],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "source_span": "נחשף קיר בכיוון מזרח–מערב (W60) לאורך הצד הדרומי של הריבוע; רוחבו 0.6 מ' והוא נמשך מעבר לגבולות הריבוע ממזרח וממערב"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "round pit",
+      "locus": "L601",
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.0,
+        "y": 2.8,
+        "w": 1,
+        "h": 1
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "unspecified",
+      "truncated": [],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "source_span": "בריבוע נחשף גם בור (L601) שקוטרו כ-1 מ'"
+    }
+  ],
+  "relations": [],
+  "unmapped_mentions": [
+    {
+      "text": "ובו שברי כלי חרס מהתקופה הפרסית",
+      "reason": "pottery finds in the pit fill, not a plan-view element"
+    }
+  ]
+}

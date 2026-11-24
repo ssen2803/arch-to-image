@@ -63,6 +63,7 @@ class GroundedSAM:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.prompts = prompts or DEFAULT_PROMPTS
         self.box_threshold, self.text_threshold, self.max_boxes = box_threshold, text_threshold, max_boxes
+        self.max_box_frac = 1.0      # תיבות שמכסות חלק גדול יותר מהתמונה נזרקות. 1.0 = בלי סינון
         self.dino_proc = AutoProcessor.from_pretrained(dino_id)
         self.dino = AutoModelForZeroShotObjectDetection.from_pretrained(dino_id).to(self.device).eval()
         self.sam_proc = SamProcessor.from_pretrained(sam_id)
@@ -81,6 +82,8 @@ class GroundedSAM:
         labels = res.get("text_labels", res.get("labels"))
         dets = [{"box": b.tolist(), "score": float(s), "class": _class_of(str(t), self.prompts), "text": str(t)}
                 for b, s, t in zip(res["boxes"], res["scores"], labels)]
+        area = image.width * image.height
+        dets = [d for d in dets if (d["box"][2] - d["box"][0]) * (d["box"][3] - d["box"][1]) <= self.max_box_frac * area]
         dets = sorted((d for d in dets if d["class"]), key=lambda d: -d["score"])[:self.max_boxes]
         if not dets:
             return []

@@ -1,0 +1,576 @@
+{
+ "generation": {
+  "photo": {
+   "n_images": 20,
+   "images_with_invented_wall": 20,
+   "images_with_foreign_content": 12,
+   "images_with_foreign_on_pit_or_installation": 10,
+   "recall_coarse_by_class": {
+    "installation": {
+     "drawn": 21,
+     "total": 24
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28
+    },
+    "wall": {
+     "drawn": 38,
+     "total": 40
+    }
+   },
+   "recall_fine_by_class": {
+    "floor": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "installation": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28,
+     "recall": 0.0
+    },
+    "wall": {
+     "drawn": 38,
+     "total": 40,
+     "recall": 0.95
+    }
+   },
+   "pits_counted_as_drawn": []
+  },
+  "photo_llm": {
+   "n_images": 20,
+   "images_with_invented_wall": 20,
+   "images_with_foreign_content": 13,
+   "images_with_foreign_on_pit_or_installation": 9,
+   "recall_coarse_by_class": {
+    "installation": {
+     "drawn": 16,
+     "total": 24
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28
+    },
+    "wall": {
+     "drawn": 32,
+     "total": 40
+    }
+   },
+   "recall_fine_by_class": {
+    "floor": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "installation": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28,
+     "recall": 0.0
+    },
+    "wall": {
+     "drawn": 32,
+     "total": 40,
+     "recall": 0.8
+    }
+   },
+   "pits_counted_as_drawn": []
+  },
+  "photo_textonly": {
+   "n_images": 20,
+   "images_with_invented_wall": 13,
+   "images_with_foreign_content": 7,
+   "images_with_foreign_on_pit_or_installation": 4,
+   "recall_coarse_by_class": {
+    "installation": {
+     "drawn": 6,
+     "total": 24
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28
+    },
+    "wall": {
+     "drawn": 15,
+     "total": 40
+    }
+   },
+   "recall_fine_by_class": {
+    "floor": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "installation": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "pit": {
+     "drawn": 0,
+     "total": 28,
+     "recall": 0.0
+    },
+    "wall": {
+     "drawn": 15,
+     "total": 40,
+     "recall": 0.375
+    }
+   },
+   "pits_counted_as_drawn": []
+  },
+  "gligen": {
+   "n_images": 20,
+   "images_with_invented_wall": 17,
+   "images_with_foreign_content": 16,
+   "images_with_foreign_on_pit_or_installation": 12,
+   "recall_coarse_by_class": {
+    "installation": {
+     "drawn": 15,
+     "total": 24
+    },
+    "pit": {
+     "drawn": 2,
+     "total": 28
+    },
+    "wall": {
+     "drawn": 30,
+     "total": 40
+    }
+   },
+   "recall_fine_by_class": {
+    "floor": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "installation": {
+     "drawn": 0,
+     "total": 24,
+     "recall": 0.0
+    },
+    "pit": {
+     "drawn": 2,
+     "total": 28,
+     "recall": 0.071
+    },
+    "wall": {
+     "drawn": 30,
+     "total": 40,
+     "recall": 0.75
+    }
+   },
+   "pits_counted_as_drawn": [
+    "ex02_chalcolithic_pits/gligen_s0:P2",
+    "ex03_byzantine_winepress/gligen_s2:P2"
+   ]
+  }
+ },
+ "extraction_opus": {
+  "n_reports": 8,
+  "relations_strict": {
+   "tp": 41,
+   "pred": 53,
+   "gold": 52,
+   "precision": 0.77358,
+   "recall": 0.78846
+  },
+  "relations_canonical": {
+   "tp": 42,
+   "pred": 53,
+   "gold": 52,
+   "precision": 0.79245,
+   "recall": 0.80769
+  },
+  "missed_relations": {
+   "adjacent_to": 4,
+   "west_of": 3,
+   "inside": 2,
+   "north_of": 1
+  },
+  "extra_relations": {
+   "north_of": 5,
+   "adjacent_to": 2,
+   "west_of": 2,
+   "inside": 2
+  },
+  "centre_offset_m": {
+   "median": 0.2,
+   "p90": 0.74,
+   "max": 1.281,
+   "floor": 0.2,
+   "installation": 0.51,
+   "pit": 0.2,
+   "wall": 0.241
+  },
+  "box_iou": {
+   "mean": 0.589,
+   "floor": 0.848,
+   "installation": 0.434,
+   "pit": 0.555,
+   "wall": 0.513
+  }
+ },
+ "extraction_sonnet": {
+  "n_reports": 8,
+  "relations_strict": {
+   "tp": 39,
+   "pred": 41,
+   "gold": 52,
+   "precision": 0.95122,
+   "recall": 0.75
+  },
+  "relations_canonical": {
+   "tp": 39,
+   "pred": 41,
+   "gold": 52,
+   "precision": 0.95122,
+   "recall": 0.75
+  },
+  "missed_relations": {
+   "west_of": 5,
+   "north_of": 4,
+   "adjacent_to": 2,
+   "inside": 2
+  },
+  "extra_relations": {
+   "west_of": 2
+  },
+  "centre_offset_m": {
+   "median": 0.283,
+   "p90": 0.502,
+   "max": 1.118,
+   "floor": 0.212,
+   "installation": 0.316,
+   "pit": 0.191,
+   "wall": 0.283
+  },
+  "box_iou": {
+   "mean": 0.636,
+   "floor": 0.877,
+   "installation": 0.497,
+   "pit": 0.624,
+   "wall": 0.554
+  }
+ },
+ "real_walls": {
+  "all_wall": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 1.0,
+    "shadow": 1.0,
+    "bright stone or rock": 1.0,
+    "soil and rubble": 1.0
+   },
+   "false_positive_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_negative_share": {
+    "vegetation": 0.0,
+    "shadow": 0.0,
+    "bright stone or rock": 0.0,
+    "soil and rubble": 0.0
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 1.0,
+    "shadow": 1.0,
+    "bright stone or rock": 1.0,
+    "soil and rubble": 1.0
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "bright_texture": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.013,
+    "shadow": 0.025,
+    "bright stone or rock": 0.293,
+    "soil and rubble": 0.083
+   },
+   "false_positive_share": {
+    "vegetation": 0.027,
+    "shadow": 0.023,
+    "bright stone or rock": 0.583,
+    "soil and rubble": 0.366
+   },
+   "false_negative_share": {
+    "vegetation": 0.051,
+    "shadow": 0.133,
+    "bright stone or rock": 0.322,
+    "soil and rubble": 0.494
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.261,
+    "shadow": 0.214,
+    "bright stone or rock": 0.699,
+    "soil and rubble": 0.417
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "grounded_sam": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.112,
+    "shadow": 0.204,
+    "bright stone or rock": 0.242,
+    "soil and rubble": 0.202
+   },
+   "false_positive_share": {
+    "vegetation": 0.128,
+    "shadow": 0.107,
+    "bright stone or rock": 0.268,
+    "soil and rubble": 0.497
+   },
+   "false_negative_share": {
+    "vegetation": 0.039,
+    "shadow": 0.087,
+    "bright stone or rock": 0.464,
+    "soil and rubble": 0.41
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.321,
+    "shadow": 0.392,
+    "bright stone or rock": 0.488,
+    "soil and rubble": 0.428
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "segformer_ade": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.035,
+    "shadow": 0.094,
+    "bright stone or rock": 0.117,
+    "soil and rubble": 0.082
+   },
+   "false_positive_share": {
+    "vegetation": 0.094,
+    "shadow": 0.117,
+    "bright stone or rock": 0.307,
+    "soil and rubble": 0.481
+   },
+   "false_negative_share": {
+    "vegetation": 0.03,
+    "shadow": 0.085,
+    "bright stone or rock": 0.478,
+    "soil and rubble": 0.407
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.241,
+    "shadow": 0.136,
+    "bright stone or rock": 0.232,
+    "soil and rubble": 0.173
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "unet_real": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.014,
+    "shadow": 0.063,
+    "bright stone or rock": 0.131,
+    "soil and rubble": 0.063
+   },
+   "false_positive_share": {
+    "vegetation": 0.047,
+    "shadow": 0.094,
+    "bright stone or rock": 0.417,
+    "soil and rubble": 0.442
+   },
+   "false_negative_share": {
+    "vegetation": 0.05,
+    "shadow": 0.087,
+    "bright stone or rock": 0.405,
+    "soil and rubble": 0.458
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.444,
+    "shadow": 0.608,
+    "bright stone or rock": 0.713,
+    "soil and rubble": 0.588
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "unet_synth": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.001,
+    "shadow": 0.001,
+    "bright stone or rock": 0.0,
+    "soil and rubble": 0.001
+   },
+   "false_positive_share": {
+    "vegetation": 0.219,
+    "shadow": 0.164,
+    "bright stone or rock": 0.05,
+    "soil and rubble": 0.568
+   },
+   "false_negative_share": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.0,
+    "shadow": 0.0,
+    "bright stone or rock": 0.0,
+    "soil and rubble": 0.0
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  },
+  "unet_synth_real": {
+   "nonwall_area_share": {
+    "vegetation": 0.219,
+    "shadow": 0.1,
+    "bright stone or rock": 0.211,
+    "soil and rubble": 0.47
+   },
+   "false_positive_rate_by_surface": {
+    "vegetation": 0.009,
+    "shadow": 0.037,
+    "bright stone or rock": 0.09,
+    "soil and rubble": 0.038
+   },
+   "false_positive_share": {
+    "vegetation": 0.047,
+    "shadow": 0.088,
+    "bright stone or rock": 0.447,
+    "soil and rubble": 0.419
+   },
+   "false_negative_share": {
+    "vegetation": 0.045,
+    "shadow": 0.086,
+    "bright stone or rock": 0.427,
+    "soil and rubble": 0.443
+   },
+   "wall_recall_by_surface": {
+    "vegetation": 0.367,
+    "shadow": 0.508,
+    "bright stone or rock": 0.613,
+    "soil and rubble": 0.493
+   },
+   "wall_share_of_surface": {
+    "vegetation": 0.019,
+    "shadow": 0.092,
+    "bright stone or rock": 0.235,
+    "soil and rubble": 0.098
+   },
+   "wall_pixels_by_surface": {
+    "vegetation": 0.032,
+    "shadow": 0.078,
+    "bright stone or rock": 0.497,
+    "soil and rubble": 0.393
+   }
+  }
+ }
+}

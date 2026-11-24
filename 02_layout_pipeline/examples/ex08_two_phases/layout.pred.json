@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex08_two_phases",
+    "language": "he",
+    "period": "Iron Age II and Persian period",
+    "context": "two building phases: wall and beaten-earth floor overlaid by a later wall and plaster floor"
+  },
+  "area": {
+    "label": "Square G4",
+    "width_m": 6,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W80",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0,
+        "y": 0.2,
+        "w": 6,
+        "h": 0.8
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [
+        "E",
+        "W"
+      ],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "phase": "1",
+      "dating": {
+        "period": "Iron Age II",
+        "start_year": -800,
+        "end_year": -701,
+        "basis": "stated"
+      },
+      "elevation": {
+        "top_m": 101.2,
+        "bottom_m": 100.1,
+        "datum": "asl",
+        "basis": "stated"
+      },
+      "source_span": "שייך קיר (W80) בכיוון מזרח–מערב לאורך הצד הדרומי של הריבוע, שרוחבו 0.8 מ' והוא נמשך מעבר לגבולות הריבוע ממזרח וממערב"
+    },
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "beaten-earth floor",
+      "phrase": "beaten-earth floor",
+      "locus": "L801",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0,
+        "y": 1.0,
+        "w": 6,
+        "h": 5.0
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [
+        "N",
+        "E",
+        "W"
+      ],
+      "term": {
+        "value": "beaten-earth floor",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "earth",
+          "basis": "stated"
+        }
+      },
+      "phase": "1",
+      "dating": {
+        "period": "Iron Age II",
+        "start_year": -800,
+        "end_year": -701,
+        "basis": "inferred"
+      },
+      "elevation": {
+        "top_m": 100.3,
+        "datum": "asl",
+        "basis": "stated"
+      },
+      "source_span": "מצפון לקיר ונצמדת אליו נחשפה רצפת עפר כבושה (L801) בגובה 100.30 מ', שנמשכת אל מעבר לגבולות הריבוע מצפון, ממזרח וממערב"
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W81",
+      "evidence": "attested",
+      "bbox": {
+        "x": 5.4,
+        "y": 1.0,
+        "w": 0.6,
+        "h": 5.0
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [
+        "N"
+      ],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "phase": "2",
+      "dating": {
+        "period": "Persian",
+        "start_year": -500,
+        "end_year": -301,
+        "basis": "stated"
+      },
+      "elevation": {
+        "top_m": 101.6,
+        "bottom_m": 100.4,
+        "datum": "asl",
+        "basis": "stated"
+      },
+      "source_span": "שייך קיר (W81) בכיוון צפון–דרום לאורך הצד המזרחי של הריבוע, שרוחבו 0.6 מ'; הוא נבנה על גבי רצפת שלב 1 ונמשך אל מעבר לגבול הריבוע מצפון"
+    },
+    {
+      "id": "F2",
+      "class": "floor",
+      "subtype": "plaster floor",
+      "phrase": "plaster floor",
+      "locus": "L802",
+      "evidence": "attested",
+      "bbox": {
+        "x": 1.4,
+        "y": 3.5,
+        "w": 4.0,
+        "h": 2.5
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [
+        "N"
+      ],
+      "term": {
+        "value": "plaster floor",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "plaster",
+          "basis": "stated"
+        }
+      },
+      "phase": "2",
+      "dating": {
+        "period": "Persian",
+        "start_year": -500,
+        "end_year": -301,
+        "basis": "inferred"
+      },
+      "elevation": {
+        "top_m": 100.95,
+        "datum": "asl",
+        "basis": "stated"
+      },
+      "source_span": "ממערב לקיר W81 ונצמדת אליו נחשפה רצפת טיח (L802) בגובה 100.95 מ', על פני כ-4×2.5 מ' בחלקו הצפוני של הריבוע"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "round pit",
+      "locus": "L803",
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.9,
+        "y": 4.2,
+        "w": 1.2,
+        "h": 1.2
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "elevation": {
+        "bottom_m": 99.8,
+        "datum": "asl",
+        "basis": "stated"
+      },
+      "source_span": "בור (L803, קוטר 1.2 מ') נחפר לתוך רצפת הטיח עד לגובה 99.80 מ'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "F1",
+      "predicate": "north_of",
+      "object": "W1",
+      "source_span": "מצפון לקיר ונצמדת אליו נחשפה רצפת עפר כבושה (L801)"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "מצפון לקיר ונצמדת אליו"
+    },
+    {
+      "subject": "W2",
+      "predicate": "on",
+      "object": "F1",
+      "source_span": "הוא נבנה על גבי רצפת שלב 1"
+    },
+    {
+      "subject": "F2",
+      "predicate": "west_of",
+      "object": "W2",
+      "source_span": "ממערב לקיר W81 ונצמדת אליו"
+    },
+    {
+      "subject": "F2",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "ממערב לקיר W81 ונצמדת אליו"
+    },
+    {
+      "subject": "F1",
+      "predicate": "under",
+      "object": "F2",
+      "source_span": "היא נבנתה מעל רצפת העפר של שלב 1 וכיסתה אותה"
+    },
+    {
+      "subject": "P1",
+      "predicate": "cuts",
+      "object": "F2",
+      "source_span": "נחפר לתוך רצפת הטיח"
+    },
+    {
+      "subject": "P1",
+      "predicate": "inside",
+      "object": "F2",
+      "source_span": "נחפר לתוך רצפת הטיח"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "נחשפו שני שלבי בנייה",
+      "reason": "stratigraphic phasing statement, not a plan-view element"
+    },
+    {
+      "text": "נ\"צ הפינה הדרום-מערבית 223850/644400",
+      "reason": "grid reference of the square; not representable as a plan-view element"
+    },
+    {
+      "text": "במילויו נמצאו שברי כלים מהתקופה הפרסית",
+      "reason": "finds in a pit fill, not a plan-view element"
+    }
+  ]
+}

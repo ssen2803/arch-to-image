@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex02_chalcolithic_pits",
+    "language": "he",
+    "period": "Chalcolithic",
+    "context": "open-air activity surface with a beaten-earth floor and several pits"
+  },
+  "area": {
+    "label": "Area A",
+    "width_m": 10,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "beaten-earth floor",
+      "phrase": "beaten-earth floor",
+      "locus": "L210",
+      "evidence": "attested",
+      "bbox": {
+        "x": 2,
+        "y": 1,
+        "w": 6,
+        "h": 4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "beaten-earth floor",
+        "basis": "stated"
+      },
+      "source_span": "רצפת עפר כבושה (L210) שהשתמרה על פני כ-6×4 מ'"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "round pit",
+      "locus": "211",
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.6,
+        "y": 3.4,
+        "w": 1.2,
+        "h": 1.2
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "source_span": "בור 211 (קוטר 1.2 מ') בחלקה הצפוני-מערבי"
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "round pit",
+      "locus": "212",
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.05,
+        "y": 3.55,
+        "w": 0.9,
+        "h": 0.9
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "source_span": "בור 212 (קוטר 0.9 מ') ממזרח לו"
+    },
+    {
+      "id": "P3",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "large round pit",
+      "locus": "213",
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.25,
+        "y": 1.05,
+        "w": 1.5,
+        "h": 1.5
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "source_span": "בור 213 (קוטר 1.5 מ'), הגדול שבהם, בחלקה הדרומי של הרצפה"
+    },
+    {
+      "id": "P4",
+      "class": "pit",
+      "subtype": "pit",
+      "phrase": "pit",
+      "locus": "214",
+      "evidence": "attested",
+      "bbox": {
+        "x": 9.0,
+        "y": 0.3,
+        "w": 1.0,
+        "h": 1.0
+      },
+      "shape": "ellipse",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [
+        "E"
+      ],
+      "term": {
+        "value": "pit",
+        "basis": "stated"
+      },
+      "source_span": "בור רביעי (214) נחשף בפינה הדרום-מזרחית של השטח, מחוץ לתחום הרצפה, והוא נמשך אל מעבר לגבול החפירה המזרחי"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "installation",
+      "phrase": "round stone installation",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.5,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "installation",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "stone",
+          "basis": "stated"
+        }
+      },
+      "source_span": "ממערב לרצפה נמצא מתקן עגול בנוי אבנים (קוטר 1 מ') שייעודו אינו ברור"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "P1",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "שלושה מהם נחפרו לתוך הרצפה"
+    },
+    {
+      "subject": "P2",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "שלושה מהם נחפרו לתוך הרצפה"
+    },
+    {
+      "subject": "P3",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "שלושה מהם נחפרו לתוך הרצפה"
+    },
+    {
+      "subject": "P2",
+      "predicate": "east_of",
+      "object": "P1",
+      "source_span": "ממזרח לו"
+    },
+    {
+      "subject": "P1",
+      "predicate": "inside",
+      "object": "F1",
+      "source_span": "בחלקה הצפוני-מערבי"
+    },
+    {
+      "subject": "P3",
+      "predicate": "inside",
+      "object": "F1",
+      "source_span": "בחלקה הדרומי של הרצפה"
+    },
+    {
+      "subject": "I1",
+      "predicate": "west_of",
+      "object": "F1",
+      "source_span": "ממערב לרצפה"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "במילוי בור 213 נמצאו עצמות בעלי חיים ושברי קנקנים",
+      "reason": "finds (animal bones, jar sherds) inside a pit fill; not a plan-view element"
+    },
+    {
+      "text": "על פני השטח נמצאו פזורים כלי צור ושברי כלי בזלת",
+      "reason": "scattered surface finds (flint tools, basalt vessel sherds); not representable as a plan element"
+    }
+  ]
+}

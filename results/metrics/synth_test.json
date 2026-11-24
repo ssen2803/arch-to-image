@@ -1,0 +1,89 @@
+{
+ "n_images": 60,
+ "n_layouts": 30,
+ "models": {
+  "majority_background": {
+   "miou": 0.0978,
+   "miou_ci95": [
+    0.0776,
+    0.1179
+   ],
+   "miou_per_seed": [
+    0.0978
+   ],
+   "iou_per_class": {
+    "background": 0.4891,
+    "floor": 0.0,
+    "wall": 0.0,
+    "installation": 0.0,
+    "pit": 0.0
+   },
+   "coarse_miou": 0.2637
+  },
+  "segformer_ade": {
+   "miou": 0.1328,
+   "miou_ci95": [
+    0.1111,
+    0.1537
+   ],
+   "miou_per_seed": [
+    0.1328
+   ],
+   "iou_per_class": {
+    "background": 0.4152,
+    "floor": 0.0003,
+    "wall": 0.2477,
+    "installation": 0.0003,
+    "pit": 0.0003
+   },
+   "coarse_miou": 0.2832
+  },
+  "grounded_sam": {
+   "miou": 0.1307,
+   "miou_ci95": [
+    0.1104,
+    0.1511
+   ],
+   "miou_per_seed": [
+    0.1307
+   ],
+   "iou_per_class": {
+    "background": 0.3738,
+    "floor": 0.1038,
+    "wall": 0.0194,
+    "installation": 0.0213,
+    "pit": 0.1351
+   },
+   "coarse_miou": 0.3014
+  },
+  "unet_synth": {
+   "miou": 0.6039,
+   "miou_ci95": [
+    0.5536,
+    0.6506
+   ],
+   "miou_per_seed": [
+    0.6119,
+    0.6022,
+    0.5976
+   ],
+   "iou_per_class": {
+    "background": 0.6517,
+    "floor": 0.5466,
+    "wall": 0.7968,
+    "installation": 0.3563,
+    "pit": 0.6681
+   },
+   "coarse_miou": 0.7916
+  }
+ },
+ "paired": {
+  "unet_synth - grounded_sam": {
+   "delta_miou": 0.4732,
+   "ci95": [
+    0.4175,
+    0.5245
+   ]
+  }
+ }
+}

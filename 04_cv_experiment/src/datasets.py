@@ -67,6 +67,17 @@ def split_by_layout(rows: list[dict], val_every: int = 10) -> tuple[list[dict], 
     return train, val
 
 
+def split_by_layout3(rows: list[dict], every: int = 10, val_mod: int = 0,
+                     test_mod: int = 5) -> tuple[list[dict], list[dict], list[dict]]:
+    """פיצול לשלוש קבוצות לפי Layout. הוולידציה זהה ל-split_by_layout (בחירת checkpoint),
+    וה-test הסינתטי נפרד ממנה, כדי שהציון המדווח לא יהיה על התמונות שלפיהן נבחר המודל."""
+    train, val, test = [], [], []
+    for r in rows:
+        m = int(r["layout_id"].split("_")[-1]) % every
+        (val if m == val_mod else test if m == test_mod else train).append(r)
+    return train, val, test
+
+
 def filter_rows(rows: list[dict], min_agree: float = 0.0, max_har: float = 1.0) -> list[dict]:
     """סינון זליגת תוויות ברמת תמונה. הספים נקבעים בכיול (README, סעיף זליגת תוויות)."""
     out = []

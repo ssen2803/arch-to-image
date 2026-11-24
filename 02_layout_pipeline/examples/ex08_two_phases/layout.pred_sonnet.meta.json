@@ -1,0 +1,65 @@
+{
+  "backend": "claude -p (headless, no tools)",
+  "model": "sonnet",
+  "attempts": [
+    {
+      "attempt": 1,
+      "seconds": 94.9,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1372,
+        "cache_read_input_tokens": 4347,
+        "output_tokens": 9398
+      },
+      "models_used": [
+        "claude-sonnet-5"
+      ],
+      "errors": [
+        "[error] area/georef: הפרת סכמה: 'SW corner 223850/644400' is not of type 'object'",
+        "[error] elements/0/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/1/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/2/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/3/elevation: הפרת סכמה: 'basis' is a required property",
+        "[error] elements/4/elevation: הפרת סכמה: 'basis' is a required property"
+      ]
+    },
+    {
+      "attempt": 2,
+      "seconds": 28.1,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4256,
+        "cache_read_input_tokens": 4347,
+        "output_tokens": 2690
+      },
+      "models_used": [
+        "claude-sonnet-5"
+      ],
+      "errors": [
+        "[error] area/georef: הפרת סכמה: Additional properties are not allowed ('sw_corner' was unexpected)",
+        "[error] area/georef: הפרת סכמה: 'crs' is a required property",
+        "[error] area/georef: הפרת סכמה: 'x0' is a required property",
+        "[error] area/georef: הפרת סכמה: 'y0' is a required property",
+        "[error] area/georef: הפרת סכמה: 'source' is a required property"
+      ]
+    },
+    {
+      "attempt": 3,
+      "seconds": 29.9,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4264,
+        "cache_read_input_tokens": 4347,
+        "output_tokens": 2768
+      },
+      "models_used": [
+        "claude-sonnet-5"
+      ],
+      "errors": [
+        "[error] area/georef/crs: הפרת סכמה: 'ITM' is not one of ['EPSG:2039', 'EPSG:28193']"
+      ]
+    }
+  ],
+  "valid": false,
+  "source_id_sent": "report_7a872cf7"
+}

@@ -20,3 +20,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# secrets and build output
+.env
+slides/src/build/
+04_cv_experiment/runs/*.log

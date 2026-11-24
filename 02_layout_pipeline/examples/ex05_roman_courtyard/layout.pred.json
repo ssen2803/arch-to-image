@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex05_roman_courtyard",
+    "language": "he",
+    "period": "Roman",
+    "context": "part of a courtyard of a Roman-period farmhouse"
+  },
+  "area": {
+    "label": "Square D4",
+    "width_m": 6,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W50",
+      "evidence": "attested",
+      "bbox": {
+        "x": 5.2,
+        "y": 0,
+        "w": 0.8,
+        "h": 6
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [
+        "N",
+        "S"
+      ],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "source_span": "בצד המזרחי של הריבוע נחשף קיר (W50) בכיוון צפון–דרום, שרוחבו 0.8 מ', והוא נמשך מעבר לגבולות הריבוע מצפון ומדרום"
+    },
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "flagstone pavement",
+      "phrase": "flagstone pavement of a courtyard",
+      "locus": "L501",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.2,
+        "y": 0.3,
+        "w": 5,
+        "h": 4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "flagstone pavement",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "stone",
+          "basis": "stated"
+        }
+      },
+      "dating": {
+        "period": "Roman",
+        "basis": "inferred"
+      },
+      "source_span": "ממערב לקיר נחשף ריצוף אבנים שטוחות של החצר (L501), ששטחו כ-4×5 מ' והוא נצמד לקיר"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "silo",
+      "phrase": "round silo dug into the ground",
+      "locus": "L503",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.5,
+        "y": 0.6,
+        "w": 1.4,
+        "h": 1.4
+      },
+      "shape": "ellipse",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "silo",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "earth",
+          "basis": "stated"
+        }
+      },
+      "source_span": "ריצוף החצר נחתך בחלקו הדרום-מערבי בממגורה עגולה שנחפרה בקרקע (L503, קוטר 1.4 מ')"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "hearth",
+      "phrase": "hearth bounded by small stones",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.3,
+        "y": 2.0,
+        "w": 0.7,
+        "h": 0.7
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "hearth",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "stone",
+          "basis": "stated"
+        }
+      },
+      "source_span": "על הריצוף, סמוך לקיר W50, נמצא מוקד אש התחום באבנים קטנות (0.7×0.7 מ')"
+    },
+    {
+      "id": "W2",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "exposed wall segment",
+      "locus": "W51",
+      "evidence": "attested",
+      "bbox": {
+        "x": 3.7,
+        "y": 4.5,
+        "w": 1.5,
+        "h": 0.8
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "source_span": "נחשף קטע קיר בכיוון מזרח–מערב (W51) שאורכו החשוף 1.5 מ' בלבד, והוא מתחבר לקיר W50"
+    },
+    {
+      "id": "W3",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "inferred western continuation of the wall",
+      "locus": "W51",
+      "evidence": "inferred",
+      "bbox": {
+        "x": 0.2,
+        "y": 4.5,
+        "w": 3.5,
+        "h": 0.8
+      },
+      "shape": "rect",
+      "dims_source": "estimated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "wall",
+        "basis": "inferred"
+      },
+      "source_span": "נראה כי קיר W51 נמשך מערבה לכל רוחב החצר וסגר אותה מצפון"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "F1",
+      "predicate": "west_of",
+      "object": "W1",
+      "source_span": "ממערב לקיר נחשף ריצוף אבנים שטוחות"
+    },
+    {
+      "subject": "F1",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "והוא נצמד לקיר"
+    },
+    {
+      "subject": "P1",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "ריצוף החצר נחתך בחלקו הדרום-מערבי בממגורה עגולה"
+    },
+    {
+      "subject": "P1",
+      "predicate": "inside",
+      "object": "F1",
+      "source_span": "ריצוף החצר נחתך בחלקו הדרום-מערבי"
+    },
+    {
+      "subject": "I1",
+      "predicate": "on",
+      "object": "F1",
+      "source_span": "על הריצוף"
+    },
+    {
+      "subject": "I1",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "סמוך לקיר W50"
+    },
+    {
+      "subject": "W2",
+      "predicate": "adjacent_to",
+      "object": "W1",
+      "source_span": "והוא מתחבר לקיר W50"
+    },
+    {
+      "subject": "W2",
+      "predicate": "north_of",
+      "object": "F1",
+      "source_span": "בחלקו הצפוני של הריבוע"
+    },
+    {
+      "subject": "W3",
+      "predicate": "west_of",
+      "object": "W2",
+      "source_span": "נראה כי קיר W51 נמשך מערבה"
+    },
+    {
+      "subject": "W3",
+      "predicate": "north_of",
+      "object": "F1",
+      "source_span": "וסגר אותה מצפון"
+    },
+    {
+      "subject": "W3",
+      "predicate": "adjacent_to",
+      "object": "W2",
+      "source_span": "נראה כי קיר W51 נמשך מערבה לכל רוחב החצר"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "חלק מחצר של בית חווה מהתקופה הרומית",
+      "reason": "interpretive context and dating of the whole area, not a discrete plan-view element"
+    },
+    {
+      "text": "ובמילויה נמצאו אפר וגרעיני דגן מפוחמים",
+      "reason": "fill contents and finds inside the silo, not a plan-view element"
+    },
+    {
+      "text": "בחלקו הצפוני של הריבוע נמצאה מפולת אבנים גדולה, ומתחתיה",
+      "reason": "stone collapse is a debris layer, not a representable element class; it sealed W51 but cannot be given an 'under' relation to a non-element"
+    }
+  ]
+}

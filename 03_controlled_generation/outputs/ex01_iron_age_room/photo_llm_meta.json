@@ -1,0 +1,59 @@
+{
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "controlnet": "lllyasviel/control_v11p_sd15_seg",
+  "dtype": "float16",
+  "attention": "xformers",
+  "offload": "model",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "gpu_total_mb": 6144,
+  "source": "..\\02_layout_pipeline\\examples\\ex01_iron_age_room\\layout.pred.json",
+  "condition": "photo_llm",
+  "style": "photo",
+  "prompt": "top-down drone orthophoto of an archaeological excavation, corner of a domestic building, Iron Age II, exposed stone walls, packed soil, natural light, high detail",
+  "negative_prompt": "people, person, workers, tools, car, vehicle, trees, plants, furniture, modern building, sky, horizon, perspective view, text, letters, labels, watermark, blurry, lowres",
+  "steps": 30,
+  "guidance": 7.5,
+  "cond_scale": 1.0,
+  "condition_mapping": {
+    "background": "earth",
+    "floor": "floor",
+    "wall": "wall",
+    "installation": "fireplace",
+    "pit": "swimming pool"
+  },
+  "size": 512,
+  "runs": [
+    {
+      "seed": 0,
+      "used_seed": 0,
+      "file": "photo_llm_s0.png",
+      "seconds": 18.3,
+      "peak_allocated_mb": 3111,
+      "peak_reserved_mb": 3362
+    },
+    {
+      "seed": 1,
+      "used_seed": 1,
+      "file": "photo_llm_s1.png",
+      "seconds": 9.5,
+      "peak_allocated_mb": 3116,
+      "peak_reserved_mb": 3384
+    },
+    {
+      "seed": 2,
+      "used_seed": 2,
+      "file": "photo_llm_s2.png",
+      "seconds": 9.6,
+      "peak_allocated_mb": 3119,
+      "peak_reserved_mb": 3376
+    },
+    {
+      "seed": 3,
+      "used_seed": 3,
+      "file": "photo_llm_s3.png",
+      "seconds": 9.4,
+      "peak_allocated_mb": 3113,
+      "peak_reserved_mb": 3376
+    }
+  ]
+}

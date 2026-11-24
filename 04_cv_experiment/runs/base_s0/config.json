@@ -1,0 +1,36 @@
+{
+  "epochs": 40,
+  "batch": 8,
+  "crop": 384,
+  "lr": 0.001,
+  "enc_lr": 0.0001,
+  "boundary_ignore": 3,
+  "geometric_aug": true,
+  "seed": 0,
+  "init": null,
+  "filters": {
+    "min_agree": 0.0,
+    "max_har": 1.0,
+    "filter_csv": null,
+    "drop_frac": 0.0
+  },
+  "exclude_tags": [],
+  "n_held_out": 0,
+  "hold_synthetic_test": true,
+  "train_source": "synthetic",
+  "real_repeat": 5,
+  "n_train": 480,
+  "n_val": 60,
+  "class_weights": [
+    0.403,
+    0.475,
+    0.754,
+    2.046,
+    1.322
+  ],
+  "params": {
+    "encoder": 11176512,
+    "decoder": 3227877,
+    "total": 14404389
+  }
+}

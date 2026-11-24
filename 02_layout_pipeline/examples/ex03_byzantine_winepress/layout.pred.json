@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.2",
+  "source": {
+    "id": "ex03_byzantine_winepress",
+    "language": "he",
+    "period": "Byzantine",
+    "context": "Byzantine winepress: mosaic treading floor, collecting vat and rock-cut cistern"
+  },
+  "area": {
+    "label": "Excavation area",
+    "width_m": 8,
+    "height_m": 6,
+    "dims_source": "stated"
+  },
+  "elements": [
+    {
+      "id": "F1",
+      "class": "floor",
+      "subtype": "treading floor",
+      "phrase": "coarse white mosaic treading floor",
+      "locus": "L301",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.3,
+        "y": 1.0,
+        "w": 4,
+        "h": 4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "treading floor",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "mosaic",
+          "basis": "stated"
+        }
+      },
+      "source_span": "משטח הדריכה (L301), מרוצף פסיפס לבן גס, מידותיו 4×4 מ' והוא נמצא בחלקו המערבי של שטח החפירה"
+    },
+    {
+      "id": "P1",
+      "class": "pit",
+      "subtype": "socket",
+      "phrase": "square rock-cut socket",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 2.1,
+        "y": 2.8,
+        "w": 0.4,
+        "h": 0.4
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "stated",
+      "truncated": [],
+      "term": {
+        "value": "socket",
+        "basis": "inferred"
+      },
+      "attributes": {
+        "material": {
+          "value": "rock-cut",
+          "basis": "stated"
+        }
+      },
+      "source_span": "במרכז משטח הדריכה נמצאה גומה מרובעת (0.4×0.4 מ') שנחצבה ברצפה"
+    },
+    {
+      "id": "W1",
+      "class": "wall",
+      "subtype": "wall",
+      "phrase": "wall",
+      "locus": "W30",
+      "evidence": "attested",
+      "bbox": {
+        "x": 0.3,
+        "y": 5.0,
+        "w": 4,
+        "h": 0.5
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "wall",
+        "basis": "stated"
+      },
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30) שאורכו 4 מ' ורוחבו 0.5 מ'"
+    },
+    {
+      "id": "I1",
+      "class": "installation",
+      "subtype": "collecting vat",
+      "phrase": "plastered collecting vat",
+      "locus": "L302",
+      "evidence": "attested",
+      "bbox": {
+        "x": 4.5,
+        "y": 2.6,
+        "w": 1.8,
+        "h": 1.8
+      },
+      "shape": "rect",
+      "dims_source": "stated",
+      "position": "relative",
+      "truncated": [],
+      "term": {
+        "value": "collecting vat",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "plaster",
+          "basis": "stated"
+        }
+      },
+      "source_span": "נחשף בור איגום מטויח (L302) שמידותיו 1.8×1.8 מ'"
+    },
+    {
+      "id": "P2",
+      "class": "pit",
+      "subtype": "cistern",
+      "phrase": "rock-cut water cistern",
+      "locus": null,
+      "evidence": "attested",
+      "bbox": {
+        "x": 6.5,
+        "y": 0,
+        "w": 1.5,
+        "h": 1.5
+      },
+      "shape": "ellipse",
+      "dims_source": "estimated",
+      "position": "stated",
+      "truncated": [
+        "S",
+        "E"
+      ],
+      "term": {
+        "value": "cistern",
+        "basis": "stated"
+      },
+      "attributes": {
+        "material": {
+          "value": "rock-cut",
+          "basis": "stated"
+        }
+      },
+      "source_span": "בפינה הדרום-מזרחית של החפירה נחשף חלק מפיו של מאגר מים חצוב, המכוסה באבן גדולה; המאגר נמשך אל מעבר לגבולות החפירה מדרום וממזרח"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "P1",
+      "predicate": "inside",
+      "object": "F1",
+      "source_span": "במרכז משטח הדריכה"
+    },
+    {
+      "subject": "P1",
+      "predicate": "cuts",
+      "object": "F1",
+      "source_span": "גומה מרובעת (0.4×0.4 מ') שנחצבה ברצפה"
+    },
+    {
+      "subject": "W1",
+      "predicate": "north_of",
+      "object": "F1",
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30)"
+    },
+    {
+      "subject": "W1",
+      "predicate": "adjacent_to",
+      "object": "F1",
+      "source_span": "משטח הדריכה תחום מצפון בקיר (W30)"
+    },
+    {
+      "subject": "I1",
+      "predicate": "east_of",
+      "object": "F1",
+      "source_span": "ממזרח למשטח הדריכה"
+    },
+    {
+      "subject": "P2",
+      "predicate": "south_of",
+      "object": "I1",
+      "source_span": "בפינה הדרום-מזרחית של החפירה נחשף חלק מפיו של מאגר מים חצוב"
+    }
+  ],
+  "unmapped_mentions": [
+    {
+      "text": "נחשפה גת מהתקופה הביזנטית",
+      "reason": "overall winepress complex and its dating; represented by its component elements rather than one box"
+    },
+    {
+      "text": "ושימשה ככל הנראה לעיגון קורת סחיטה",
+      "reason": "functional interpretation of the socket, not a separate plan-view element"
+    },
+    {
+      "text": "במפלס נמוך ממנו",
+      "reason": "relative elevation difference, not representable in plan view"
+    },
+    {
+      "text": "ותעלה צרה החצובה בסלע מחברת בין השניים",
+      "reason": "channel; channels are not a representable element class"
+    },
+    {
+      "text": "המכוסה באבן גדולה",
+      "reason": "covering stone over the cistern mouth, not an element class"
+    }
+  ]
+}

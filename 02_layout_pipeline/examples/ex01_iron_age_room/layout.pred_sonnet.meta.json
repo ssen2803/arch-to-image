@@ -1,0 +1,22 @@
+{
+  "backend": "claude -p (headless, no tools)",
+  "model": "sonnet",
+  "attempts": [
+    {
+      "attempt": 1,
+      "seconds": 49.7,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 5368,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 4308
+      },
+      "models_used": [
+        "claude-sonnet-5"
+      ],
+      "errors": []
+    }
+  ],
+  "valid": true,
+  "source_id_sent": "report_9d2cd835"
+}
