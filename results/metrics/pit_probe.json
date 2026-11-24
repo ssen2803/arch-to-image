@@ -1,0 +1,87 @@
+{
+ "photo_textonly": {
+  "pits": 28,
+  "pixel_share": {
+   "earth": 0.5691,
+   "grass": 0.2211,
+   "building": 0.07,
+   "rock": 0.0423,
+   "hovel": 0.0304,
+   "wall": 0.027,
+   "mountain": 0.014,
+   "path": 0.0124
+  },
+  "majority_class_per_pit": {
+   "earth": 19,
+   "grass": 6,
+   "rock": 1,
+   "building": 1,
+   "hovel": 1
+  }
+ },
+ "gligen": {
+  "pits": 28,
+  "pixel_share": {
+   "rock": 0.1855,
+   "windowpane": 0.1778,
+   "earth": 0.1482,
+   "wall": 0.1386,
+   "sand": 0.0981,
+   "toilet": 0.0833,
+   "water": 0.0399,
+   "building": 0.0383
+  },
+  "majority_class_per_pit": {
+   "rock": 8,
+   "windowpane": 6,
+   "earth": 4,
+   "sand": 4,
+   "water": 2,
+   "wall": 2,
+   "building": 1,
+   "toilet": 1
+  }
+ },
+ "photo": {
+  "pits": 28,
+  "pixel_share": {
+   "earth": 0.2753,
+   "rock": 0.1746,
+   "wall": 0.1676,
+   "toilet": 0.1363,
+   "windowpane": 0.129,
+   "building": 0.0991,
+   "door": 0.0174,
+   "grass": 0.0005
+  },
+  "majority_class_per_pit": {
+   "rock": 9,
+   "wall": 8,
+   "earth": 6,
+   "windowpane": 3,
+   "building": 1,
+   "toilet": 1
+  }
+ },
+ "photo_llm": {
+  "pits": 28,
+  "pixel_share": {
+   "building": 0.2901,
+   "wall": 0.2832,
+   "earth": 0.222,
+   "rock": 0.0869,
+   "windowpane": 0.058,
+   "floor": 0.0356,
+   "plate": 0.0093,
+   "door": 0.009
+  },
+  "majority_class_per_pit": {
+   "wall": 11,
+   "building": 7,
+   "rock": 4,
+   "earth": 4,
+   "windowpane": 1,
+   "floor": 1
+  }
+ }
+}

@@ -548,7 +548,7 @@ def context() -> dict:
     eda = jload("results/eda/eda.json")
     raw = jload("results/eda/eda_raw.json")
     g, w_ = generation_summary(), jload("results/metrics/real_walls.json")
-    return dict(GENCHART=lambda **k: gen_chart(g, jload("results/metrics/pilot_miou.json"), **k), WALLCHART=lambda **k: wall_chart(w_, **k), TILE="tile_777_2", img=img, png=png, plan=plan, hbar=hbar, hist1=hist1, hist2=hist2, strips=strips, share_bar=share_bar, heat=heat,
+    return dict(GENCHART=lambda **k: gen_chart(g, jload("results/metrics/pilot_miou.json"), **k), PIT=jload("results/metrics/pit_probe.json"), WALLCHART=lambda **k: wall_chart(w_, **k), TILE="tile_777_2", img=img, png=png, plan=plan, hbar=hbar, hist1=hist1, hist2=hist2, strips=strips, share_bar=share_bar, heat=heat,
                 dotmatrix=dotmatrix, plan_compare=plan_compare, overlay_mask=overlay_mask, label_img=label_img, wall_outline=wall_outline, he_marks=he_marks, esc=esc, np=np, RED=RED, BLUE=BLUE, OCHRE=OCHRE, GREY=GREY, FILL=FILL,
                 E=eda, raw=raw, G=g, P=pilot_stats(), ZERO=zero_tiles(), pred_snippet=pred_snippet, RC=lambda c: "/".join(str(jload("results/metrics/error_analysis.json")["generation"][c]["recall_coarse_by_class"][k]["drawn"]) for k in ("wall", "installation", "pit")), ov=tile_overlay, PM=jload("results/metrics/pilot_miou.json"), D=jload("results/metrics/domain_gap_probe.json"), OC=overlap_counts(jload("04_cv_experiment/annotation/real_walls_overlaps.json")), GS=ast.literal_eval(w_["selected_on_dev"]["grounded_sam"]["choice"]), X=extraction_summary("layout.pred.json"), XS=extraction_summary("layout.pred_sonnet.json"),
                 S=jload("results/metrics/synth_test.json"), C=jload("results/metrics/synth_test_confusion.json"),

@@ -17,7 +17,7 @@ Excavation destroys what it uncovers; the report remains. Report editors check b
 Given **a written excavation report** (Hebrew), produce **a structured spatial layout** and **a top-down image**, such that every drawn element is backed by a verbatim quote and unsupported content is measured.
 
 - **Input:** free text of one report.
-- **Output:** JSON layout (5 classes, metres, 9 relation types, evidence level, quote), a 512×512 image labelled as hypothetical, and scores.
+- **Output:** JSON layout (4 element classes, metres, 9 relation types, evidence level, quote), a 512×512 image labelled as hypothetical, and scores.
 - **Constraints:** laptop GPU with 6 GB; unknown positions stay unknown; no Israel Antiquities Authority material without written consent.
 - **Research question:** how much does a layout extracted by a language model improve spatial faithfulness over text alone, and how close does it come to a layout from the original plan?
 
@@ -82,7 +82,7 @@ Details, access, preprocessing and limitations: [data/README.md](data/README.md)
 |---|---|---|
 | Class imbalance | installations 1.8% of pixels | class weights, Dice, per-class results |
 | Noisy labels | median agreement with SegFormer 0.24 | 3-pixel ignore band; human rating of a sample |
-| Seed decides the look | correlation 0.38 for other layout, same seed; 0.24 for same layout, other seed | unique seeds in version 2 |
+| The seed matters more than the layout | correlation 0.38 for other layout, same seed; 0.24 for same layout, other seed | unique seeds in version 2 |
 | Domain gap (development tiles only, n = 14) | saturation 0.47 against 0.13; walls about 2× thicker in the frame | input size chosen on development tiles; prompts and scale change in version 2 |
 | Leakage in the real tiles | 30 overlapping pairs (17 by a quarter, 13 at a corner), 2 photos labelled twice | split by overlap group |
 
@@ -140,6 +140,8 @@ Elements are matched by the overlap of their quotes; relation scores merge inver
 ![Generation results](visuals/result_figures/generation.png)
 *Generation. The layout is drawn, and so are walls nobody reported.*
 
+GLIGEN runs 50 steps on SD 1.4 (the other conditions: 30 steps on SD 1.5), and one of its 20 seeds was replaced because the safety filter returned a black image.
+
 What recall counts: at this resolution walls and installations are one group, "built", and floors are ground. Elements drawn, of 40 walls, 24 installations and 28 pits: text only 15/6/0; GLIGEN 30/15/2; hand-built layout 38/21/0; LLM layout 32/16/0.
 
 H1 is mixed (5 cases, descriptive). LLM layout against text only: recall +0.28, higher in 5 of 5 cases (exact sign-flip p = 0.06, the lowest possible with 5 cases); mIoU -0.12, higher in 1 of 5; HOR lower in 3 of 5. The layout adds built things in the right places and the generator adds walls on empty ground, so IoU of built things rises and IoU of the ground falls.
@@ -158,7 +160,7 @@ H1 is mixed (5 cases, descriptive). LLM layout against text only: recall +0.28, 
 
 The network trained only on generated images reaches mIoU 0.60 on generated test images (optimistic: 59 of 60 share a diffusion seed with training images) and finds no wall on real tiles, in all three seeds. The same inference code gives wall IoU 0.80 on generated images; changing size, saturation, blur or BatchNorm on the development tiles gives at most 0.07. Fourteen real tiles reach 0.44, +0.143 [+0.10, +0.20] above the best untrained model, the bright-pixel rule. Pre-training on generated images changes the result by -0.017 [-0.037, +0.005], so version 1 of the generated set does not help.
 
-Notes. Intervals are approximate (bootstrap over 22 overlap groups, given 3 seeds). Grounded-SAM uses tuned wall settings on real tiles and default five-class settings on the generated test. Two labels of the same photo agree with IoU of about 0.7 (two photos, annotators unknown). Tiles do not name their site, so development and test may share sites.
+Notes. Intervals are approximate (bootstrap over 22 overlap groups, given 3 seeds). Grounded-SAM uses tuned wall settings on real tiles and default five-class settings on the generated test. Two labels of the same photo agree with IoU of about 0.7 (two photos, annotators unknown). Tiles do not name their site, so development and test may share sites. The authors of the tiles report pixel precision 0.80, recall 0.78 and F1 0.79 for walls (Mask R-CNN, 80% of the tiles for training, random split); our U-Net with 14 tiles has F1 0.61 on a split by overlap group. The settings differ, so the numbers are not directly comparable.
 
 ![Segmentation results](visuals/result_figures/segmentation.png)
 *Wall IoU on 40 real tiles and one example. Green: found, red: false alarm, yellow: missed.*
@@ -170,7 +172,7 @@ Files: [`results/metrics/`](results/metrics), [`results/predictions/`](results/p
 | Category | How often | Candidate cause (not yet isolated) | Next step |
 |---|---|---|---|
 | Invented walls (hand-built layouts, ControlNet) | 20 of 20 images; text only 13 | every prompt says "exposed stone walls"; ADE20K floors are inside rooms | prompt A/B, conditioning scale |
-| Pits | 0 of 28 credited; drawn as rings, boulders, discs, once a pool | no pit class in ADE20K; painted in the swimming-pool colour; the meter | mapping A/B; human audit |
+| Pits | 0 of 28 credited; drawn as rings, boulders, discs, once a pool; SegFormer sees mostly rock, wall or earth (23 of 28) | no pit class in ADE20K; painted in the swimming-pool colour; the meter | mapping A/B; human audit |
 | Installations | drawn as something built in 21 of 24, recognised as an installation in 0 | painted in the fireplace colour; the meter | mapping A/B |
 | Foreign objects | 12 of 20 images, in 10 of them on a pit or installation | partly the same error as above | same tests |
 | Shifted positions in extraction | median offset 0.20 m, walls 0.24 m | the text rarely bounds a position | tolerance-aware scoring |
@@ -184,28 +186,29 @@ Files: [`results/metrics/`](results/metrics), [`results/predictions/`](results/p
 
 ## Reproduce
 
-Tested on Windows 11, Python 3.12, RTX 3050 Laptop 6 GB.
+Tested on Windows 11, Python 3.12, RTX 3050 Laptop 6 GB. A full run from zero was not repeated after the last change; the tests and the analysis scripts were.
 
 ```bash
 py -3.12 -m venv .venv
-.venv\Scripts\python -m pip install xformers==0.0.35 --index-url https://download.pytorch.org/whl/cu128
-.venv\Scripts\python -m pip install -r requirements.txt
+.venv/Scripts/python -m pip install xformers==0.0.35 --index-url https://download.pytorch.org/whl/cu128
+.venv/Scripts/python -m pip install -r requirements.txt
 ```
 
 ```bash
-# tests: 154, none needs a GPU
-cd 02_layout_pipeline      && ..\.venv\Scripts\python -m pytest tests -q
-cd ../03_controlled_generation && ..\.venv\Scripts\python -m pytest tests -q
-cd ../04_cv_experiment     && ..\.venv\Scripts\python -m pytest tests -q
+# tests: 156, none needs a GPU
+cd 02_layout_pipeline      && ../.venv/Scripts/python -m pytest tests -q
+cd ../03_controlled_generation && ../.venv/Scripts/python -m pytest tests -q
+cd ../04_cv_experiment     && ../.venv/Scripts/python -m pytest tests -q
 ```
 
-Commands below run from the stage folder, with `PY` = `..\.venv\Scripts\python`.
+Commands are for Git Bash on Windows and run from the stage folder, after `PY=../.venv/Scripts/python`. Write `$PY` for `PY`.
 
 ```bash
-# 02: extraction. Results used Claude Code in headless mode (models reported: claude-opus-5, claude-sonnet-5)
-PY src/extract_layout_cli.py  examples/*/report.he.txt --model opus
-PY src/extract_layout_cli.py  examples/*/report.he.txt --model sonnet --out-name layout.pred_sonnet.json
-PY src/extract_layout.py      examples/*/report.he.txt          # alternative: direct API, needs ANTHROPIC_API_KEY
+# 02: extraction. Results used Claude Code in headless mode (models reported: claude-opus-5, claude-sonnet-5).
+# The layouts are already in the repository; without --force existing files are kept
+PY src/extract_layout_cli.py  examples/*/report.he.txt --model opus --force
+PY src/extract_layout_cli.py  examples/*/report.he.txt --model sonnet --out-name layout.pred_sonnet.json --force
+PY src/extract_layout.py      examples/*/report.he.txt --force  # alternative, not run for these results: direct API, needs ANTHROPIC_API_KEY
 PY src/compare_layouts.py --all
 
 # 03: generation, one layout as an example. Repeat for ex01..ex05
@@ -215,7 +218,7 @@ PY src/generate.py --layout $EX/layout.gold.json --style photo --seeds 0 1 2 3 -
 PY src/generate.py --layout $EX/layout.pred.json --style photo --seeds 0 1 2 3 --tag llm \
    --prompt "<the prompt in outputs/ex01_iron_age_room/photo_meta.json>"                           # LLM layout, same prompt
 PY src/generate_gligen.py --examples ex01_iron_age_room --seeds 0 1 2 3
-PY src/summarize.py && PY src/pilot_miou.py
+PY src/summarize.py && PY src/pilot_miou.py && PY src/pit_probe.py
 
 # 04: data, training, evaluation
 PY src/build_synthetic.py --n-layouts 300 --seeds 0 1                  # 600 images, about 2 hours; or unzip release data-v1
@@ -244,7 +247,7 @@ Environment variables: copy `.env.example` to `.env`. No secrets are stored in t
 | [`02_layout_pipeline/`](02_layout_pipeline) | Ontology, JSON schema, extractor, validator, renderer, 8 examples, tests |
 | [`03_controlled_generation/`](03_controlled_generation) | SD 1.5 + ControlNet / GLIGEN, hallucination metrics, images and scores, tests |
 | [`04_cv_experiment/`](04_cv_experiment) | Generated training data, U-Net, zero-shot baselines, evaluation, tests |
-| [`05_presentation/`](05_presentation) | Project briefs in Hebrew |
+| [`05_presentation/`](05_presentation) | Earlier project briefs in Hebrew (17 Nov 2026), before the results; not updated since |
 | [`data/`](data) | Data documentation and samples |
 | [`notebooks/`](notebooks) | `01_data_exploration`, `02_baselines_and_errors` |
 | [`results/`](results) | Metrics (JSON, CSV), predictions, EDA numbers |

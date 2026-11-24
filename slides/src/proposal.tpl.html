@@ -55,7 +55,7 @@
 </div>
 </div>
 <p class="src">Example text written for this project in the style of Hadashot Arkheologiyot; it is not a real report.</p>
-<aside>This is the problem in one picture. The report describes a grain silo with ash and charred grain. Click. The model draws a swimming pool. The place and the size are right, because they came from the layout. The water is invented, and I know why: the conditioning network was trained on the ADE20K colours, and the closest class to a pit there is called swimming pool. A person looking at the picture cannot tell which part came from the evidence. So the goal is not only an image. It is an image plus a measurement of what in it is supported.</aside>
+<aside>This is the problem in one picture. The report describes a grain silo with ash and charred grain. Click. The model draws a swimming pool. The place and the size are right, because they came from the layout. The water is invented. A possible reason, which I have not isolated: the conditioning network was trained on the ADE20K colours, and the class we paint a pit with there is called swimming pool. A person looking at the picture cannot tell which part came from the evidence. So the goal is not only an image. It is an image plus a measurement of what in it is supported.</aside>
 </section>
 
 <section class="slide">
@@ -63,7 +63,7 @@
 <div class="abs sheet" style="left:110px;top:176px;width:1700px;padding:30px 36px"><p class="t-l">Given <b>a written excavation report</b> (Hebrew), produce <b>a structured spatial layout</b> and <b>a top-down image</b> for archaeologists, such that every drawn element is backed by a quote from the report and unsupported content is measured.</p></div>
 <div class="abs g3" style="left:110px;top:424px;width:1700px">
 <div><h3>Input</h3><ul class="tick" style="margin-top:14px"><li>Free text of one report, in the style of <i>Hadashot Arkheologiyot</i></li><li>Walls, floors, installations and pits, with sizes and relations</li></ul></div>
-<div><h3>Output</h3><ul class="tick" style="margin-top:14px"><li>JSON layout: 5 classes, positions in metres, 9 relation types, evidence level, verbatim quote</li><li>512×512 image, always labelled as hypothetical</li><li>Scores for faithfulness and for invented content</li></ul></div>
+<div><h3>Output</h3><ul class="tick" style="margin-top:14px"><li>JSON layout: 4 element classes, positions in metres, 9 relation types, evidence level, verbatim quote</li><li>512×512 image, always labelled as hypothetical</li><li>Scores for faithfulness and for invented content</li></ul></div>
 <div><h3>Constraints</h3><ul class="tick" style="margin-top:14px"><li>Laptop GPU with 6 GB of memory</li><li>No invented positions: unknown stays unknown</li><li>No Antiquities Authority material before written consent</li></ul></div>
 </div>
 <div class="abs" style="left:110px;top:816px;width:1700px">
@@ -201,17 +201,17 @@
  dict(label='Text only', v=G['photo_textonly']['HAR'], color=GREY),
  dict(label='GLIGEN, boxes', v=G['gligen']['HAR'], color=OCHRE),
  dict(label='ControlNet, mask', v=G['photo']['HAR'], color=RED, bold=True)], w=820, label_w=230, title='HAR: empty area that was filled (lower is better)', rowh=58) }}
-<p class="flag" style="margin-top:6px;margin-bottom:10px">Pilot</p><p class="t-s mut">5 hand-built layouts, 4 seeds, same prompts. ControlNet beats text only on recall in {{ G['photo']['wins']['object_recall'] }} of {{ G['photo']['pairs'] }} pairs. The cost: it closes rooms that the report leaves open, so mIoU to the layout falls ({{ '%.2f' % PM['conditions']['photo_textonly']['miou'] }} to {{ '%.2f' % PM['conditions']['photo']['miou'] }}).</p>
+<p class="flag" style="margin-top:6px;margin-bottom:10px">Pilot</p><p class="t-s mut">5 hand-built layouts, 4 seeds, same prompts. ControlNet beats text only on recall in {{ G['photo']['wins']['object_recall'] }} of {{ G['photo']['pairs'] }} pairs. The cost: it also draws walls that the layout does not have, and mIoU to the layout falls ({{ '%.2f' % PM['conditions']['photo_textonly']['miou'] }} to {{ '%.2f' % PM['conditions']['photo']['miou'] }}).</p>
 </div>
 <div class="abs" style="left:1000px;top:176px;width:810px">
 <div class="row" style="gap:18px"><figure style="width:396px"><div class="im" style="width:396px;height:396px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_textonly_s0.png', 420, alt='Text only') }}</div><figcaption>Text only: an open yard with four pits became one mound</figcaption></figure>
-<figure style="width:396px"><div class="im" style="width:396px;height:396px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_s0.png', 420, alt='With the layout') }}</div><figcaption>Same prompt and seed, with the layout: pits appear, and so do walls nobody reported</figcaption></figure></div>
+<figure style="width:396px"><div class="im" style="width:396px;height:396px">{{ img('03_controlled_generation/outputs/ex02_chalcolithic_pits/photo_s0.png', 420, alt='With the layout') }}</div><figcaption>Same prompt and seed, with the layout: rings appear at the pits (the meter credits none), and walls nobody reported</figcaption></figure></div>
 <table class="tight" style="margin-top:22px"><tr><th>Measured on RTX 3050 Laptop, 6 GB</th><th class="n">Peak</th><th class="n">Time</th></tr>
 <tr><td>Generation, SD 1.5 + ControlNet, FP16, offloading</td><td class="n">3.1 GB</td><td class="n">9.4 s/image</td></tr>
 <tr><td>U-Net training, FP16, batch 8</td><td class="n">1.7 GB</td><td class="n">≈15 min</td></tr></table>
 </div>
 <p class="src">Hypothetical reconstructions, generated by diffusion. Numbers: 03_controlled_generation/outputs/summary.md. A pilot, not the answer.</p>
-<aside>Two facts make me confident. First, memory: generation peaks at 3.1 GB and training at 1.7 GB, so everything runs on my laptop. Second, a small pilot with hand-built layouts. Object recall goes from about 0.2 with text alone to about 0.63 with ControlNet. But it has a cost that I want to show honestly: ControlNet fills empty area, it closes rooms with walls that are not in the layout, and so the mean IoU to the layout goes down. An image with no structures at all gets a low HAR and has its ground right, so these numbers have to be read together. These are pilot numbers and do not answer the research question, because the layouts were built by hand.</aside>
+<aside>Two facts make me confident. First, memory: generation peaks at 3.1 GB and training at 1.7 GB, so everything runs on my laptop. Second, a small pilot with hand-built layouts. Object recall goes from about 0.2 with text alone to about 0.63 with ControlNet. But it has a cost that I want to show honestly: ControlNet fills empty area with walls that are not in the layout, and the mean IoU to the layout goes down. Text alone also invents walls, so part of it may be the prompt. An image with no structures at all gets a low HAR and has its ground right, so these numbers have to be read together. These are pilot numbers and do not answer the research question, because the layouts were built by hand.</aside>
 </section>
 
 <section class="slide">

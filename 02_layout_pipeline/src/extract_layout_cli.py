@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -27,7 +26,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from extract_layout import PROMPT_PATH, check, feedback_message, user_message  # noqa: E402
+from extract_layout import PROMPT_PATH, check, feedback_message, neutral_id, user_message  # noqa: E402
 from layout_core import errors_only  # noqa: E402
 
 
@@ -99,7 +98,7 @@ def main() -> int:
             print(f"{report.parent.name}: קיים, מדלג")
             continue
         text = report.read_text(encoding="utf-8")
-        neutral = "report_" + hashlib.sha1(text.encode("utf-8")).hexdigest()[:8]
+        neutral = neutral_id(text)
         try:
             layout, issues, meta = extract(text, neutral, args.model, args.attempts)
         except (RuntimeError, subprocess.TimeoutExpired) as exc:

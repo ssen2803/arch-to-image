@@ -19,6 +19,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -30,6 +31,11 @@ MODEL = "claude-opus-5-5"
 PROMPT_PATH = ROOT / "prompts" / "text_to_layout_system.md"
 # fallback בצד השרת: אם מסווג בטיחות דוחה את הבקשה, השרת מריץ אותה מחדש על מודל חלופי.
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
+
+
+def neutral_id(report_text: str) -> str:
+    """מזהה שלא מרמז על המקרה. שמות התיקיות מתארים אותו (למשל "underspecified_pit"), ולכן לא נשלחים למודל."""
+    return "report_" + hashlib.sha1(report_text.encode("utf-8")).hexdigest()[:8]
 
 
 def user_message(report_text: str, source_id: str) -> str:
@@ -106,6 +112,7 @@ def main() -> int:
     ap.add_argument("--out", type=Path, help="נתיב פלט (רק כשיש קובץ קלט יחיד)")
     ap.add_argument("--attempts", type=int, default=3, help="מספר ניסיונות תיקון מקסימלי")
     ap.add_argument("--dry-run", action="store_true", help="הדפסת הבקשה בלבד, ללא קריאה ל-API")
+    ap.add_argument("--force", action="store_true", help="דריסה של קובץ פלט קיים")
     args = ap.parse_args()
     if args.out and len(args.reports) > 1:
         ap.error("--out אפשרי רק עם קובץ קלט יחיד")
@@ -118,7 +125,7 @@ def main() -> int:
 
     for report in args.reports:
         text = report.read_text(encoding="utf-8")
-        source_id = report.parent.name if report.parent != Path(".") else report.stem
+        source_id = neutral_id(text)
         out = args.out or report.parent / "layout.pred.json"
 
         if args.dry_run:
@@ -127,6 +134,10 @@ def main() -> int:
             req["system"] = f"<{len(req['system'])} chars from {PROMPT_PATH.name}>"
             req["output_config"]["format"]["schema"] = f"<api_schema(): {len(json.dumps(api_schema()))} chars>"
             print(json.dumps(req, ensure_ascii=False, indent=2))
+            continue
+
+        if out.exists() and not args.force:
+            print(f"{out}: קיים, מדלג (--force לדריסה)")
             continue
 
         # ה-SDK כבר מבצע retry אוטומטי ל-429/5xx ולשגיאות רשת; כאן רק מדווחים בצורה קריאה.
@@ -148,6 +159,8 @@ def main() -> int:
             print(f"{report}: נכשל - {exc}")
             return 1
 
+        meta["source_id_sent"] = source_id
+        layout.setdefault("source", {})["id"] = report.parent.name if report.parent != Path(".") else report.stem
         out.write_text(json.dumps(layout, ensure_ascii=False, indent=2), encoding="utf-8")
         out.with_suffix(".meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
         status = "תקין" if meta["valid"] else "לא תקין"

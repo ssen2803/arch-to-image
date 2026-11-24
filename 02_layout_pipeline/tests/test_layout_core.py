@@ -479,3 +479,25 @@ def test_cli_extractor_reads_json_with_or_without_code_fence():
     assert parse_json('Here it is:\n```json\n{"a": {"b": 2}}\n```') == {"a": {"b": 2}}
     with pytest.raises(ValueError):
         parse_json("no json here")
+
+
+def test_request_never_contains_the_descriptive_folder_name(capsys, monkeypatch):
+    """שם התיקייה מרמז על התשובה (למשל underspecified_pit), ולכן אסור שיגיע למודל."""
+    import extract_layout
+    for d in sorted(p for p in (ROOT / "examples").iterdir() if p.is_dir()):
+        monkeypatch.setattr(sys, "argv", ["extract_layout.py", str(d / "report.he.txt"), "--dry-run"])
+        assert extract_layout.main() == 0
+        out = capsys.readouterr().out
+        assert "report_" in out and d.name not in out
+
+
+def test_existing_prediction_is_not_overwritten_without_force(tmp_path, capsys, monkeypatch):
+    import types
+    import extract_layout
+    (tmp_path / "report.he.txt").write_text("טקסט", encoding="utf-8")
+    (tmp_path / "layout.pred.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setitem(sys.modules, "anthropic", types.ModuleType("anthropic"))
+    monkeypatch.setattr(sys, "argv", ["extract_layout.py", str(tmp_path / "report.he.txt")])
+    assert extract_layout.main() == 0
+    assert (tmp_path / "layout.pred.json").read_text(encoding="utf-8") == "{}"
+    assert "--force" in capsys.readouterr().out
