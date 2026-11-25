@@ -29,7 +29,7 @@
 | [02_layout_pipeline/](02_layout_pipeline/) | טקסט ← פריסה | אונטולוגיה של 5 מחלקות עם אוצר מונחים היררכי, סכמת JSON 1.2, מחלץ מבוסס Claude, מאמת, רינדור, מפות תקופה וחתכים, 8 דוגמאות |
 | [03_controlled_generation/](03_controlled_generation/) | חלק א' | ייצור ב-6GB VRAM (FP16, xformers, CPU offloading), מדד הזיות, 120 תמונות ותוצאות |
 | [04_cv_experiment/](04_cv_experiment/) | חלק ב' | U-Net (ResNet-18) מול Grounded-SAM, מדדי mIoU, אריחי רחפן אמיתיים, EDA, ניתוח שגיאות |
-| [slides/](slides/) | מצגות | הצעה וביניים: HTML, PDF, PPTX |
+| [slides/](slides/) | מצגות | הצעה וביניים: HTML ([לפתיחה בדפדפן](https://ssen2803.github.io/arch-to-image/)), PDF, PPTX |
 | [data/](data/), [notebooks/](notebooks/), [results/](results/), [visuals/](visuals/) | הגשה | תיעוד נתונים, מחברות, תוצאות ותרשימים |
 
 לכל תיקייה יש README משלה עם פקודות ותוצאות.

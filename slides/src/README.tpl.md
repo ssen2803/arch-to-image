@@ -3,7 +3,7 @@
 Course project in **Deep Generative Models**, Holon Institute of Technology (HIT), Fall 2026. Lecturer: Dr. Alexander (Sasha) Apartsin.
 A language model turns a written excavation report into a spatial layout in which every element is backed by a quote. The layout guides a diffusion model, and the result is measured: what in the image does the report not support? A small segmentation network is trained on the generated images and tested on real drone photos.
 
-[Hebrew README](README.he.md) · Slides: [proposal](slides/proposal.pdf) ([pptx](slides/proposal.pptx), [html](slides/proposal.html)) · [interim](slides/midterm.pdf) ([pptx](slides/midterm.pptx), [html](slides/midterm.html)) · [Data](data/README.md) · [Notebooks](notebooks)
+[Hebrew README](README.he.md) · Slides: [interim](https://ssen2803.github.io/arch-to-image/midterm.html) ([pdf](slides/midterm.pdf), [pptx](slides/midterm.pptx)) · [proposal](https://ssen2803.github.io/arch-to-image/proposal.html) ([pdf](slides/proposal.pdf), [pptx](slides/proposal.pptx)) · [Data](data/README.md) · [Notebooks](notebooks)
 
 ![Visual abstract](visuals/visual_abstract.png)
 *Visual abstract. Report, layout extracted by the language model, generated image, measurement, and segmentation of a real drone tile. The report text is an example written for this project. Generated images are hypothetical reconstructions.*
@@ -221,7 +221,7 @@ Environment variables: copy `.env.example` to `.env`. No secrets are stored in t
 | [`data/`](data) | Data documentation and samples |
 | [`notebooks/`](notebooks) | `01_data_exploration`, `02_baselines_and_errors` |
 | [`results/`](results) | Metrics (JSON, CSV), predictions, EDA numbers |
-| [`slides/`](slides) | Proposal and interim slides: PPTX, PDF, HTML; sources in `src/` |
+| [`slides/`](slides) | Proposal and interim slides: PPTX, PDF, HTML ([in the browser](https://ssen2803.github.io/arch-to-image/)); sources in `src/` |
 | [`visuals/`](visuals) | Visual abstract, pipeline, result figures |
 
 Documentation inside the stage folders is in Hebrew.
