@@ -1,4 +1,7 @@
 /* Deck look: drafting film, survey red, technical lettering (DIN). One stage of 1920x1080, scaled to the window. */
+/* Bahnschrift ships with Windows only; other systems get Arial (Roboto on Android) scaled to about the same width */
+@font-face{font-family:'Deck Fallback';src:local('Arial'),local('ArialMT'),local('Roboto');font-weight:400;size-adjust:93%;unicode-range:U+20-24F,U+2010-2026}
+@font-face{font-family:'Deck Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Roboto Bold'),local('Roboto-Bold');font-weight:600 700;size-adjust:93%;unicode-range:U+20-24F,U+2010-2026}
 @property --p { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
 :root{
   --film:#F2F5F3; --film-2:#E6ECE9; --grid:#C9D8D2; --line:#B5C4BF;
@@ -6,7 +9,7 @@
   --red:#C1272D; --blue:#1F62B8; --ochre:#A8690A; --grey:#7F8C94;
   --night:#14232B; --night-2:#21343E; --night-ink:#EAF1EE; --night-ink-2:#AFC0C4;
   --wall:#5C4033; --floor:#D6B270; --inst:#C44E38; --pit:#3A5A78;
-  --sans:'Bahnschrift','DIN Alternate','Barlow',Arial,sans-serif;
+  --sans:'Bahnschrift','Deck Fallback',Arial,sans-serif;
   --he:'David','Frank Ruhl Libre','Times New Roman',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}

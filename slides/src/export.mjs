@@ -1,6 +1,7 @@
 // Renders a deck with headless Chrome (DevTools protocol, no npm packages): PDF, PNG per slide, and the data for the PPTX.
 //   node export.mjs midterm                 -> ../midterm.pdf + build/midterm/{png,bg,deck.json}
 //   node export.mjs midterm --shots out/    -> PNG per slide only (for visual checks)
+//   add --fallback-font to check the slides as a computer without Bahnschrift shows them
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync, mkdtempSync, rmSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -76,6 +77,7 @@ try {
   const url = pathToFileURL(name === 'visuals' ? path.join(here, 'build', 'visuals.html') : path.join(here, '..', `${name}.html`)).href;
   await cdp('Page.navigate', { url: url + '?full' });
   for (let k = 0; k < 100; k++) { await sleep(100); if (await ev('!!window.deck && document.readyState==="complete"').catch(() => false)) break; }
+  if (process.argv.includes('--fallback-font')) await ev(`document.documentElement.style.setProperty('--sans', "'Deck Fallback',Arial,sans-serif")`);   // what a computer without Bahnschrift shows
   await ev('document.fonts.ready.then(()=>1)');
   const N = await ev('deck.N');
   const out = shotsOnly || path.join(here, 'build', name);
@@ -94,6 +96,8 @@ try {
       for (let a = 0; a < T.length; a++) for (let b = a + 1; b < T.length; b++) { const [e, p] = T[a], [f, q] = T[b]; if (e.contains(f) || f.contains(e)) continue;
         const w = Math.min(p.right, q.right) - Math.max(p.left, q.left), h = Math.min(p.bottom, q.bottom) - Math.max(p.top, q.top);
         if (w > 4 && h > 6) o.push(${i + 1} + ': texts overlap by ' + Math.round(w) + 'x' + Math.round(h) + ': "' + e.textContent.trim().slice(0, 30) + '" / "' + f.textContent.trim().slice(0, 30) + '"'); }
+      // a slide title has one line
+      s.querySelectorAll(':scope>h2').forEach(e => { const h = e.getBoundingClientRect().height; if (h > 80) o.push(${i + 1} + ': title wraps to ' + Math.round(h) + 'px: ' + e.textContent.trim().slice(0, 60)); });
       // a note box must not start above the end of a table that shares its columns
       const N = [...s.querySelectorAll('.note')], TB = [...s.querySelectorAll('table')];
       N.forEach(n => TB.forEach(t => { if (t.contains(n) || n.contains(t)) return; const p = n.getBoundingClientRect(), q = t.getBoundingClientRect(); const w = Math.min(p.right, q.right) - Math.max(p.left, q.left), h = Math.min(p.bottom, q.bottom) - Math.max(p.top, q.top); if (w > 4 && h > 2) o.push(${i + 1} + ': note covers a table by ' + Math.round(h) + 'px: ' + n.textContent.trim().slice(0, 40)); }));
