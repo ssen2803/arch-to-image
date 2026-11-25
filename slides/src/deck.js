@@ -46,7 +46,8 @@
 
   function fit() {
     if (document.body.classList.contains('ov')) return;
-    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    const d = document.documentElement;   // not innerWidth: a phone counts the unscaled 1920 px stage into it
+    const k = Math.min(d.clientWidth / 1920, d.clientHeight / 1080);
     stage.style.transform = `scale(${k}) translate(-50%,-50%)`;
   }
   addEventListener('resize', fit);

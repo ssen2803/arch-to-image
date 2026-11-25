@@ -13,6 +13,7 @@
   --he:'David','Frank Ruhl Libre','Times New Roman',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+*{touch-action:pan-y pinch-zoom}   /* a sideways swipe changes the slide; without this the browser also takes it as Back */
 html,body{height:100%;background:#0B1418;overflow:hidden}
 body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
@@ -129,7 +130,7 @@ svg .bl{stroke:var(--ink);stroke-width:2.5}
 #ui button:focus-visible{outline:3px solid #FFC933}
 
 body.ov{overflow:auto}
-body.ov #stage{position:static;transform:none!important;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:22px;padding:26px}
+body.ov #stage{position:static;transform:none!important;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(400px,100%),1fr));gap:22px;padding:26px}
 body.ov .cell{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer;outline:3px solid transparent}
 body.ov .cell:hover{outline-color:#FFC933}
 body.ov .slide{display:block;width:1920px;height:1080px;inset:auto;left:0;top:0;transform-origin:0 0;pointer-events:none}

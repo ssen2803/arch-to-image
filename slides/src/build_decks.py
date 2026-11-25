@@ -557,7 +557,7 @@ def context() -> dict:
 
 
 PAGE = """<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 <title>{title}</title><style>{css}</style></head>
 <body><div id="stage">{slides}</div><div id="tip"></div>
 <div id="ui"><button data-a="prev" aria-label="Previous">&#8592;</button><button data-a="next" aria-label="Next">&#8594;</button><button data-a="over">Overview (O)</button><button data-a="notes">Notes (S)</button><button data-a="full">Full screen (F)</button></div>

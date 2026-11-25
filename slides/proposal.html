@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 <title>ArchaeoLayout: project proposal</title><style>/* Deck look: drafting film, survey red, technical lettering (DIN). One stage of 1920x1080, scaled to the window. */
 /* Bahnschrift ships with Windows only; other systems get Arial (Roboto on Android) scaled to about the same width */
 @font-face{font-family:'Deck Fallback';src:local('Arial'),local('ArialMT'),local('Roboto');font-weight:400;size-adjust:93%;unicode-range:U+20-24F,U+2010-2026}
@@ -15,6 +15,7 @@
   --he:'David','Frank Ruhl Libre','Times New Roman',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+*{touch-action:pan-y pinch-zoom}   /* a sideways swipe changes the slide; without this the browser also takes it as Back */
 html,body{height:100%;background:#0B1418;overflow:hidden}
 body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
@@ -131,7 +132,7 @@ svg .bl{stroke:var(--ink);stroke-width:2.5}
 #ui button:focus-visible{outline:3px solid #FFC933}
 
 body.ov{overflow:auto}
-body.ov #stage{position:static;transform:none!important;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:22px;padding:26px}
+body.ov #stage{position:static;transform:none!important;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(400px,100%),1fr));gap:22px;padding:26px}
 body.ov .cell{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer;outline:3px solid transparent}
 body.ov .cell:hover{outline-color:#FFC933}
 body.ov .slide{display:block;width:1920px;height:1080px;inset:auto;left:0;top:0;transform-origin:0 0;pointer-events:none}
@@ -450,7 +451,8 @@ aside{display:none}
 
   function fit() {
     if (document.body.classList.contains('ov')) return;
-    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    const d = document.documentElement;   // not innerWidth: a phone counts the unscaled 1920 px stage into it
+    const k = Math.min(d.clientWidth / 1920, d.clientHeight / 1080);
     stage.style.transform = `scale(${k}) translate(-50%,-50%)`;
   }
   addEventListener('resize', fit);
