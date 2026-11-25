@@ -33,9 +33,9 @@
 </div>
 <div class="abs g2" style="left:110px;top:700px;width:1700px">
 <div class="note"><h3>Why it is hard</h3><p class="mut" style="margin-top:8px">Reports leave things out, describe layers that hide one another, and say different things with different certainty. An image has to show all of that without inventing the rest.</p></div>
-<div class="note b"><h3>Evidence that the need is real</h3><p class="mut" style="margin-top:8px">Informal feedback from Israel Antiquities Authority staff (Nov 2026, paraphrased): a tool that checks text against plans would help editors, and the text alone gives only part of what the plan shows.</p></div>
+<div class="note b"><h3>Evidence that the need is real</h3><p class="mut" style="margin-top:8px">Informal feedback from professionals who publish excavation reports (Nov 2026, paraphrased): a tool that checks text against plans would help editors, and the text alone gives only part of what the plan shows.</p></div>
 </div>
-<aside>Excavation is a one-time experiment: once a layer is dug it is gone, and the report is the record. Three groups need to see the site. Editors and reviewers check by eye that text, plans and sections match. Researchers read text next to a plan, if there is one. Museums pay an artist or, more and more, use an image generator. I asked the Israel Antiquities Authority for permission to use published reports. The replies were informal, so I paraphrase them and name nobody: checking text against plans would help editors, and the text gives only part of the picture. That second point shaped the research question.</aside>
+<aside>Excavation is a one-time experiment: once a layer is dug it is gone, and the report is the record. Three groups need to see the site. Editors and reviewers check by eye that text, plans and sections match. Researchers read text next to a plan, if there is one. Museums pay an artist or, more and more, use an image generator. I asked the publisher of excavation reports for permission to use them. The replies were informal, so I paraphrase them and name nobody: checking text against plans would help editors, and the text gives only part of the picture. That second point shaped the research question.</aside>
 </section>
 
 <section class="slide">
@@ -64,11 +64,11 @@
 <div class="abs g3" style="left:110px;top:424px;width:1700px">
 <div><h3>Input</h3><ul class="tick" style="margin-top:14px"><li>Free text of one report, in the style of <i>Hadashot Arkheologiyot</i></li><li>Walls, floors, installations and pits, with sizes and relations</li></ul></div>
 <div><h3>Output</h3><ul class="tick" style="margin-top:14px"><li>JSON layout: 4 element classes, positions in metres, 9 relation types, evidence level, verbatim quote</li><li>512×512 image, always labelled as hypothetical</li><li>Scores for faithfulness and for invented content</li></ul></div>
-<div><h3>Constraints</h3><ul class="tick" style="margin-top:14px"><li>Laptop GPU with 6 GB of memory</li><li>No invented positions: unknown stays unknown</li><li>No Antiquities Authority material before written consent</li></ul></div>
+<div><h3>Constraints</h3><ul class="tick" style="margin-top:14px"><li>Laptop GPU with 6 GB of memory</li><li>No invented positions: unknown stays unknown</li><li>No material from published reports before written consent</li></ul></div>
 </div>
 <div class="abs" style="left:110px;top:816px;width:1700px">
 <div class="note k"><p><b>Second task, part B of the course project.</b> Input: a top-down excavation photo. Output: a label for every pixel (background, floor, wall, installation, pit). Train a small network on our generated images and compare it with zero-shot models on real drone photos.</p></div></div>
-<aside>The formal task. Input: the free text of one report, usually Hebrew. Output: a structured layout, an image made from it, and scores. Three constraints shape the design: a 6 GB laptop GPU, the rule that an unknown position stays unknown, and copyright, because the Antiquities Authority material needs written consent. Part B is a second, smaller task: segmentation of excavation photos with a network trained on the generated images.</aside>
+<aside>The formal task. Input: the free text of one report, usually Hebrew. Output: a structured layout, an image made from it, and scores. Three constraints shape the design: a 6 GB laptop GPU, the rule that an unknown position stays unknown, and copyright, because material from published reports needs written consent. Part B is a second, smaller task: segmentation of excavation photos with a network trained on the generated images.</aside>
 </section>
 
 <section class="slide" data-keys="W1,W2,W3,W4,F1,I1,F2,I2">
@@ -156,8 +156,8 @@
 <div class="note b"><h4>What is controlled</h4><p class="t-s mut">Period, building or open area, number and kind of elements, sizes in metres, doorways, light, seed. Layouts pass the same validator as layouts from text.</p></div>
 <div class="note o"><h4>How it is checked</h4><p class="t-s mut">Splits by layout, agreement with an outside segmenter, comparison with real photos, and a human audit sample of 30 images.</p></div>
 </div>
-<p class="src">If consent is delayed: reduced version against text layouts only; the plan comparison (H2) waits. No Antiquities Authority material is in the repository.</p>
-<aside>Four sets. The main experiment needs real reports with matching plans. I asked the Antiquities Authority in writing on 14 November; the replies are positive but there is no formal consent yet. Until then I work with example texts. The generated images come from random layouts that pass the same validator, and we control period, context, element types, sizes, doorways, lighting and seed. The test photos are real: drone tiles with wall outlines under an MIT licence. Synthetic images are never used as test data for the claim about real photos.</aside>
+<p class="src">If consent is delayed: reduced version against text layouts only; the plan comparison (H2) waits. No report text or plan that needs consent is in the repository.</p>
+<aside>Four sets. The main experiment needs real reports with matching plans. I asked the publisher of the reports in writing on 14 November; the replies are positive but there is no formal consent yet. Until then I work with example texts. The generated images come from random layouts that pass the same validator, and we control period, context, element types, sizes, doorways, lighting and seed. The test photos are real: drone tiles with wall outlines under an MIT licence. Synthetic images are never used as test data for the claim about real photos.</aside>
 </section>
 
 <section class="slide night">
@@ -227,7 +227,7 @@
 <tr><td><b>13</b></td><td><b>Final presentation and repository</b></td><td>Slides, README, code, results</td><td></td></tr>
 </table></div>
 <div class="abs" style="left:110px;top:836px;width:1700px"><div class="g3"><div><h4>Core</h4><p class="t-s mut">Extraction, controlled generation, three-condition experiment</p></div><div><h4>Secondary</h4><p class="t-s mut">Segmentation network against zero-shot models</p></div><div><h4>Later work, not this semester</h4><p class="t-s mut">Several reports of one site; reconstruction by period</p></div></div></div>
-<aside>The plan. Weeks six to eight produce data, analysis and baselines. Week nine is the interim presentation. Then I attack the largest errors, and run the main experiment in weeks ten to twelve. Every risk has a fallback. The largest one is consent from the Antiquities Authority: without it I run the reduced version against text layouts and do not test H2. I work alone, so every task is mine.</aside>
+<aside>The plan. Weeks six to eight produce data, analysis and baselines. Week nine is the interim presentation. Then I attack the largest errors, and run the main experiment in weeks ten to twelve. Every risk has a fallback. The largest one is consent from the publisher of the reports: without it I run the reduced version against text layouts and do not test H2. I work alone, so every task is mine.</aside>
 </section>
 
 <section class="slide">
